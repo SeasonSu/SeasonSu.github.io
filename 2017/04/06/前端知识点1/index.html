@@ -385,6 +385,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/04/06/前端知识点1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -536,7 +546,7 @@
           
   <div class="comments" id="comments">
     
-      <div id="uyan_frame"></div>
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
     
   </div>
 
@@ -796,26 +806,21 @@
 
 
   
-
-
-
-
-
-  
     
-
-    
-      <!-- UY BEGIN -->
-      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2130185"></script>
-      <!-- UY END -->
-    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "f9d61c652aaf4321a1ab5f4ba944d9af",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
   
 
 
 
 
-
-  
 
 
 
@@ -1069,7 +1074,7 @@
 
 
 <!-- custom analytics part create by xiamo -->
-<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script src="https://cdn1.lncld.net/static/js/2.1.4/av-min.js"></script>
 <script>AV.initialize("IQS1iuzfgQkAOdq482T0GR05-gzGzoHsz", "3Q0B1qIjxzCl04dojtyEvi2d");</script>
 <script>
 function showTime(Counter) {
