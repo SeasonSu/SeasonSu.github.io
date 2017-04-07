@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="服务器,自动化部署," />
 
 
 
@@ -87,15 +87,16 @@
 
 
 
-<meta name="description" content="Now I&apos;m traveling light">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Seas0n">
-<meta property="og:url" content="http://yoursite.com/tags/html5/index.html">
+<meta name="description" content="1.创建仓库 服务器上需要配置两个 git 仓库，一个用于代码版本管理的远程仓库，一个用于用户访问的本地仓库。这里的「远程仓库」并不等同于托管代码的「中央仓库」，这两个仓库都是为了自动同步代码并部署网站而存在。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gogs 自动化部署">
+<meta property="og:url" content="http://yoursite.com/2017/04/07/gogs-自动化部署/index.html">
 <meta property="og:site_name" content="Seas0n">
-<meta property="og:description" content="Now I&apos;m traveling light">
+<meta property="og:description" content="1.创建仓库 服务器上需要配置两个 git 仓库，一个用于代码版本管理的远程仓库，一个用于用户访问的本地仓库。这里的「远程仓库」并不等同于托管代码的「中央仓库」，这两个仓库都是为了自动同步代码并部署网站而存在。">
+<meta property="og:updated_time" content="2017-04-07T09:46:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Seas0n">
-<meta name="twitter:description" content="Now I&apos;m traveling light">
+<meta name="twitter:title" content="gogs 自动化部署">
+<meta name="twitter:description" content="1.创建仓库 服务器上需要配置两个 git 仓库，一个用于代码版本管理的远程仓库，一个用于用户访问的本地仓库。这里的「远程仓库」并不等同于托管代码的「中央仓库」，这两个仓库都是为了自动同步代码并部署网站而存在。">
 
 
 
@@ -123,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/html5/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/07/gogs-自动化部署/"/>
 
 
 
 
 
-  <title> 标签: html5 | Seas0n </title>
+  <title> gogs 自动化部署 | Seas0n </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -164,7 +165,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -302,46 +303,198 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        html5
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/07/gogs-自动化部署/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Seas0n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seas0n">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                gogs 自动化部署
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-07T17:38:13+08:00">
+                2017-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/自动化部署/" itemprop="url" rel="index">
+                    <span itemprop="name">自动化部署</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <span class="post-meta-item-text">评论 </span>
+                <a class="cloud-tie-join-count" href="/2017/04/07/gogs-自动化部署/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+                <span class="post-meta-item-text">条 </span>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h4 id="1-创建仓库"><a href="#1-创建仓库" class="headerlink" title="1.创建仓库"></a>1.创建仓库</h4><p> 服务器上需要配置两个 git 仓库，一个用于代码版本管理的远程仓库，一个用于用户访问的本地仓库。这里的「远程仓库」并不等同于托管代码的「中央仓库」，这两个仓库都是为了自动同步代码并部署网站而存在。<br><a id="more"></a><br>在存放远程仓库的目录中（假设是 /home/ourai/repos）执行 git init –bare bridge.git 会创建一个包含 git 各种配置文件的「裸仓库」。</p>
+<p>切换到存放用户所访问文件的目录（假设为 /home/ourai/www，如果不存在则在 /home/ourai 中执行mkdir www）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git init</div><div class="line">git remote add origin /root/gogs-repositories/seateam/wxoauth.git</div><div class="line">git fetch</div><div class="line">git checkout master</div></pre></td></tr></table></figure></p>
+<h4 id="2-配置-Git-Hook"><a href="#2-配置-Git-Hook" class="headerlink" title="2.配置 Git Hook"></a>2.配置 Git Hook</h4><p>将目录切换至 xx.git/hooks，用<br><code>cp post-receive.sample post-receive</code> 拷贝并</p>
+<p><code>cd /root/gogs-repositories/seateam/xx.git/hooks</code></p>
+<p>用vim post-receive 修改。其内容大致如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line"></div><div class="line">unset GIT_DIR</div><div class="line"></div><div class="line">NowPath=`pwd`</div><div class="line">DeployPath=&quot;/alidata/www/wxoauth&quot;</div><div class="line"></div><div class="line">cd $DeployPath</div><div class="line">git pull origin master</div><div class="line"></div><div class="line">cd $NowPath</div><div class="line">exit 0</div></pre></td></tr></table></figure></p>
+<p>使用 <code>chmod +x post-receive</code> 改变一下权限后，服务器端的配置就基本完成了。</p>
+<h4 id="3-上线与测试分开"><a href="#3-上线与测试分开" class="headerlink" title="3.上线与测试分开"></a>3.上线与测试分开</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">while read oldrev newrev refname</div><div class="line">do</div><div class="line">    if [[ $refname =~ .*/deploy$ ]];</div><div class="line">    then</div><div class="line">        #!/bin/sh</div><div class="line">        unset GIT_DIR</div><div class="line">	NowPath=&apos;pwd&apos;</div><div class="line">	DeployPath=&quot;/alidata/deploy/wxci&quot;</div><div class="line">	cd $DeployPath</div><div class="line">	git pull origin deploy</div><div class="line">	cd $NowPath</div><div class="line">	exit 0</div><div class="line">    else</div><div class="line">        #!/bin/sh</div><div class="line">        unset GIT_DIR</div><div class="line">	NowPath=&apos;pwd&apos;</div><div class="line">	DeployPath=&quot;/alidata/www/wxci&quot;</div><div class="line">	cd $DeployPath</div><div class="line">	git pull origin master</div><div class="line">	cd $NowPath</div><div class="line">	exit 0</div><div class="line">    fi</div><div class="line">done</div></pre></td></tr></table></figure>
+<h4 id="4-挂起进程"><a href="#4-挂起进程" class="headerlink" title="4.挂起进程"></a>4.挂起进程</h4><p><code>cd /alidata/gogs</code><br><code>nohup ./gogs web &amp;</code>    守护进程<br>git hook 钩子，监听操作自动下载资源＝自动部署</p>
 
-      <h2 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2017/04/05/标签列表/" itemprop="url">
-              
-                <span itemprop="name">HTML5 标签列表</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-05T11:14:47+08:00"
-              content="2017-04-05" >
-          04-05
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/服务器/" rel="tag"># 服务器</a>
+          
+            <a href="/tags/自动化部署/" rel="tag"># 自动化部署</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/07/shell-命令大全/" rel="next" title="shell 命令大全">
+                <i class="fa fa-chevron-left"></i> shell 命令大全
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -349,6 +502,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
 
         </div>
         
@@ -368,8 +527,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/user.jpg"
@@ -442,6 +610,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-创建仓库"><span class="nav-number">1.</span> <span class="nav-text">1.创建仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-配置-Git-Hook"><span class="nav-number">2.</span> <span class="nav-text">2.配置 Git Hook</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-上线与测试分开"><span class="nav-number">3.</span> <span class="nav-text">3.上线与测试分开</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-挂起进程"><span class="nav-number">4.</span> <span class="nav-text">4.挂起进程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -552,6 +736,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
