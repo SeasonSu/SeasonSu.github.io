@@ -1,0 +1,991 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="前端知识点," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1,将url的查询参数解析成字典对象这个题目不约而同的出现在了多家公司的面试题中，当然也是因为太过于典型，解决方案无非就是拆字符或者用正则匹配来解决，我个人强烈建议用正则匹配，因为url允许用户随意输入，如果用拆字符的方式，有任何一处没有考虑到容错，就会导致整个js都报错。而正则就没有这个问题，他只匹配出正确的配对，非法的全部过滤掉，简单，方便。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端知识点2">
+<meta property="og:url" content="http://yoursite.com/2017/04/07/前端知识点2/index.html">
+<meta property="og:site_name" content="Seas0n">
+<meta property="og:description" content="1,将url的查询参数解析成字典对象这个题目不约而同的出现在了多家公司的面试题中，当然也是因为太过于典型，解决方案无非就是拆字符或者用正则匹配来解决，我个人强烈建议用正则匹配，因为url允许用户随意输入，如果用拆字符的方式，有任何一处没有考虑到容错，就会导致整个js都报错。而正则就没有这个问题，他只匹配出正确的配对，非法的全部过滤掉，简单，方便。">
+<meta property="og:updated_time" content="2017-04-07T07:07:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端知识点2">
+<meta name="twitter:description" content="1,将url的查询参数解析成字典对象这个题目不约而同的出现在了多家公司的面试题中，当然也是因为太过于典型，解决方案无非就是拆字符或者用正则匹配来解决，我个人强烈建议用正则匹配，因为url允许用户随意输入，如果用拆字符的方式，有任何一处没有考虑到容错，就会导致整个js都报错。而正则就没有这个问题，他只匹配出正确的配对，非法的全部过滤掉，简单，方便。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/07/前端知识点2/"/>
+
+
+
+
+
+  <title> 前端知识点2 | Seas0n </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d851db4be88ab208c616b124490ba31f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seas0n</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/07/前端知识点2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Seas0n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seas0n">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                前端知识点2
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-07T14:58:52+08:00">
+                2017-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端知识点/" itemprop="url" rel="index">
+                    <span itemprop="name">前端知识点</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <span class="post-meta-item-text">评论 </span>
+                <a class="cloud-tie-join-count" href="/2017/04/07/前端知识点2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+                <span class="post-meta-item-text">条 </span>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="1-将url的查询参数解析成字典对象"><a href="#1-将url的查询参数解析成字典对象" class="headerlink" title="1,将url的查询参数解析成字典对象"></a>1,将url的查询参数解析成字典对象</h4><p>这个题目不约而同的出现在了多家公司的面试题中，当然也是因为太过于典型，解决方案无非就是拆字符或者用正则匹配来解决，我个人强烈建议用正则匹配，因为url允许用户随意输入，如果用拆字符的方式，有任何一处没有考虑到容错，就会导致整个js都报错。而正则就没有这个问题，他只匹配出正确的配对，非法的全部过滤掉，简单，方便。<br><a id="more"></a><br>实现代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function getQueryObject(url) &#123;</div><div class="line">    url = url == null ? window.location.href : url;</div><div class="line">    var search = url.substring(url.lastIndexOf(&quot;?&quot;) + 1);</div><div class="line">    var obj = &#123;&#125;;</div><div class="line">    var reg = /([^?&amp;=]+)=([^?&amp;=]*)/g;</div><div class="line">    search.replace(reg, function (rs, $1, $2) &#123;</div><div class="line">        var name = decodeURIComponent($1);</div><div class="line">        var val = decodeURIComponent($2);               </div><div class="line">        val = String(val);</div><div class="line">        obj[name] = val;</div><div class="line">        return rs;</div><div class="line">    &#125;);</div><div class="line">    return obj;</div><div class="line">&#125;</div><div class="line">getQueryObject(&quot;http://www.cnblogs.com/leee/p/4456840.html?name=1&amp;dd=ddd**&quot;)</div></pre></td></tr></table></figure></p>
+<p><code>Object {name: &quot;1&quot;, dd: &quot;ddd**&quot;}</code></p>
+<h4 id="2-console-log-1-”2”-输出的是3"><a href="#2-console-log-1-”2”-输出的是3" class="headerlink" title="2.console.log(1+ +”2”);输出的是3"></a>2.console.log(1+ +”2”);输出的是3</h4><p>等同于: 1+(+’2’)：<br>+’2’ 的 + 是一元操作符，对 ‘2’ 进行Number()操作，转为数字的2，所以等于3<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">console.log(&quot;A&quot;-&quot;B&quot;+&quot;2&quot;)   NaN2</div><div class="line">console.log(&quot;A&quot;-&quot;B&quot;+2)    NaN</div></pre></td></tr></table></figure></p>
+<h4 id="3-算法"><a href="#3-算法" class="headerlink" title="3. 算法"></a>3. 算法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function test(a,b)&#123;</div><div class="line">     console.log(b);</div><div class="line">     return&#123;</div><div class="line">         test:function(x)&#123;</div><div class="line">             return test(x,a);</div><div class="line">         &#125;</div><div class="line">     &#125;</div><div class="line"> &#125;</div><div class="line"> var a=test(0);a.test(1);a.test(2);a.test(3);       </div><div class="line"> // underfined  0  0  0</div></pre></td></tr></table></figure>
+<h4 id="4-三次握手"><a href="#4-三次握手" class="headerlink" title="4. 三次握手"></a>4. 三次握手</h4><h5 id="第一次"><a href="#第一次" class="headerlink" title="第一次"></a>第一次</h5><p>第一次握手：建立连接时，客户端发送syn包（syn=j）到服务器，并进入SYN_SENT状态，等待服务器确认；SYN：同步序列编号（Synchronize Sequence Numbers）。</p>
+<h5 id="第二次"><a href="#第二次" class="headerlink" title="第二次"></a>第二次</h5><p>第二次握手：服务器收到syn包，必须确认客户的SYN（ack=j+1），同时自己也发送一个SYN包（syn=k），即SYN+ACK包，此时服务器进入SYN_RECV状态；</p>
+<h5 id="第三次"><a href="#第三次" class="headerlink" title="第三次"></a>第三次</h5><p>第三次握手：客户端收到服务器的SYN+ACK包，向服务器发送确认包ACK(ack=k+1），此包发送完毕，客户端和服务器进入ESTABLISHED（TCP连接成功）状态，完成三次握手。<br>完成三次握手，客户端与服务器开始传送数据，在上述过程中，还有一些重要的概念：</p>
+<h4 id="5-http-状态码"><a href="#5-http-状态码" class="headerlink" title="5. http 状态码"></a>5. http 状态码</h4><h5 id="一、HTTP状态码"><a href="#一、HTTP状态码" class="headerlink" title="一、HTTP状态码"></a>一、HTTP状态码</h5><p>如果某项请求发送到您的服务器要求显示您网站上的某个网页（例如，用户通过浏览器访问您的网页或 Googlebot 抓取网页时），服务器将会返回 HTTP 状态代码以响应请求。</p>
+<p>此状态代码提供关于请求状态的信息， 告诉 Googlebot 关于您的网站和请求的网页的信息。<br>一些常见的状态代码包括：<br>200 – 服务器成功返回网页<br>404 – 请求的网页不存在<br>503 – 服务器暂时不可用</p>
+<p>下面提供 HTTP 状态代码的完整列表。 点击链接可了解详情。 您也可以访问有关 HTTP 状态代码的 W3C 网页以获得更多信息 。</p>
+<p>1xx：请求收到，继续处理<br>2xx：操作成功收到，分析、接受<br>3xx：完成此请求必须进一步处理<br>4xx：请求包含一个错误语法或不能完成<br>5xx：服务器执行一个完全有效请求失败<br>1xx （临时响应）<br>表示临时响应并需要请求者继续执行操作的状态代码。</p>
+<p>代码 说明<br>100（继续）    请求者应当继续提出请求。 服务器返回此代码表示已收到请求的第一部分，正在等待其余部分。<br>101（切换协议）    请求者已要求服务器切换协议，服务器已确认并准备切换。</p>
+<p>2xx （成功）<br>表示服务器成功处理了请求的状态代码。</p>
+<p>代码 说明<br>200（成功）    服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页。 如果针对您的 robots.txt 文件显示此状态，则表示 Googlebot 已成功检索到该文件。<br>201（已创建）    请求成功并且服务器创建了新的资源。<br>202（已接受）    服务器已接受请求，但尚未处理。<br>203（非授权信息）    服务器已成功处理了请求，但返回的信息可能来自另一来源。<br>204（无内容）    服务器成功处理了请求，但没有返回任何内容。<br>205（重置内容）    服务器成功处理了请求，但没有返回任何内容。 与 204 响应不同，此响应要求请求者重置文档视图（例如，清除表单内容以输入新内容）。<br>206（部分内容）    服务器成功处理了部分 GET 请求。</p>
+<p>3xx （重定向）<br>要完成请求，需要进一步操作。 通常，这些状态代码用来重定向。 Google 建议您在每次请求中使用重定向不要超过 5 次。 您可以使用网站管理员工具查看一下 Googlebot 在抓取重定向网页时是否遇到问题。 诊断 下的网 络抓取 页面列出了由于重定向错误而导致 Googlebot 无法抓取的网址。</p>
+<p>代码 说明<br>300（多种选择）    针对请求，服务器可执行多种操作。 服务器可根据请求者（用户代理）选择一项操作，或提供操作列表供请求者选择。<br>301（永久移动）    请求的网页已永久移动到新位置。 服务器返回此响应（对 GET 或 HEAD 请求的响应）时，会自动将请求者转到新位置。 您应使用此代码告诉 Googlebot 某个网页或网站已永久移动到新位置。<br>302（暂时移动）    服 务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。 此代码与响应 GET 或 HEAD 请求的 301 代码类似，会自动将请求者转到不同的位置，但您不应使用此代码来告诉 Googlebot 某个网页或网站已经移动，因为 Googlebot 会继续抓取原有位置并编入索引。<br>303（查看其他位置）    请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。 对于除 HEAD 之外的所有请求，服务器会自动转到其他位置。<br>304（未修改）    自从上次请求后，请求的网页未修改过。服务器返回此响应时，不会返回网页内容。如果网页自请求者上次请求后再也没有更改 过，您应当将服务器配置为返回此响应（称为 If-Modified-Since HTTP 标头）。 由于服务器可以告诉 Googlebot 自从上次抓取后网页没有更改过，因此可节省带宽和开销<br>。<br>305（使用代理）    请求者只能使用代理访问请求的网页。 如果服务器返回此响应，还表示请求者应使用代理。<br>307（暂时重定向）    服 务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。 此代码与响应 GET 和 HEAD 请求的 301 代码类似，会自动将请求者转到不同的位置，但您不应使用此代码来告诉 Googlebot 某个页面或网站已经移动，因为 Googlebot 会继续抓取原有位置并编入索引。</p>
+<p>4xx（请求错误）<br>这些状态代码表示请求可能出错，妨碍了服务器的处理。</p>
+<p>代码 说明<br>400（错误请求）    服务器不理解请求的语法。<br>401（未授权）    请求要求身份验证。 对于需要登录的网页，服务器可能返回此响应。<br>403（禁止）    服务器拒绝请求。 如果您看到 Googlebot 在尝试抓取您网站上的有效网页时收到此状态代码（可以在 Google 网站管理员工具诊 断 下的网络抓取 页面上看到此信息），可能是您的服务器或主机拒绝 Googlebot 访问。<br>404（未找到）    服务器找不到请求的网页。 例如，如果请求服务器上不存在的网页，服务器通常会返回此代码。如果您的网站上没有 robots.txt 文件，而您在 Google 网站管理员工具”诊断”标签的 robots.txt 页 上看到此状态，那么这是正确的状态。 但是，如果您有 robots.txt 文件而又看到此状态，则说明您的 robots.txt 文件可能命名错误或位于错误的位置 （该文件应当位于顶级域名，名为 robots.txt）。<br>如果您看到有关 Googlebot 尝试抓取的网址的此状态（在”诊断”标签的 HTTP 错误页上），则表示 Googlebot 追踪的可能是另一个页面的无效链接（是旧链接或输入有误的链接）。<br>405（禁用的方法）    禁用请求中指定的方法。<br>406（不可接受）    无法使用请求的内容特性响应请求的网页。<br>407（需要代理授权）    此状态代码与 401（未授权）类似，但指定请求者应当授权使用代理。 如果服务器返回此响应，还会指明请求者应当使用的代理。<br>408（请求超时）    服务器等候请求时发生超时。<br>409（冲突）    服务器在完成请求时发生冲突。 服务器必须在响应中包含有关冲突的信息。 服务器在响应与前一个请求相冲突的 PUT 请求时可能会返回此代码，同时会附上两个请求的差异列表。<br>410（已删除）    如果请求的资源已永久删除，服务器就会返回此响应。 该代码与 404（未找到）代码相似，但在资源以前存在而现在不存在的情况下，有时会用来替代 404 代码。 如果资源已永久删除，您应当使用 301 指定资源的新位置。<br>411（需要有效长度）    服务器不接受不含有效内容长度标头字段的请求。<br>412（未满足前提条件）    服务器未满足请求者在请求中设置的其中一个前提条件。<br>413（请求实体过大）    服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。<br>414（请求的 URI 过长）    请求的 URI（通常为网址）过长，服务器无法处理。<br>415（不支持的媒体类型）    请求的格式不受请求页面的支持。<br>416（请求范围不符合要求）    如果页面无法提供请求的范围，则服务器会返回此状态代码。<br>417（未满足期望要求）    服务器未满足”期望”请求标头字段的要求。</p>
+<p>5xx （服务器错误）<br>这些状态代码表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身的错误，而不是请求出错。</p>
+<p>代码 说明<br>500（服务器内部错误）    服务器遇到错误，无法完成请求。<br>501（尚未实施）    服务器不具备完成请求的功能。 例如，服务器无法识别请求方法时可能会返回此代码。<br>502（错误网关）    服务器充当网关或代理，从上游服务器收到无效响应。<br>503（服务不可用）    服务器目前无法使用（由于超载或停机维护）。 通常，这只是暂时状态。<br>504（网关超时）    服务器充当网关或代理，但没有及时从上游服务器收到请求。<br>505（HTTP 版本不受支持）    服务器不支持请求中所用的 HTTP 协议版本。</p>
+<h2 id="HTML-CSS"><a href="#HTML-CSS" class="headerlink" title="HTML+CSS"></a>HTML+CSS</h2><h5 id="1-对WEB标准以及W3C的理解与认识"><a href="#1-对WEB标准以及W3C的理解与认识" class="headerlink" title="1.对WEB标准以及W3C的理解与认识"></a>1.对WEB标准以及W3C的理解与认识</h5><p>标签闭合、标签小写、不乱嵌套、提高搜索机器人搜索几率、使用外 链css和js脚本、结构行为表现的分离、文件下载与页面速度更快、内容能被更多的用户所访问、内容能被更广泛的设备所访问、更少的代码和组件，容易维 护、改版方便，不需要变动页面内容、提供打印版本而不需要复制内容、提高网站易用性；</p>
+<h4 id="2-xhtml和html有什么区别"><a href="#2-xhtml和html有什么区别" class="headerlink" title="2.xhtml和html有什么区别"></a>2.xhtml和html有什么区别</h4><p>HTML是一种基本的WEB网页设计语言，XHTML是一个基于XML的置标语言<br>最主要的不同：<br>XHTML 元素必须被正确地嵌套。<br>XHTML 元素必须被关闭。<br>标签名必须用小写字母。<br>XHTML 文档必须拥有根元素。</p>
+<h4 id="3-Doctype-严格模式与混杂模式-如何触发这两种模式，区分它们有何意义"><a href="#3-Doctype-严格模式与混杂模式-如何触发这两种模式，区分它们有何意义" class="headerlink" title="3.Doctype? 严格模式与混杂模式-如何触发这两种模式，区分它们有何意义?"></a>3.Doctype? 严格模式与混杂模式-如何触发这两种模式，区分它们有何意义?</h4><p>用于声明文档使用那种规范（html/Xhtml）一般为 严格 过度 基于框架的html文档<br>加入XMl声明可触发，解析方式更改为IE5.5 拥有IE5.5的bug</p>
+<h4 id="4-行内元素有哪些-块级元素有哪些-CSS的盒模型"><a href="#4-行内元素有哪些-块级元素有哪些-CSS的盒模型" class="headerlink" title="4.行内元素有哪些?块级元素有哪些?CSS的盒模型?"></a>4.行内元素有哪些?块级元素有哪些?CSS的盒模型?</h4><p>块级元素：div p h1 h2 h3 h4 form ul<br>行内元素: a b br i span input select<br>Css盒模型:内容，border ,margin，padding</p>
+<h4 id="5-CSS引入的方式有哪些-link和-import的区别是"><a href="#5-CSS引入的方式有哪些-link和-import的区别是" class="headerlink" title="5.CSS引入的方式有哪些? link和@import的区别是?"></a>5.CSS引入的方式有哪些? link和@import的区别是?</h4><p>内联 内嵌 外链 导入<br>区别 ：同时加载<br>前者无兼容性，后者CSS2.1以下浏览器不支持<br>Link 支持使用javascript改变样式，后者不可</p>
+<h4 id="6-CSS选择符有哪些-哪些属性可以继承-优先级算法如何计算-内联和important哪个优先级高"><a href="#6-CSS选择符有哪些-哪些属性可以继承-优先级算法如何计算-内联和important哪个优先级高" class="headerlink" title="6.CSS选择符有哪些?哪些属性可以继承?优先级算法如何计算?内联和important哪个优先级高?"></a>6.CSS选择符有哪些?哪些属性可以继承?优先级算法如何计算?内联和important哪个优先级高?</h4><p>标签选择符 类选择符 id选择符<br>继承不如指定 Id&gt;class&gt;标签选择<br>后者优先级高</p>
+<h4 id="7-前端页面有哪三层构成，分别是什么-作用是什么"><a href="#7-前端页面有哪三层构成，分别是什么-作用是什么" class="headerlink" title="7.前端页面有哪三层构成，分别是什么?作用是什么?"></a>7.前端页面有哪三层构成，分别是什么?作用是什么?</h4><p>结构层 Html 表示层 CSS 行为层 js</p>
+<h4 id="8-css的基本语句构成是"><a href="#8-css的基本语句构成是" class="headerlink" title="8.css的基本语句构成是?"></a>8.css的基本语句构成是?</h4><p>选择器{属性1:值1;属性2:值2;……}</p>
+<h4 id="9-你做的页面在哪些流览器测试过-这些浏览器的内核分别是什么"><a href="#9-你做的页面在哪些流览器测试过-这些浏览器的内核分别是什么" class="headerlink" title="9.你做的页面在哪些流览器测试过?这些浏览器的内核分别是什么?"></a>9.你做的页面在哪些流览器测试过?这些浏览器的内核分别是什么?</h4><p>Ie(Ie内核) 火狐（Gecko） 谷歌（webkit） opear(Presto)</p>
+<h4 id="10-写出几种IE6-BUG的解决方法"><a href="#10-写出几种IE6-BUG的解决方法" class="headerlink" title="10.写出几种IE6 BUG的解决方法"></a>10.写出几种IE6 BUG的解决方法</h4><p>1.双边距BUG float引起的 使用display<br>2.3像素问题 使用float引起的 使用dislpay:inline -3px<br>3.超链接hover 点击后失效 使用正确的书写顺序 link visited hover active<br>4.Ie z-index问题 给父级添加position:relative<br>5.Png 透明 使用js代码 改<br>6.Min-height 最小高度 ！Important 解决’<br>7.select 在ie6下遮盖 使用iframe嵌套<br>8.为什么没有办法定义1px左右的宽度容器（IE6默认的行高造成的，使用over:hidden,zoom:0.08 line-height:1px）</p>
+<h4 id="11-标签上title与alt属性的区别是什么"><a href="#11-标签上title与alt属性的区别是什么" class="headerlink" title="11.标签上title与alt属性的区别是什么?"></a>11.标签上title与alt属性的区别是什么?</h4><p>Alt 当图片不显示是 用文字代表。<br>Title 为该属性提供信息</p>
+<h4 id="12-描述css-reset的作用和用途。"><a href="#12-描述css-reset的作用和用途。" class="headerlink" title="12.描述css reset的作用和用途。"></a>12.描述css reset的作用和用途。</h4><p>Reset重置浏览器的css默认属性 浏览器的品种不同，样式不同，然后重置，让他们统一</p>
+<h4 id="13-解释css-sprites，如何使用。"><a href="#13-解释css-sprites，如何使用。" class="headerlink" title="13.解释css sprites，如何使用。"></a>13.解释css sprites，如何使用。</h4><p>Css 精灵 把一堆小的图片整合到一张大的图片上，减轻服务器对图片的请求数量</p>
+<h4 id="14-浏览器标准模式和怪异模式之间的区别是什么"><a href="#14-浏览器标准模式和怪异模式之间的区别是什么" class="headerlink" title="14.浏览器标准模式和怪异模式之间的区别是什么?"></a>14.浏览器标准模式和怪异模式之间的区别是什么?</h4><p>盒子模型 渲染模式的不同<br>使用 window.top.document.compatMode 可显示为什么模式</p>
+<h4 id="15-你如何对网站的文件和资源进行优化-期待的解决方案包括："><a href="#15-你如何对网站的文件和资源进行优化-期待的解决方案包括：" class="headerlink" title="15.你如何对网站的文件和资源进行优化?期待的解决方案包括："></a>15.你如何对网站的文件和资源进行优化?期待的解决方案包括：</h4><p>文件合并<br>文件最小化/文件压缩<br>使用CDN托管<br>缓存的使用</p>
+<h4 id="16-什么是语义化的HTML"><a href="#16-什么是语义化的HTML" class="headerlink" title="16.什么是语义化的HTML?"></a>16.什么是语义化的HTML?</h4><p>直观的认识标签 对于搜索引擎的抓取有好处</p>
+<h4 id="17-清除浮动的几种方式，各自的优缺点"><a href="#17-清除浮动的几种方式，各自的优缺点" class="headerlink" title="17.清除浮动的几种方式，各自的优缺点"></a>17.清除浮动的几种方式，各自的优缺点</h4><p>1.使用空标签清除浮动 clear:both（理论上能清楚任何标签，，，增加无意义的标签）<br>2.使用overflow:auto（空标签元素清除浮动而不得不增加无意代码的弊端,,使用zoom:1用于兼容IE）<br>3.是用afert伪元素清除浮动(用于非IE浏览器)</p>
+<h2 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h2><h4 id="1-javascript的typeof返回哪些数据类型"><a href="#1-javascript的typeof返回哪些数据类型" class="headerlink" title="1.javascript的typeof返回哪些数据类型"></a>1.javascript的typeof返回哪些数据类型</h4><p>Object number function boolean underfind</p>
+<h4 id="2-例举3种强制类型转换和2种隐式类型转换"><a href="#2-例举3种强制类型转换和2种隐式类型转换" class="headerlink" title="2.例举3种强制类型转换和2种隐式类型转换?"></a>2.例举3种强制类型转换和2种隐式类型转换?</h4><p>强制（parseInt,parseFloat,number）<br>隐式（== – ===）</p>
+<h4 id="3-split-join-的区别"><a href="#3-split-join-的区别" class="headerlink" title="3.split() join() 的区别"></a>3.split() join() 的区别</h4><p>前者是切割成数组的形式，后者是将数组转换成字符串</p>
+<h4 id="4-数组方法pop-push-unshift-shift"><a href="#4-数组方法pop-push-unshift-shift" class="headerlink" title="4.数组方法pop() push() unshift() shift()"></a>4.数组方法pop() push() unshift() shift()</h4><p>Push()尾部添加 pop()尾部删除<br>Unshift()头部添加 shift()头部删除</p>
+<h4 id="5-事件绑定和普通事件有什么区别"><a href="#5-事件绑定和普通事件有什么区别" class="headerlink" title="5.事件绑定和普通事件有什么区别"></a>5.事件绑定和普通事件有什么区别</h4><h4 id="6-IE和DOM事件流的区别"><a href="#6-IE和DOM事件流的区别" class="headerlink" title="6.IE和DOM事件流的区别"></a>6.IE和DOM事件流的区别</h4><p>1.执行顺序不一样、<br>2.参数不一样<br>3.事件加不加on<br>4.this指向问题</p>
+<h4 id="7-IE和标准下有哪些兼容性的写法"><a href="#7-IE和标准下有哪些兼容性的写法" class="headerlink" title="7.IE和标准下有哪些兼容性的写法"></a>7.IE和标准下有哪些兼容性的写法</h4><p>Var ev = ev || window.event<br>document.documentElement.clientWidth || document.body.clientWidth<br>Var target = ev.srcElement||ev.target</p>
+<h4 id="8-ajax请求的时候get-和post方式的区别"><a href="#8-ajax请求的时候get-和post方式的区别" class="headerlink" title="8.ajax请求的时候get 和post方式的区别"></a>8.ajax请求的时候get 和post方式的区别</h4><p>一个在url后面 一个放在虚拟载体里面<br>有大小限制<br>安全问题<br>应用不同 一个是论坛等只需要请求的，一个是类似修改密码的</p>
+<h4 id="9-call和apply的区别"><a href="#9-call和apply的区别" class="headerlink" title="9.call和apply的区别"></a>9.call和apply的区别</h4><p>Object.call(this,obj1,obj2,obj3)<br>Object.apply(this,arguments)<br>obj.call(thisObj, arg1, arg2, …);<br>obj.apply(thisObj, [arg1, arg2, …]);<br>两者作用一致，都是把obj(即this)绑定到thisObj，这时候thisObj具备了obj的属性和方法。或者说thisObj『继承』了obj的属性和方法。<br>唯一区别是apply接受的是数组参数，call接受的是连续参数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function add(j, k)&#123;</div><div class="line">    return j+k;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function sub(j, k)&#123;</div><div class="line">    return j-k;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>我们在控制台运行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">add(5,3); //8</div><div class="line">add.call(sub, 5, 3); //8</div><div class="line">add.apply(sub, [5, 3]); //8</div><div class="line"></div><div class="line">sub(5, 3); //2</div><div class="line">sub.call(add, 5, 3); //2</div><div class="line">sub.apply(add, [5, 3]); //2</div></pre></td></tr></table></figure></p>
+<h4 id="10-ajax请求时，如何解释json数据"><a href="#10-ajax请求时，如何解释json数据" class="headerlink" title="10.ajax请求时，如何解释json数据"></a>10.ajax请求时，如何解释json数据</h4><p>使用eval parse 鉴于安全性考虑 使用parse更靠谱<br>11.b继承a的方法</p>
+<p>12.写一个获取非行间样式的函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">function getStyle(obj,attr,value)</div><div class="line">&#123;</div><div class="line">if(!value)</div><div class="line">&#123;</div><div class="line">if(obj.currentStyle)</div><div class="line">&#123;</div><div class="line">return obj.currentStyle(attr)</div><div class="line">&#125;</div><div class="line">else</div><div class="line">&#123;</div><div class="line">obj.getComputedStyle(attr,false)</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">else</div><div class="line">&#123;</div><div class="line">obj.style[attr]=value</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="13-事件委托是什么"><a href="#13-事件委托是什么" class="headerlink" title="13.事件委托是什么"></a>13.事件委托是什么</h4><p>让利用事件冒泡的原理，让自己的所触发的事件，让他的父元素代替执行！<br><a href="http://www.webasily.com/?p=78" target="_blank" rel="external">http://www.webasily.com/?p=78</a> 例子可见此链接</p>
+<h4 id="14-闭包是什么，有什么特性，对页面有什么影响"><a href="#14-闭包是什么，有什么特性，对页面有什么影响" class="headerlink" title="14.闭包是什么，有什么特性，对页面有什么影响"></a>14.闭包是什么，有什么特性，对页面有什么影响</h4><p>闭包就是能够读取其他函数内部变量的函数。<br><a href="http://blog.csdn.net/gaoshanwudi/article/details/7355794" target="_blank" rel="external">http://blog.csdn.net/gaoshanwudi/article/details/7355794</a> 此链接可查看（问这个问题的不是一个公司）</p>
+<p>15.如何阻止事件冒泡和默认事件<br>canceBubble return false</p>
+<h4 id="16-添加-删除-替换-插入到某个接点的方法"><a href="#16-添加-删除-替换-插入到某个接点的方法" class="headerlink" title="16.添加 删除 替换 插入到某个接点的方法"></a>16.添加 删除 替换 插入到某个接点的方法</h4><p>obj.appendChidl()<br>obj.innersetBefore<br>obj.replaceChild<br>obj.removeChild</p>
+<h4 id="17-解释jsonp的原理，以及为什么不是真正的ajax"><a href="#17-解释jsonp的原理，以及为什么不是真正的ajax" class="headerlink" title="17.解释jsonp的原理，以及为什么不是真正的ajax"></a>17.解释jsonp的原理，以及为什么不是真正的ajax</h4><p>动态创建script标签，回调函数<br>Ajax是页面无刷新请求数据操作</p>
+<h4 id="18-javascript的本地对象，内置对象和宿主对象"><a href="#18-javascript的本地对象，内置对象和宿主对象" class="headerlink" title="18.javascript的本地对象，内置对象和宿主对象"></a>18.javascript的本地对象，内置对象和宿主对象</h4><p>本地对象为array obj regexp等可以new实例化<br>内置对象为gload Math 等不可以实例化的<br>宿主为浏览器自带的document,window 等</p>
+<h4 id="19-document-load-和document-ready的区别"><a href="#19-document-load-和document-ready的区别" class="headerlink" title="19.document load 和document ready的区别"></a>19.document load 和document ready的区别</h4><p>Document.onload 是在结构和样式加载完才执行js<br>Document.ready原生种没有这个方法，jquery中有 $().ready(function)</p>
+<h4 id="20-”-”和“-”的不同"><a href="#20-”-”和“-”的不同" class="headerlink" title="20.”==”和“===”的不同"></a>20.”==”和“===”的不同</h4><p>前者会自动转换类型<br>后者不会</p>
+<h4 id="21-javascript的同源策略"><a href="#21-javascript的同源策略" class="headerlink" title="21.javascript的同源策略"></a>21.javascript的同源策略</h4><p>一段脚本只能读取来自于同一来源的窗口和文档的属性，这里的同一来源指的是主机名、协议和端口号的组合</p>
+<h4 id="22-编写一个数组去重的方法"><a href="#22-编写一个数组去重的方法" class="headerlink" title="22.编写一个数组去重的方法"></a>22.编写一个数组去重的方法</h4><p>function oSort(arr)<br>{<br>      var result ={};<br>      var newArr=[];<br>for(var i=0;i&lt;arr.length;i++)<br>{<br>      if(!result[arr])<br>     {<br>         newArr.push(arr)<br>          result[arr]=1<br>      }<br>}<br>return newArr<br>}</p>
+<h4 id="23-cookie-sessionstorage-localstorage"><a href="#23-cookie-sessionstorage-localstorage" class="headerlink" title="23.cookie  sessionstorage  localstorage"></a>23.cookie  sessionstorage  localstorage</h4><p>cookie数据始终在同源的http请求中携带（即使不需要），即cookie在浏览器和服务器间来回传递。而sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。cookie数据还有路径（path）的概念，可以限制cookie只属于某个路径下。存储大小限制也不同，cookie数据不能超过4k，同时因为每次http请求都会携带cookie，所以cookie只适合保存很小的数据，如会话标识。sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大。数据有效期不同，sessionStorage：仅在当前浏览器窗口关闭前有效，自然也就不可能持久保持；localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据；cookie只在设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭。作用域不同，sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。Web Storage 支持事件通知机制，可以将数据更新的通知发送给监听者。Web Storage 的 api 接口使用更方便。<br>24.split</p>
+<script type="text/javascript">
+
+<p>var str=”How are you doing today?”</p>
+<p>document.write(str.split(“ “) + “<br />“)<br>document.write(str.split(“”) + “<br />“)<br>document.write(str.split(“ “,3))</p>
+<p></script><br>输出：<br>How,are,you,doing,today?<br>H,o,w, ,a,r,e, ,y,o,u, ,d,o,i,n,g, ,t,o,d,a,y,?<br>How,are,you<p></p>
+<h4 id="25-对象创建过程"><a href="#25-对象创建过程" class="headerlink" title="25. 对象创建过程"></a>25. 对象创建过程</h4><p>1.分配空间。要注意的是，分配空间不光是分配子类的空间，子类对象中包含的父类对象所需要的空间，一样在这一步统一分配。在分配的空间的时候，会把所有的属性设置为默认值。</p>
+<p>2.递归的构造父类对象。</p>
+<p>3.初始化本类属性。</p>
+<p>4.调用本类的构造方法。</p>
+<p>总结一下，创建B类对象的步骤一共有5步</p>
+<p>1.分配空间</p>
+<p>2.初始化A类属性。</p>
+<p>3.调用A类的构造方法.</p>
+<p>4.初始化B的属性。</p>
+<p>5.调用B的构造方法。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端知识点/" rel="tag"># 前端知识点</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/06/跨域/" rel="next" title="跨域">
+                <i class="fa fa-chevron-left"></i> 跨域
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/user.jpg"
+               alt="Seas0n" />
+          <p class="site-author-name" itemprop="name">Seas0n</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/seasonsu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-将url的查询参数解析成字典对象"><span class="nav-number">1.</span> <span class="nav-text">1,将url的查询参数解析成字典对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-console-log-1-”2”-输出的是3"><span class="nav-number">2.</span> <span class="nav-text">2.console.log(1+ +”2”);输出的是3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-算法"><span class="nav-number">3.</span> <span class="nav-text">3. 算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-三次握手"><span class="nav-number">4.</span> <span class="nav-text">4. 三次握手</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一次"><span class="nav-number">4.1.</span> <span class="nav-text">第一次</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二次"><span class="nav-number">4.2.</span> <span class="nav-text">第二次</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三次"><span class="nav-number">4.3.</span> <span class="nav-text">第三次</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-http-状态码"><span class="nav-number">5.</span> <span class="nav-text">5. http 状态码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#一、HTTP状态码"><span class="nav-number">5.1.</span> <span class="nav-text">一、HTTP状态码</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-CSS"><span class="nav-number"></span> <span class="nav-text">HTML+CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-对WEB标准以及W3C的理解与认识"><span class="nav-number">0.1.</span> <span class="nav-text">1.对WEB标准以及W3C的理解与认识</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-xhtml和html有什么区别"><span class="nav-number">1.</span> <span class="nav-text">2.xhtml和html有什么区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Doctype-严格模式与混杂模式-如何触发这两种模式，区分它们有何意义"><span class="nav-number">2.</span> <span class="nav-text">3.Doctype? 严格模式与混杂模式-如何触发这两种模式，区分它们有何意义?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-行内元素有哪些-块级元素有哪些-CSS的盒模型"><span class="nav-number">3.</span> <span class="nav-text">4.行内元素有哪些?块级元素有哪些?CSS的盒模型?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-CSS引入的方式有哪些-link和-import的区别是"><span class="nav-number">4.</span> <span class="nav-text">5.CSS引入的方式有哪些? link和@import的区别是?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-CSS选择符有哪些-哪些属性可以继承-优先级算法如何计算-内联和important哪个优先级高"><span class="nav-number">5.</span> <span class="nav-text">6.CSS选择符有哪些?哪些属性可以继承?优先级算法如何计算?内联和important哪个优先级高?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-前端页面有哪三层构成，分别是什么-作用是什么"><span class="nav-number">6.</span> <span class="nav-text">7.前端页面有哪三层构成，分别是什么?作用是什么?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-css的基本语句构成是"><span class="nav-number">7.</span> <span class="nav-text">8.css的基本语句构成是?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-你做的页面在哪些流览器测试过-这些浏览器的内核分别是什么"><span class="nav-number">8.</span> <span class="nav-text">9.你做的页面在哪些流览器测试过?这些浏览器的内核分别是什么?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-写出几种IE6-BUG的解决方法"><span class="nav-number">9.</span> <span class="nav-text">10.写出几种IE6 BUG的解决方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-标签上title与alt属性的区别是什么"><span class="nav-number">10.</span> <span class="nav-text">11.标签上title与alt属性的区别是什么?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-描述css-reset的作用和用途。"><span class="nav-number">11.</span> <span class="nav-text">12.描述css reset的作用和用途。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-解释css-sprites，如何使用。"><span class="nav-number">12.</span> <span class="nav-text">13.解释css sprites，如何使用。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-浏览器标准模式和怪异模式之间的区别是什么"><span class="nav-number">13.</span> <span class="nav-text">14.浏览器标准模式和怪异模式之间的区别是什么?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-你如何对网站的文件和资源进行优化-期待的解决方案包括："><span class="nav-number">14.</span> <span class="nav-text">15.你如何对网站的文件和资源进行优化?期待的解决方案包括：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-什么是语义化的HTML"><span class="nav-number">15.</span> <span class="nav-text">16.什么是语义化的HTML?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#17-清除浮动的几种方式，各自的优缺点"><span class="nav-number">16.</span> <span class="nav-text">17.清除浮动的几种方式，各自的优缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Javascript"><span class="nav-number"></span> <span class="nav-text">Javascript</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-javascript的typeof返回哪些数据类型"><span class="nav-number">1.</span> <span class="nav-text">1.javascript的typeof返回哪些数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-例举3种强制类型转换和2种隐式类型转换"><span class="nav-number">2.</span> <span class="nav-text">2.例举3种强制类型转换和2种隐式类型转换?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-split-join-的区别"><span class="nav-number">3.</span> <span class="nav-text">3.split() join() 的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-数组方法pop-push-unshift-shift"><span class="nav-number">4.</span> <span class="nav-text">4.数组方法pop() push() unshift() shift()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-事件绑定和普通事件有什么区别"><span class="nav-number">5.</span> <span class="nav-text">5.事件绑定和普通事件有什么区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-IE和DOM事件流的区别"><span class="nav-number">6.</span> <span class="nav-text">6.IE和DOM事件流的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-IE和标准下有哪些兼容性的写法"><span class="nav-number">7.</span> <span class="nav-text">7.IE和标准下有哪些兼容性的写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-ajax请求的时候get-和post方式的区别"><span class="nav-number">8.</span> <span class="nav-text">8.ajax请求的时候get 和post方式的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-call和apply的区别"><span class="nav-number">9.</span> <span class="nav-text">9.call和apply的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-ajax请求时，如何解释json数据"><span class="nav-number">10.</span> <span class="nav-text">10.ajax请求时，如何解释json数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-事件委托是什么"><span class="nav-number">11.</span> <span class="nav-text">13.事件委托是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-闭包是什么，有什么特性，对页面有什么影响"><span class="nav-number">12.</span> <span class="nav-text">14.闭包是什么，有什么特性，对页面有什么影响</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-添加-删除-替换-插入到某个接点的方法"><span class="nav-number">13.</span> <span class="nav-text">16.添加 删除 替换 插入到某个接点的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#17-解释jsonp的原理，以及为什么不是真正的ajax"><span class="nav-number">14.</span> <span class="nav-text">17.解释jsonp的原理，以及为什么不是真正的ajax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#18-javascript的本地对象，内置对象和宿主对象"><span class="nav-number">15.</span> <span class="nav-text">18.javascript的本地对象，内置对象和宿主对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-document-load-和document-ready的区别"><span class="nav-number">16.</span> <span class="nav-text">19.document load 和document ready的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20-”-”和“-”的不同"><span class="nav-number">17.</span> <span class="nav-text">20.”==”和“===”的不同</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#21-javascript的同源策略"><span class="nav-number">18.</span> <span class="nav-text">21.javascript的同源策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#22-编写一个数组去重的方法"><span class="nav-number">19.</span> <span class="nav-text">22.编写一个数组去重的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#23-cookie-sessionstorage-localstorage"><span class="nav-number">20.</span> <span class="nav-text">23.cookie  sessionstorage  localstorage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#25-对象创建过程"><span class="nav-number">21.</span> <span class="nav-text">25. 对象创建过程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Seas0n</span>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i> 你是第<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>位旅客</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>  总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "f9d61c652aaf4321a1ab5f4ba944d9af",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+ 
+  
+
+  
+
+
+  
+
+
+
+</body>
+</html>
