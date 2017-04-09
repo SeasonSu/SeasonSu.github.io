@@ -1722,7 +1722,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #bbccb4;
+  background: #9e22fe;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -1802,7 +1802,7 @@ pre .javascript .function {
   border-bottom-color: #555;
 }
 .post-toc ol a:hover {
-  color: #ccc;
+  color: #333;
   border-bottom-color: #ccc;
 }
 .post-toc .nav-item {
