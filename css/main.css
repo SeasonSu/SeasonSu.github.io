@@ -841,8 +841,7 @@ pre .javascript .function {
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
 }
-.btn:hover,
-.post-button .btn:hover {
+.btn:hover {
   border-color: #222;
   color: #222;
   background: #fff;
@@ -896,7 +895,7 @@ pre .javascript .function {
 .pagination .prev:hover,
 .pagination .next:hover,
 .pagination .page-number:hover {
-  border-top-color: #222;
+  border-top-color: #87daff;
 }
 .pagination .space {
   padding: 0;
@@ -910,8 +909,8 @@ pre .javascript .function {
 }
 .pagination .page-number.current {
   color: #fff;
-  background: #ccc;
-  border-top-color: #ccc;
+  background: #87daff;
+  border-top-color: #87daff;
 }
 @media (max-width: 767px) {
   .pagination {
@@ -1459,6 +1458,11 @@ pre .javascript .function {
   border-radius: 20px;
   color: #000;
 }
+.post-button .btn:hover {
+  background-color: #64cbda;
+  color: #fff;
+  border: 1px solid #fff;
+}
 .post-button .fa-fw {
   width: 1.285714285714286em;
   text-align: left;
@@ -1722,7 +1726,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #4e2ac4;
+  background: #a7dd32;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2649,7 +2653,9 @@ hr {
   }
 }
 .menu .menu-item a:hover {
-  background: #e1e1e1;
+  box-shadow: 3px 3px 3px #87daff;
+  color: #333;
+  box-sizing: border-box;
 }
 .menu a::before {
   display: none;
