@@ -85,6 +85,7 @@ $(document).ready(function () {
     sidebarEl: $('.sidebar'),
     isSidebarVisible: false,
     init: function () {
+     var me = this;
       this.toggleEl.on('click', this.clickHandler.bind(this));
       this.toggleEl.on('mouseenter', this.mouseEnterHandler.bind(this));
       this.toggleEl.on('mouseleave', this.mouseLeaveHandler.bind(this));
@@ -98,6 +99,15 @@ $(document).ready(function () {
         })
         .on('sidebar.isHiding', function () {
         });
+
+        $('.content-wrap').on('click',function(){
+            console.log(sidebarToggleMotion)
+            if(!sidebarToggleMotion){
+                return
+            }
+            me.isSidebarVisible && me.hideSidebar()
+            me.isSidebarVisible = !me.isSidebarVisible;
+        })
     },
     clickHandler: function () {
       this.isSidebarVisible ? this.hideSidebar() : this.showSidebar();
