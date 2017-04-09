@@ -948,7 +948,7 @@ pre .javascript .function {
   z-index: 1050;
   padding: 0 6px;
   width: 24px;
-  background: #222;
+  background: #87daff;
   font-size: 12px;
   opacity: 1;
   color: #fff;
@@ -1323,6 +1323,14 @@ pre .javascript .function {
   word-break: break-word;
   font-weight: 400;
 }
+.posts-expand .post-title::before {
+  content: "";
+  display: inline-block;
+  background: transparent !important;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #93dfea;
+}
 @media (max-width: 767px) {
   .posts-expand .post-title {
     font-size: 22px;
@@ -1445,6 +1453,11 @@ pre .javascript .function {
   border-radius: 0;
   line-height: 2;
   margin: 0 4px 8px 4px;
+  box-shadow: 2px 2px 3px #999;
+  border: 1px solid #000;
+  padding: 0 15px;
+  border-radius: 20px;
+  color: #000;
 }
 .post-button .fa-fw {
   width: 1.285714285714286em;
@@ -1593,7 +1606,7 @@ pre .javascript .function {
   width: 14px;
   height: 14px;
   padding: 5px;
-  background: #222;
+  background: #87daff;
   line-height: 0;
   z-index: 1050;
   cursor: pointer;
@@ -1615,7 +1628,7 @@ pre .javascript .function {
   vertical-align: top;
   height: 2px;
   width: 100%;
-  background: #fff;
+  background: #fff !important;
   margin-top: 3px;
 }
 .sidebar-toggle-line:first-child {
@@ -1709,7 +1722,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #fff7a7;
+  background: #65ffff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -1826,6 +1839,10 @@ pre .javascript .function {
 }
 .footer img {
   border: none;
+}
+.page-home footer.post-footer {
+  border-bottom: 1px solid #999;
+  padding-top: 20px;
 }
 .footer-inner {
   text-align: center;
@@ -2789,7 +2806,8 @@ hr {
 .footer {
   margin-top: 80px;
   padding: 10px 0;
-  background: #f5f5f5;
+  background: url("/images/15.jpeg");
+  box-shadow: 0px -1px 6px #e6f4f4;
   color: #666;
 }
 .footer-inner {
