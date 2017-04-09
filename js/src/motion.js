@@ -100,14 +100,14 @@ $(document).ready(function () {
         .on('sidebar.isHiding', function () {
         });
 
-        $('.content-wrap').on('click',function(){
-            console.log(sidebarToggleMotion)
-            if(!sidebarToggleMotion){
-                return
-            }
-            me.isSidebarVisible && me.hideSidebar()
-            me.isSidebarVisible = !me.isSidebarVisible;
-        })
+        // $('.content-wrap').on('click',function(){
+        //     console.log(sidebarToggleMotion)
+        //     if(!sidebarToggleMotion){
+        //         return
+        //     }
+        //     me.isSidebarVisible && me.hideSidebar()
+        //     me.isSidebarVisible = !me.isSidebarVisible;
+        // })
     },
     clickHandler: function () {
       this.isSidebarVisible ? this.hideSidebar() : this.showSidebar();
