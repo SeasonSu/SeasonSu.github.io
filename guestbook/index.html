@@ -321,7 +321,47 @@
 
     
   </div>
+   <script>
+        var list = document.querySelectorAll('.category-list-item')
+        for(var i=0;i<list.length;i++){
+            var _this = list[i]
+            var nodeList = _this.childNodes
+            var hasChild = false
+            var listLink = null
+            var targetNode = null
+            for(var j=0;j<nodeList.length;j++){
+               var curNode = nodeList[j];
+               if(curNode.getAttribute("class")=='category-list-child'){
+                  hasChild = true
+                  targetNode = curNode
+               }
+               if(curNode.getAttribute("class")=='category-list-link'){
+                  listLink = curNode
+               }
+            }
+            if(hasChild){
+                listLink.setAttribute('href','javascript:void(0)')
+                listLink.addEventListener('click',function(){
+                    console.log(this.innerHTML)
+                    var cNode = this.parentNode.childNodes
+                    console.log(cNode)
+                    for(var j=0;j<cNode.length;j++){
+                       var _curNode = cNode[j];
+                       if(_curNode.getAttribute("class")=='category-list-child'){
+                            if(_curNode.style.display == "none"){
+                            _curNode.style.display = "block"
+                            }else{
+                            _curNode.style.display = "none"
+                            }
+                       }
+                    }
+                })
 
+            }
+        }
+
+
+   </script>
 
           </div>
           
@@ -369,7 +409,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -380,7 +420,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -391,7 +431,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

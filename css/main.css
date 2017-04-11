@@ -1730,7 +1730,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #46ff49;
+  background: #8fd2d2;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2318,6 +2318,16 @@ pre .javascript .function {
 }
 .category-all-page .category-list-item {
   margin: 5px 10px;
+}
+.category-all-page .category-list>.category-list-item::before {
+  content: "";
+  display: inline-block;
+  background: transparent !important;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid #64cbda;
+  margin-left: -6px;
+  margin-right: 5px;
 }
 .category-all-page .category-list-count {
   color: #bbb;

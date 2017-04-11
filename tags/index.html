@@ -322,15 +322,55 @@
     
       <div class="tag-cloud">
         <div class="tag-cloud-title">
-            目前共计 13 个标签
+            目前共计 15 个标签
         </div>
         <div class="tag-cloud-tags">
-          <a href="/tags/PHP/" style="font-size: 12px; color: #ccc">PHP</a> <a href="/tags/hexo/" style="font-size: 12px; color: #ccc">hexo</a> <a href="/tags/html5/" style="font-size: 12px; color: #ccc">html5</a> <a href="/tags/node/" style="font-size: 30px; color: #111">node</a> <a href="/tags/shell/" style="font-size: 12px; color: #ccc">shell</a> <a href="/tags/websocket/" style="font-size: 12px; color: #ccc">websocket</a> <a href="/tags/前端知识点/" style="font-size: 30px; color: #111">前端知识点</a> <a href="/tags/命令大全/" style="font-size: 12px; color: #ccc">命令大全</a> <a href="/tags/服务器/" style="font-size: 30px; color: #111">服务器</a> <a href="/tags/渲染机制/" style="font-size: 12px; color: #ccc">渲染机制</a> <a href="/tags/移动端/" style="font-size: 12px; color: #ccc">移动端</a> <a href="/tags/算法/" style="font-size: 12px; color: #ccc">算法</a> <a href="/tags/自动化部署/" style="font-size: 12px; color: #ccc">自动化部署</a>
+          <a href="/tags/PHP/" style="font-size: 12px; color: #ccc">PHP</a> <a href="/tags/hexo/" style="font-size: 12px; color: #ccc">hexo</a> <a href="/tags/html5/" style="font-size: 12px; color: #ccc">html5</a> <a href="/tags/node/" style="font-size: 30px; color: #111">node</a> <a href="/tags/shell/" style="font-size: 12px; color: #ccc">shell</a> <a href="/tags/websocket/" style="font-size: 12px; color: #ccc">websocket</a> <a href="/tags/前端知识点/" style="font-size: 30px; color: #111">前端知识点</a> <a href="/tags/命令大全/" style="font-size: 12px; color: #ccc">命令大全</a> <a href="/tags/命令行/" style="font-size: 12px; color: #ccc">命令行</a> <a href="/tags/断点续传/" style="font-size: 12px; color: #ccc">断点续传</a> <a href="/tags/服务器/" style="font-size: 12px; color: #ccc">服务器</a> <a href="/tags/渲染机制/" style="font-size: 12px; color: #ccc">渲染机制</a> <a href="/tags/移动端/" style="font-size: 12px; color: #ccc">移动端</a> <a href="/tags/算法/" style="font-size: 12px; color: #ccc">算法</a> <a href="/tags/自动化部署/" style="font-size: 12px; color: #ccc">自动化部署</a>
         </div>
       </div>
     
   </div>
+   <script>
+        var list = document.querySelectorAll('.category-list-item')
+        for(var i=0;i<list.length;i++){
+            var _this = list[i]
+            var nodeList = _this.childNodes
+            var hasChild = false
+            var listLink = null
+            var targetNode = null
+            for(var j=0;j<nodeList.length;j++){
+               var curNode = nodeList[j];
+               if(curNode.getAttribute("class")=='category-list-child'){
+                  hasChild = true
+                  targetNode = curNode
+               }
+               if(curNode.getAttribute("class")=='category-list-link'){
+                  listLink = curNode
+               }
+            }
+            if(hasChild){
+                listLink.setAttribute('href','javascript:void(0)')
+                listLink.addEventListener('click',function(){
+                    console.log(this.innerHTML)
+                    var cNode = this.parentNode.childNodes
+                    console.log(cNode)
+                    for(var j=0;j<cNode.length;j++){
+                       var _curNode = cNode[j];
+                       if(_curNode.getAttribute("class")=='category-list-child'){
+                            if(_curNode.style.display == "none"){
+                            _curNode.style.display = "block"
+                            }else{
+                            _curNode.style.display = "none"
+                            }
+                       }
+                    }
+                })
 
+            }
+        }
+
+
+   </script>
 
           </div>
           
@@ -372,7 +412,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -383,7 +423,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -394,7 +434,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
