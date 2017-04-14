@@ -425,7 +425,7 @@
         
           <p>本文通过断点续传的简单例子（前端文件提交+后端PHP文件接收），理解其大致的实现过程</p>
 <p>还是先以图片为例，看看最后的样子</p>
-<p><img src="http://mmbiz.qpic.cn/mmbiz_gif/zPh0erYjkib1zdNpUZawib4uGriaY4xNaXXFjNbNKZJzgU4xhcYUIRwUv7N4mfupzmC0icWHNSQs2tZNIWMntkK9YQ/0?wx_fmt=gif&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt=""></p>
+<p><img src="https://seasonsu.github.io/images/uuloads/upload/0.gif" alt=""></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/04/11/前端文件断点续传/#more" rel="contents">
@@ -2153,14 +2153,22 @@
   
     
     <script>
-      var cloudTieConfig = {
-        url: document.location.href,
-        sourceId: "",
-        productKey: "f9d61c652aaf4321a1ab5f4ba944d9af",
-        target: "cloud-tie-wrapper"
-      };
+        console.log($('.page-post-detail').length > 0)
+        if($('.page-post-detail').length > 0 || window.location.href.indexOf('guestbook') > -1){
+            var cloudTieConfig = {
+              url: document.location.href,
+              sourceId: "",
+              productKey: "f9d61c652aaf4321a1ab5f4ba944d9af",
+              target: "cloud-tie-wrapper"
+            };
+           var oHead = document.getElementsByTagName('head').item(0);
+           var oScript = document.createElement('script');
+           oScript.type = 'text/javascript';
+           oScript.src = 'https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js';
+           oHead.appendChild(oScript);
+        }
     </script>
-    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+
   
 
 

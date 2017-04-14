@@ -795,14 +795,22 @@
   
     
     <script>
-      var cloudTieConfig = {
-        url: document.location.href,
-        sourceId: "",
-        productKey: "f9d61c652aaf4321a1ab5f4ba944d9af",
-        target: "cloud-tie-wrapper"
-      };
+        console.log($('.page-post-detail').length > 0)
+        if($('.page-post-detail').length > 0 || window.location.href.indexOf('guestbook') > -1){
+            var cloudTieConfig = {
+              url: document.location.href,
+              sourceId: "",
+              productKey: "f9d61c652aaf4321a1ab5f4ba944d9af",
+              target: "cloud-tie-wrapper"
+            };
+           var oHead = document.getElementsByTagName('head').item(0);
+           var oScript = document.createElement('script');
+           oScript.type = 'text/javascript';
+           oScript.src = 'https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js';
+           oHead.appendChild(oScript);
+        }
     </script>
-    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+
   
 
 
