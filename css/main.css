@@ -1354,7 +1354,7 @@ pre .javascript .function {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #000;
+  background-color: #64cbda;
   visibility: hidden;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
@@ -1372,6 +1372,9 @@ pre .javascript .function {
   -ms-transform: scaleX(1);
   -o-transform: scaleX(1);
   transform: scaleX(1);
+}
+.posts-expand .post-title-link:hover {
+  color: #64cbda;
 }
 .posts-expand .post-title-link .fa {
   font-size: 16px;
@@ -1730,7 +1733,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #9a91d0;
+  background: #2e3dff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2570,7 +2573,6 @@ hr {
 @media (max-width: 767px) {
   .header-inner {
     width: auto;
-    margin-bottom: 50px;
     padding: 10px;
   }
 }
