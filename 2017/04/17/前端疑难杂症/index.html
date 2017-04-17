@@ -93,7 +93,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/17/前端疑难杂症/index.html">
 <meta property="og:site_name" content="Seas0n">
 <meta property="og:description" content="苹果手机自动播放或者控制播放苹果手机audio标签单单控制play()没声音，需要通过再次加载音效12345678910111213141516171819202122  if ($(&amp;apos;#auidoSuccess&amp;apos;).length) &amp;#123;       $(&amp;apos;#auidoSuccess&amp;apos;).attr(&amp;apos;src&amp;apos;, &amp;apos;the">
-<meta property="og:updated_time" content="2017-04-17T02:37:55.000Z">
+<meta property="og:updated_time" content="2017-04-17T03:12:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端疑难杂症">
 <meta name="twitter:description" content="苹果手机自动播放或者控制播放苹果手机audio标签单单控制play()没声音，需要通过再次加载音效12345678910111213141516171819202122  if ($(&amp;apos;#auidoSuccess&amp;apos;).length) &amp;#123;       $(&amp;apos;#auidoSuccess&amp;apos;).attr(&amp;apos;src&amp;apos;, &amp;apos;the">
@@ -435,6 +435,7 @@
 
       
         <h3 id="苹果手机自动播放或者控制播放"><a href="#苹果手机自动播放或者控制播放" class="headerlink" title="苹果手机自动播放或者控制播放"></a>苹果手机自动播放或者控制播放</h3><p>苹果手机audio标签单单控制play()没声音，需要通过再次加载音效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">  if ($(&apos;#auidoSuccess&apos;).length) &#123;</div><div class="line"></div><div class="line">       $(&apos;#auidoSuccess&apos;).attr(&apos;src&apos;, &apos;themes/audio/weixinyaoyy.mp3&apos;)</div><div class="line"></div><div class="line">       function audioAutoPlay(id) &#123;</div><div class="line">           var audio = document.getElementById(id);</div><div class="line">           audio.load();</div><div class="line">           document.addEventListener(&quot;WeixinJSBridgeReady&quot;, function () &#123;</div><div class="line">               WeixinJSBridge.invoke(&apos;getNetworkType&apos;, &#123;&#125;, function (e) &#123;</div><div class="line">                   audio.load();</div><div class="line">               &#125;);</div><div class="line"></div><div class="line">           &#125;, false);</div><div class="line">           document.addEventListener(&apos;YixinJSBridgeReady&apos;, function () &#123;</div><div class="line">               audio.load();</div><div class="line">           &#125;, false);</div><div class="line">       &#125;</div><div class="line">       audioAutoPlay(&apos;auidoSuccess&apos;)</div><div class="line">   &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">playMusic()</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
 
       
     </div>
@@ -551,7 +552,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
