@@ -1733,7 +1733,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #0177c7;
+  background: #ff5e67;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2161,7 +2161,7 @@ pre .javascript .function {
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 2080;
+  z-index: 998;
   background-color: rgba(0,0,0,0.3);
 }
 .local-search-popup {
