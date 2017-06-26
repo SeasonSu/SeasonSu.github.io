@@ -1,0 +1,964 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="前端," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在画布中获取特定颜色的像素数量下面的函数将返回画布上颜色（RGB格式）为r、g、b的像素数量。如果用户希望像这篇博客文章中在另一个区域绘画，那么这将非常有用。1234567891011121314function getpixelamount(canvas, r, g, b) &amp;#123;  var cx = canvas.getContext(&amp;apos;2d&amp;apos;);  var pixe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="canvas代码块">
+<meta property="og:url" content="http://yoursite.com/2017/06/26/canvas代码块/index.html">
+<meta property="og:site_name" content="Seas0n">
+<meta property="og:description" content="在画布中获取特定颜色的像素数量下面的函数将返回画布上颜色（RGB格式）为r、g、b的像素数量。如果用户希望像这篇博客文章中在另一个区域绘画，那么这将非常有用。1234567891011121314function getpixelamount(canvas, r, g, b) &amp;#123;  var cx = canvas.getContext(&amp;apos;2d&amp;apos;);  var pixe">
+<meta property="og:updated_time" content="2017-06-26T06:35:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="canvas代码块">
+<meta name="twitter:description" content="在画布中获取特定颜色的像素数量下面的函数将返回画布上颜色（RGB格式）为r、g、b的像素数量。如果用户希望像这篇博客文章中在另一个区域绘画，那么这将非常有用。1234567891011121314function getpixelamount(canvas, r, g, b) &amp;#123;  var cx = canvas.getContext(&amp;apos;2d&amp;apos;);  var pixe">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/26/canvas代码块/"/>
+
+
+
+
+
+  <title> canvas代码块 | Seas0n </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?21d25a2d305d730d5986940ccb294463";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seas0n</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+    s
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/26/canvas代码块/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Seas0n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seas0n">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                canvas代码块
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-26T14:32:53+08:00">
+                2017-06-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/知识点/" itemprop="url" rel="index">
+                    <span itemprop="name">知识点</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/06/26/canvas代码块/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+                <span class="post-meta-item-text">条 </span>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="在画布中获取特定颜色的像素数量"><a href="#在画布中获取特定颜色的像素数量" class="headerlink" title="在画布中获取特定颜色的像素数量"></a>在画布中获取特定颜色的像素数量</h3><p>下面的函数将返回画布上颜色（RGB格式）为r、g、b的像素数量。如果用户希望像这篇博客文章中在另一个区域绘画，那么这将非常有用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function getpixelamount(canvas, r, g, b) &#123;</div><div class="line">  var cx = canvas.getContext(&apos;2d&apos;);</div><div class="line">  var pixels = cx.getImageData(0, 0, canvas.width, canvas.height);</div><div class="line">  var all = pixels.data.length;</div><div class="line">  var amount = 0;</div><div class="line">  for (i = 0; i &lt; all; i += 4) &#123;</div><div class="line">    if (pixels.data[i] === r &amp;&amp;</div><div class="line">        pixels.data[i + 1] === g &amp;&amp;</div><div class="line">        pixels.data[i + 2] === b) &#123;</div><div class="line">      amount++;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  return amount;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h3 id="在画布中获取某一个像素的颜色"><a href="#在画布中获取某一个像素的颜色" class="headerlink" title="在画布中获取某一个像素的颜色"></a>在画布中获取某一个像素的颜色</h3><p>下面的代码片段返回一个对象，该对象在画布的x和y的位置上具有RGBA值。这可以用来确定鼠标光标是否在一个特定的形状中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function getpixelcolour(canvas, x, y) &#123;</div><div class="line">  var cx = canvas.getContext(&apos;2d&apos;);</div><div class="line">  var pixel = cx.getImageData(x, y, 1, 1);</div><div class="line">  return &#123;</div><div class="line">    r: pixel.data[0],</div><div class="line">    g: pixel.data[1],</div><div class="line">    b: pixel.data[2],</div><div class="line">    a: pixel.data[3]</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="链接方法"><a href="#链接方法" class="headerlink" title="链接方法"></a>链接方法</h3><p>这个类提供的jQuery风格的链接访问2D背景的方法和属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line">function Canvas2DContext(canvas) &#123;</div><div class="line">  if (typeof canvas === &apos;string&apos;) &#123;</div><div class="line">    canvas = document.getElementById(canvas);</div><div class="line">  &#125;</div><div class="line">  if (!(this instanceof Canvas2DContext)) &#123;</div><div class="line">    return new Canvas2DContext(canvas);</div><div class="line">  &#125;</div><div class="line">  this.context = this.ctx = canvas.getContext(&apos;2d&apos;);</div><div class="line">  if (!Canvas2DContext.prototype.arc) &#123;</div><div class="line">    Canvas2DContext.setup.call(this, this.ctx);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">Canvas2DContext.setup = function() &#123;</div><div class="line">  var methods = [&apos;arc&apos;, &apos;arcTo&apos;, &apos;beginPath&apos;, &apos;bezierCurveTo&apos;, &apos;clearRect&apos;, &apos;clip&apos;,</div><div class="line">    &apos;closePath&apos;, &apos;drawImage&apos;, &apos;fill&apos;, &apos;fillRect&apos;, &apos;fillText&apos;, &apos;lineTo&apos;, &apos;moveTo&apos;,</div><div class="line">    &apos;quadraticCurveTo&apos;, &apos;rect&apos;, &apos;restore&apos;, &apos;rotate&apos;, &apos;save&apos;, &apos;scale&apos;, &apos;setTransform&apos;,</div><div class="line">    &apos;stroke&apos;, &apos;strokeRect&apos;, &apos;strokeText&apos;, &apos;transform&apos;, &apos;translate&apos;];</div><div class="line"></div><div class="line">  var getterMethods = [&apos;createPattern&apos;, &apos;drawFocusRing&apos;, &apos;isPointInPath&apos;, &apos;measureText&apos;, // drawFocusRing not currently supported</div><div class="line">    // The following might instead be wrapped to be able to chain their child objects</div><div class="line">    &apos;createImageData&apos;, &apos;createLinearGradient&apos;,</div><div class="line">    &apos;createRadialGradient&apos;, &apos;getImageData&apos;, &apos;putImageData&apos;</div><div class="line">  ];</div><div class="line"></div><div class="line">  var props = [&apos;canvas&apos;, &apos;fillStyle&apos;, &apos;font&apos;, &apos;globalAlpha&apos;, &apos;globalCompositeOperation&apos;,</div><div class="line">    &apos;lineCap&apos;, &apos;lineJoin&apos;, &apos;lineWidth&apos;, &apos;miterLimit&apos;, &apos;shadowOffsetX&apos;, &apos;shadowOffsetY&apos;,</div><div class="line">    &apos;shadowBlur&apos;, &apos;shadowColor&apos;, &apos;strokeStyle&apos;, &apos;textAlign&apos;, &apos;textBaseline&apos;];</div><div class="line"></div><div class="line">  for (let m of methods) &#123;</div><div class="line">    let method = m;</div><div class="line">    Canvas2DContext.prototype[method] = function() &#123;</div><div class="line">      this.ctx[method].apply(this.ctx, arguments);</div><div class="line">      return this;</div><div class="line">    &#125;;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  for (let m of getterMethods) &#123;</div><div class="line">    let method = m;</div><div class="line">    Canvas2DContext.prototype[method] = function() &#123;</div><div class="line">      return this.ctx[method].apply(this.ctx, arguments);</div><div class="line">    &#125;;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  for (let p of props) &#123;</div><div class="line">    let prop = p;</div><div class="line">    Canvas2DContext.prototype[prop] = function(value) &#123;</div><div class="line">      if (value === undefined)</div><div class="line">        return this.ctx[prop];</div><div class="line">      this.ctx[prop] = value;</div><div class="line">      return this;</div><div class="line">    &#125;;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var canvas = document.getElementById(&apos;canvas&apos;);</div><div class="line"></div><div class="line">// Use context to get access to underlying context</div><div class="line">var ctx = Canvas2DContext(canvas)</div><div class="line">  .strokeStyle(&apos;rgb(30, 110, 210)&apos;)</div><div class="line">  .transform(10, 3, 4, 5, 1, 0)</div><div class="line">  .strokeRect(2, 10, 15, 20)</div><div class="line">  .context;</div><div class="line"></div><div class="line">// Use property name as a function (but without arguments) to get the value</div><div class="line">var strokeStyle = Canvas2DContext(canvas)</div><div class="line">  .strokeStyle(&apos;rgb(50, 110, 210)&apos;)</div><div class="line">  .strokeStyle();</div></pre></td></tr></table></figure></p>
+<p>代码只有特权代码的可使用<br>这些片段是从特权代码仅是有用的，例如扩展或特权的应用程序。</p>
+<h3 id="保存画布图像文件"><a href="#保存画布图像文件" class="headerlink" title="保存画布图像文件"></a>保存画布图像文件</h3><p>下面的函数接受一个画布对象和目标文件路径串。画布被转换成PNG文件并保存到指定的位置。该函数返回时，该文件已被完全保存它解决的承诺。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function saveCanvas(canvas, path, type, options) &#123;</div><div class="line">    return Task.spawn(function *() &#123;</div><div class="line">        var reader = new FileReader;</div><div class="line">        var blob = yield new Promise(accept =&gt; canvas.toBlob(accept, type, options));</div><div class="line">        reader.readAsArrayBuffer(blob);</div><div class="line"></div><div class="line">        yield new Promise(accept =&gt; &#123; reader.onloadend = accept &#125;);</div><div class="line"></div><div class="line">        return yield OS.File.writeAtomic(path, new Uint8Array(reader.result),</div><div class="line">                                         &#123; tmpPath: path + &apos;.tmp&apos; &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="将一个远程页面加载到画布元素上"><a href="#将一个远程页面加载到画布元素上" class="headerlink" title="将一个远程页面加载到画布元素上"></a>将一个远程页面加载到画布元素上</h3><p>下面的类首先创建隐藏的iframe元件并附加一个监听到所述框架的加载事件。一旦远程页面加载时，remotePageLoaded方法火灾。这种方法获取到iframe的窗口的引用，并提请该窗口的画布对象。</p>
+<p>需要注意的是，如果你正在运行的Chrome页面这仅适用。如果您尝试运行代码作为普通的网页，你会得到一个“安全错误‘代码’1000’ 的错误。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">RemoteCanvas = function() &#123;</div><div class="line">    this.url = &apos;http://developer.mozilla.org&apos;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">RemoteCanvas.CANVAS_WIDTH = 300;</div><div class="line">RemoteCanvas.CANVAS_HEIGHT = 300;</div><div class="line"></div><div class="line">RemoteCanvas.prototype.load = function() &#123;</div><div class="line">    var windowWidth = window.innerWidth - 25;</div><div class="line">    var iframe;</div><div class="line">    iframe = document.createElement(&apos;iframe&apos;);</div><div class="line">    iframe.id = &apos;test-iframe&apos;;</div><div class="line">    iframe.height = &apos;10px&apos;;</div><div class="line">    iframe.width = windowWidth + &apos;px&apos;;</div><div class="line">    iframe.style.visibility = &apos;hidden&apos;;</div><div class="line">    iframe.src = this.url;</div><div class="line">    // Here is where the magic happens... add a listener to the</div><div class="line">    // frame&apos;s onload event</div><div class="line">    iframe.addEventListener(&apos;load&apos;, this.remotePageLoaded, true);</div><div class="line">    //append to the end of the page</div><div class="line">    window.document.body.appendChild(iframe);</div><div class="line">    return;    </div><div class="line">&#125;;</div><div class="line"></div><div class="line">RemoteCanvas.prototype.remotePageLoaded = function() &#123;</div><div class="line">    // Look back up the iframe by id</div><div class="line">    var ldrFrame = document.getElementById(&apos;test-iframe&apos;);</div><div class="line">    // Get a reference to the window object you need for the canvas</div><div class="line">    // drawWindow method</div><div class="line">    var remoteWindow = ldrFrame.contentWindow;</div><div class="line"></div><div class="line">    //Draw canvas</div><div class="line">    var canvas = document.createElement(&apos;canvas&apos;);</div><div class="line">    canvas.style.width = RemoteCanvas.CANVAS_WIDTH + &apos;px&apos;;</div><div class="line">    canvas.style.height = RemoteCanvas.CANVAS_HEIGHT + &apos;px&apos;;</div><div class="line">    canvas.width = RemoteCanvas.CANVAS_WIDTH;</div><div class="line">    canvas.height = RemoteCanvas.CANVAS_HEIGHT;</div><div class="line">    var windowWidth = window.innerWidth - 25;</div><div class="line">    var windowHeight = window.innerHeight;</div><div class="line"></div><div class="line">    var ctx = canvas.getContext(&apos;2d&apos;);</div><div class="line">    ctx.clearRect(0, 0,</div><div class="line">                  RemoteCanvas.CANVAS_WIDTH,</div><div class="line">                  RemoteCanvas.CANVAS_HEIGHT);</div><div class="line">    ctx.save();</div><div class="line">    ctx.scale(RemoteCanvas.CANVAS_WIDTH / windowWidth,</div><div class="line">              RemoteCanvas.CANVAS_HEIGHT / windowHeight);</div><div class="line">    ctx.drawWindow(remoteWindow,</div><div class="line">                   0, 0,</div><div class="line">                   windowWidth, windowHeight,</div><div class="line">                   &apos;rgb(255, 255, 255)&apos;);</div><div class="line">    ctx.restore();</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>用法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var remoteCanvas = new RemoteCanvas();</div><div class="line">remoteCanvas.load();</div></pre></td></tr></table></figure></p>
+<h3 id="将图像文件转换为base64字符串"><a href="#将图像文件转换为base64字符串" class="headerlink" title="将图像文件转换为base64字符串"></a>将图像文件转换为base64字符串</h3><p>下面的代码获取远程图像，并转换其内容Data URI scheme。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var canvas = document.createElement(&apos;canvas&apos;);</div><div class="line">var ctxt = canvas.getContext(&apos;2d&apos;);</div><div class="line">function loadImageFile(url, callback) &#123;</div><div class="line">  var image = new Image();</div><div class="line">  image.src = url;</div><div class="line">  return new Promise((accept, reject) =&gt; &#123;</div><div class="line">    image.onload = accept;</div><div class="line">    image.onerror = reject;</div><div class="line">  &#125;).then(accept =&gt; &#123;</div><div class="line">    canvas.width = this.width;</div><div class="line">    canvas.height = this.height;</div><div class="line">    ctxt.clearRect(0, 0, this.width, this.height);</div><div class="line">    ctxt.drawImage(this, 0, 0);</div><div class="line">    accept(canvas.toDataURL());</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>用法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">loadImageFile(&apos;myimage.jpg&apos;).then(string64 =&gt; &#123; alert(string64); &#125;);</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/07/前端知识点3/" rel="next" title="前端知识点3">
+                <i class="fa fa-chevron-left"></i> 前端知识点3
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/user.jpg"
+               alt="Seas0n" />
+          <p class="site-author-name" itemprop="name">Seas0n</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/seasonsu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github-alt"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://wpa.qq.com/msgrd?v=3&uin=459705913&site=qq&menu=yes" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                  QQ
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#在画布中获取特定颜色的像素数量"><span class="nav-number">1.</span> <span class="nav-text">在画布中获取特定颜色的像素数量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在画布中获取某一个像素的颜色"><span class="nav-number">2.</span> <span class="nav-text">在画布中获取某一个像素的颜色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链接方法"><span class="nav-number">3.</span> <span class="nav-text">链接方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存画布图像文件"><span class="nav-number">4.</span> <span class="nav-text">保存画布图像文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将一个远程页面加载到画布元素上"><span class="nav-number">5.</span> <span class="nav-text">将一个远程页面加载到画布元素上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将图像文件转换为base64字符串"><span class="nav-number">6.</span> <span class="nav-text">将图像文件转换为base64字符串</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+</script>
+<div class="copyright" >
+  <span class="author" itemprop="copyrightHolder"> 欢迎来到Seas0n的博客</span>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i> 你是第<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>位旅客</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>  总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+        if($('.page-post-detail').length > 0 || window.location.href.indexOf('guestbook') > -1){
+            var cloudTieConfig = {
+              url: document.location.href,
+              sourceId: "",
+              productKey: "f9d61c652aaf4321a1ab5f4ba944d9af",
+              target: "cloud-tie-wrapper"
+            };
+           var oHead = document.getElementsByTagName('head').item(0);
+           var oScript = document.createElement('script');
+           oScript.type = 'text/javascript';
+           oScript.src = 'https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js';
+           oHead.appendChild(oScript);
+        }
+    </script>
+
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+
+
+</body>
+</html>
