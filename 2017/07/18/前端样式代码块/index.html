@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="webpack," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -87,16 +87,16 @@
 
 
 
-<meta name="description" content="经过上一篇博客分析webpack从命令行到打包完成的整体流程，我们知道了webpage的plugin是基于事件机制工作的，这样最大的好处是易于扩展。社区里很多webpack的plugin，但是具体到我们的项目并不一定适用，这篇博客告诉你如何入手写一个plugin，然后分析源码相关部分告诉你你的plugin是如何工作。知其然且知其所以然。该系列博客的所有测试代码。">
+<meta name="description" content="瀑布流布局123456789101112131415161718192021222324252627282930313233343536373839404142434445464748.masonry &amp;#123;  -webkit-column-count: 2;     -moz-column-count: 2;          column-count: 2;  -webkit-colum">
 <meta property="og:type" content="article">
-<meta property="og:title" content="手写webpack的plugin">
-<meta property="og:url" content="http://yoursite.com/2017/05/08/手写webpack的plugin/index.html">
+<meta property="og:title" content="前端样式代码块">
+<meta property="og:url" content="http://yoursite.com/2017/07/18/前端样式代码块/index.html">
 <meta property="og:site_name" content="Seas0n">
-<meta property="og:description" content="经过上一篇博客分析webpack从命令行到打包完成的整体流程，我们知道了webpage的plugin是基于事件机制工作的，这样最大的好处是易于扩展。社区里很多webpack的plugin，但是具体到我们的项目并不一定适用，这篇博客告诉你如何入手写一个plugin，然后分析源码相关部分告诉你你的plugin是如何工作。知其然且知其所以然。该系列博客的所有测试代码。">
-<meta property="og:updated_time" content="2017-05-08T02:14:31.000Z">
+<meta property="og:description" content="瀑布流布局123456789101112131415161718192021222324252627282930313233343536373839404142434445464748.masonry &amp;#123;  -webkit-column-count: 2;     -moz-column-count: 2;          column-count: 2;  -webkit-colum">
+<meta property="og:updated_time" content="2017-07-18T01:16:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="手写webpack的plugin">
-<meta name="twitter:description" content="经过上一篇博客分析webpack从命令行到打包完成的整体流程，我们知道了webpage的plugin是基于事件机制工作的，这样最大的好处是易于扩展。社区里很多webpack的plugin，但是具体到我们的项目并不一定适用，这篇博客告诉你如何入手写一个plugin，然后分析源码相关部分告诉你你的plugin是如何工作。知其然且知其所以然。该系列博客的所有测试代码。">
+<meta name="twitter:title" content="前端样式代码块">
+<meta name="twitter:description" content="瀑布流布局123456789101112131415161718192021222324252627282930313233343536373839404142434445464748.masonry &amp;#123;  -webkit-column-count: 2;     -moz-column-count: 2;          column-count: 2;  -webkit-colum">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/05/08/手写webpack的plugin/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/18/前端样式代码块/"/>
 
 
 
 
 
-  <title> 手写webpack的plugin | Seas0n </title>
+  <title> 前端样式代码块 | Seas0n </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -313,7 +313,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/08/手写webpack的plugin/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/18/前端样式代码块/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Seas0n">
@@ -334,7 +334,7 @@
             
             
               
-                手写webpack的plugin
+                前端样式代码块
               
             
           </h2>
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-08T10:12:42+08:00">
-                2017-05-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-18T09:14:44+08:00">
+                2017-07-18
               </time>
             
 
@@ -383,19 +383,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/构建打包/" itemprop="url" rel="index">
-                    <span itemprop="name">构建打包</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/构建打包/webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack</span>
+                  <a href="/categories/前端/代码块/" itemprop="url" rel="index">
+                    <span itemprop="name">代码块</span>
                   </a>
                 </span>
 
@@ -412,7 +401,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/05/08/手写webpack的plugin/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2017/07/18/前端样式代码块/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
                 <span class="post-meta-item-text">条 </span>
@@ -445,38 +434,8 @@
       
 
       
-        <p>经过上一篇博客分析webpack从命令行到打包完成的整体流程，我们知道了webpage的plugin是基于事件机制工作的，这样最大的好处是易于扩展。社区里很多webpack的plugin，但是具体到我们的项目并不一定适用，这篇博客告诉你如何入手写一个plugin，然后分析源码相关部分告诉你你的plugin是如何工作。知其然且知其所以然。<br>该系列博客的所有测试代码。<br><a id="more"></a><br>从黑盒角度学习写一个plugin</p>
-<p>所谓黑盒，就是先不管webpack的plugin如何运作，只去看官网介绍。</p>
-<h4 id="Compiler和Compilation两个类"><a href="#Compiler和Compilation两个类" class="headerlink" title="Compiler和Compilation两个类"></a>Compiler和Compilation两个类</h4><p>官网介绍告诉我们，plugin涉及到源码中的Compiler类和Compilation类，并对这两个类进行了简要介绍。</p>
-<p>Compiler在开始打包时就进行实例化，实例对象里面装着与打包相关的环境和参数，包括options、plugins和loaders等。<br>Compilation在每次文件变化重新打包时都进行一次实例化，它继承自Compiler，其实例对象里装着和modules及chunks相关的信息。<br>如果黑盒角度写plugin，知道这些就行了，没必要非去看源码。这两个对象上挂载的具体内容可以自己打印看看，不赘述。</p>
-<h4 id="写一个简单的plugin"><a href="#写一个简单的plugin" class="headerlink" title="写一个简单的plugin"></a>写一个简单的plugin</h4><p>写plugin大致分为两个步骤：</p>
-<blockquote>
-<ul>
-<li>定义plugin</li>
-<li>在webpack.config.js中引用这个plugin<h5 id="定义plugin"><a href="#定义plugin" class="headerlink" title="定义plugin"></a>定义plugin</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">function HTMLPlugin(options)&#123;</div><div class="line">  // options是配置文件，你可以在这里进行一些与options相关的工作</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 每个plugin都必须定义一个apply方法，webpack会自动调用这个方法</div><div class="line">HTMLPlugin.prototype.apply = function(compiler)&#123;</div><div class="line">    // apply方法中会传入Compiler的实例compiler</div><div class="line">    // &apos;emit&apos;是该插件监听的事件，插件工作的逻辑在回调函数中</div><div class="line">    compiler.plugin(&apos;emit&apos;, function(compilation, callback)&#123;</div><div class="line">        // 回掉函数有两个参数</div><div class="line">        // compilation和下一个回调函数，callback可以不传</div><div class="line">        // 同步事件不传callback</div><div class="line">        compilation.chunks.forEach(function(chunk)&#123;</div><div class="line">            console.log(&apos;chunk.name&apos;, chunk.name);</div><div class="line">            console.log(&apos;=====================================&apos;);</div><div class="line">            //console.log(&apos;chunk.modules&apos;, chunk.modules.length);</div><div class="line"></div><div class="line">            chunk.modules.forEach(function(module)&#123;</div><div class="line">                console.log(&apos;module&apos;, module.resource);</div><div class="line">                module.fileDependencies.forEach(function(filepath)&#123;</div><div class="line">                    //console.log(&apos;filepath&apos;, filepath);</div><div class="line">                &#125;);</div><div class="line">            &#125;);</div><div class="line"></div><div class="line">            chunk.files.forEach(function(filename)&#123;</div><div class="line">                let source = compilation.assets[filename].source();</div><div class="line">                //console.log(&apos;file&apos;, source);</div><div class="line">            &#125;)</div><div class="line">        &#125;);</div><div class="line">        // 最后调用callback</div><div class="line">        callback();</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">module.exports = HTMLPlugin;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</blockquote>
-<p>所有可以监听的事件请查看。<br>这里最让人疑惑的是compilation上的modules、chunks、assets，简单解释：</p>
-<p><code>compilation.modules</code>，每一个资源文件都会被编译成一个模块， 每个模块module.fileDependencies记录了模块依赖的其它模块<br>compilation.chunks，是entry的每个配置项及调用require.ensure的模块，每个chunk的， chunk.modules为chunk包含的模块以及模块所依赖的模块， chunk.files为每个配置项最后的输出结果文件，这里的值可以从compilation.assets获得<br><code>compilation.assets</code>，整个打包流程最终要输出的文件<br>这里需要注意，compilation.chunks不仅包括webpack.config.js 中 entry 中配置的模块，还包括模块中使用require.ensure的模块。因为webpack在实现的时候也模仿commonjs规范想实现一个异步加载模块的功能，当使用require.ensure去加载模块时，只有在需要的时候才去下载模块，这可以实现类似懒加载的功能，避免一个页面打包后太大。</p>
-<p>例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">// webpack.config.js</div><div class="line">entry: &#123;</div><div class="line">         index : &apos;./index.js&apos;,</div><div class="line">         detail: &apos;./detail.js&apos;</div><div class="line">     &#125;</div><div class="line"></div><div class="line">// detail.js</div><div class="line">require(&apos;./src/bundle_require.js&apos;); //bundle_require.js没有依赖</div><div class="line"></div><div class="line">// index.js</div><div class="line">// testTapable.js 和 temp.js都没有依赖</div><div class="line">require(&apos;./src/tapable/testTapable.js&apos;);</div><div class="line">let Temp = require.ensure(&apos;./src/plugins/temp.js&apos;, function()&#123;</div><div class="line">    console.log(&apos;temp is loaded&apos;);</div><div class="line">&#125;, &apos;temp&apos;);</div><div class="line">let temp = new Temp();</div><div class="line">console.log(&apos;temp is resolved&apos;);</div></pre></td></tr></table></figure></p>
-<p>使用上面插件打包的结果：<br>这里写图片描述</p>
-<h5 id="在webpack-config-js中引用这个plugin"><a href="#在webpack-config-js中引用这个plugin" class="headerlink" title="在webpack.config.js中引用这个plugin"></a>在webpack.config.js中引用这个plugin</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var HTMLPlugin = require(&apos;./src/plugins/HTMLPlugin&apos;);</div><div class="line"></div><div class="line">  module.exports = &#123;</div><div class="line">     //插件项</div><div class="line">      plugins:[</div><div class="line">          new HTMLPlugin()</div><div class="line">      ],</div><div class="line">      ...</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<p>命令行执行webpack就可以打印出上图的结果。</p>
-<h5 id="白盒角度看plugin如何工作"><a href="#白盒角度看plugin如何工作" class="headerlink" title="白盒角度看plugin如何工作"></a>白盒角度看plugin如何工作</h5><p>从源码分析apply方法到底如何调用，plugin方法到底如何定义一个插件等问题。</p>
-<h5 id="plugin的apply方法到底如何调用"><a href="#plugin的apply方法到底如何调用" class="headerlink" title="plugin的apply方法到底如何调用"></a>plugin的apply方法到底如何调用</h5><p>bin/webapck.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var webpack = require(&quot;../lib/webpack.js&quot;);</div><div class="line">compiler = webpack(options);</div></pre></td></tr></table></figure></p>
-<p>没什么好解释，去看lib/webpack.js。</p>
-<p>lib/webpack.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">const Compiler = require(&quot;./Compiler&quot;);</div><div class="line">compiler = new Compiler();</div><div class="line">if(options.plugins &amp;&amp; Array.isArray(options.plugins)) &#123;</div><div class="line">    compiler.apply.apply(compiler, options.plugins);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>显然compiler有一个apply方法，这里给其传入的参数是插件数组options.plugins。compiler中的apply方法实际是从Tapable中继承来的，所以移步Tapable，可以npm install一下来查看其源码。</p>
-<p>Tapable<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Tapable.prototype.apply = function apply() &#123;</div><div class="line">    for(var i = 0; i &lt; arguments.length; i++) &#123;</div><div class="line">        arguments[i].apply(this);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<p>这个方法就是保证执行环境this的情况下依次执行传入参数中的方法，这些方法就是plugin。</p>
-<p>plugin方法到底如何定义一个插件</p>
-<p>很明显，这个方法在compiler上是有的，其实plugin方法是通过继承Tapable得到的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Tapable.prototype.plugin = function plugin(name, fn) &#123;</div><div class="line">    if(Array.isArray(name)) &#123;</div><div class="line">        name.forEach(function(name) &#123;</div><div class="line">            this.plugin(name, fn);</div><div class="line">        &#125;, this);</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    if(!this._plugins[name]) this._plugins[name] = [fn];</div><div class="line">    else this._plugins[name].push(fn);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<p>这就是观察者模式中的注册观测者。</p>
-<p>可用于监听的事件</p>
-<p>可以在官方文档中查看，当然也可以仔细研读Compiler和Comilation两类去理解。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">Compiler.prototype.compile = function(callback) &#123;</div><div class="line">    var self = this;</div><div class="line">    var params = self.newCompilationParams();</div><div class="line">    self.applyPluginsAsync(&quot;before-compile&quot;, params, function(err) &#123;</div><div class="line">        if(err) return callback(err);</div><div class="line"></div><div class="line">        self.applyPlugins(&quot;compile&quot;, params);</div><div class="line"></div><div class="line">        var compilation = self.newCompilation(params);</div><div class="line"></div><div class="line">        self.applyPluginsParallel(&quot;make&quot;, compilation, function(err) &#123;</div><div class="line">            if(err) return callback(err);</div><div class="line"></div><div class="line">            compilation.finish();</div><div class="line"></div><div class="line">            compilation.seal(function(err) &#123;</div><div class="line">                if(err) return callback(err);</div><div class="line"></div><div class="line">                self.applyPluginsAsync(&quot;after-compile&quot;, compilation, function(err) &#123;</div><div class="line">                    if(err) return callback(err);</div><div class="line"></div><div class="line">                    return callback(null, compilation);</div><div class="line">                &#125;);</div><div class="line">            &#125;);</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<p>compile方法是开始打包的一个重要方法，该方法会首先触发before-compile事件，也就是打包前需要干的事情，由一系列插件完成，然后触发compile事件，然后触发make事件，开始构建依赖关系。</p>
-<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>我们了解了webpack的几个重要类及基本事件流程，通过这篇博客查看官网关于如何写plugin的介绍我们从黑盒角度知道了写plugin的基本步骤，对应webpack的工作流程<br>就可以轻松从白盒角度总结出plugin的工作原理。</p>
+        <h4 id="瀑布流布局"><a href="#瀑布流布局" class="headerlink" title="瀑布流布局"></a>瀑布流布局</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">.masonry &#123;</div><div class="line">  -webkit-column-count: 2;</div><div class="line">     -moz-column-count: 2;</div><div class="line">          column-count: 2;</div><div class="line">  -webkit-column-gap: 0;</div><div class="line">     -moz-column-gap: 0;</div><div class="line">          column-gap: 0;</div><div class="line">  counter-reset: item-counter;</div><div class="line">  padding:10rpx;</div><div class="line">&#125;</div><div class="line">.item &#123;</div><div class="line">  box-sizing: border-box;</div><div class="line">  -webkit-column-break-inside: avoid;</div><div class="line">     page-break-inside: avoid;</div><div class="line">          break-inside: avoid;</div><div class="line"></div><div class="line">  counter-increment: item-counter;</div><div class="line">  padding:10rpx;</div><div class="line"></div><div class="line">&#125;</div><div class="line">.item__content &#123;</div><div class="line">  position: relative;</div><div class="line">  display: flex;</div><div class="line">  -webkit-box-orient: vertical;</div><div class="line">  -webkit-box-direction: normal;</div><div class="line">      -ms-flex-direction: column;</div><div class="line">          flex-direction: column;</div><div class="line">  -webkit-box-pack: center;</div><div class="line">      -ms-flex-pack: center;</div><div class="line">          justify-content: center;</div><div class="line">  -webkit-box-align: center;</div><div class="line">      -ms-flex-align: center;</div><div class="line">          align-items: center;</div><div class="line">  min-height: 100rpx;</div><div class="line">  font-size: 24rpx;</div><div class="line">  box-sizing: border-box;</div><div class="line">  white-space: normal;</div><div class="line">  word-break: break-all;</div><div class="line">  padding:15rpx;</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;view class=&quot;masonry &quot;&gt;</div><div class="line">  &lt;view class=&quot;item&quot; wx:for=&quot;&#123;&#123;list&#125;&#125;&quot; wx:key=&quot;id&quot; wx:for-item=&quot;item&quot;&gt;</div><div class="line">    &lt;view class=&quot;item__content&quot;&gt;</div><div class="line">      &#123;&#123;item.content&#125;&#125;</div><div class="line">    &lt;/view&gt;</div><div class="line">  &lt;/view&gt;</div><div class="line">&lt;/view&gt;</div></pre></td></tr></table></figure>
+<a id="more"></a>
 
       
     </div>
@@ -498,12 +457,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/webpack/" rel="tag"># webpack</a>
-          
-        </div>
-      
 
       
         
@@ -513,8 +466,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/27/vue知识点/" rel="next" title="vue知识点">
-                <i class="fa fa-chevron-left"></i> vue知识点
+              <a href="/2017/07/04/浏览器缓存机制/" rel="next" title="浏览器缓存机制">
+                <i class="fa fa-chevron-left"></i> 浏览器缓存机制
               </a>
             
           </div>
@@ -522,10 +475,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/22/前端性能优化/" rel="prev" title="前端性能优化">
-                前端性能优化 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -676,7 +625,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Compiler和Compilation两个类"><span class="nav-number">1.</span> <span class="nav-text">Compiler和Compilation两个类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#写一个简单的plugin"><span class="nav-number">2.</span> <span class="nav-text">写一个简单的plugin</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义plugin"><span class="nav-number">2.1.</span> <span class="nav-text">定义plugin</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在webpack-config-js中引用这个plugin"><span class="nav-number">2.2.</span> <span class="nav-text">在webpack.config.js中引用这个plugin</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#白盒角度看plugin如何工作"><span class="nav-number">2.3.</span> <span class="nav-text">白盒角度看plugin如何工作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#plugin的apply方法到底如何调用"><span class="nav-number">2.4.</span> <span class="nav-text">plugin的apply方法到底如何调用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#总结"><span class="nav-number">2.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#瀑布流布局"><span class="nav-number">1.</span> <span class="nav-text">瀑布流布局</span></a></li></ol></div>
             
 
           </div>
