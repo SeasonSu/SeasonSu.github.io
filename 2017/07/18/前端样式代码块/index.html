@@ -93,7 +93,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/18/前端样式代码块/index.html">
 <meta property="og:site_name" content="Seas0n">
 <meta property="og:description" content="瀑布流布局123456789101112131415161718192021222324252627282930313233343536373839404142434445464748.masonry &amp;#123;  -webkit-column-count: 2;     -moz-column-count: 2;          column-count: 2;  -webkit-colum">
-<meta property="og:updated_time" content="2017-07-27T01:46:27.000Z">
+<meta property="og:updated_time" content="2017-08-02T01:53:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端样式代码块">
 <meta name="twitter:description" content="瀑布流布局123456789101112131415161718192021222324252627282930313233343536373839404142434445464748.masonry &amp;#123;  -webkit-column-count: 2;     -moz-column-count: 2;          column-count: 2;  -webkit-colum">
@@ -461,6 +461,9 @@
       
         <h4 id="瀑布流布局"><a href="#瀑布流布局" class="headerlink" title="瀑布流布局"></a>瀑布流布局</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">.masonry &#123;</div><div class="line">  -webkit-column-count: 2;</div><div class="line">     -moz-column-count: 2;</div><div class="line">          column-count: 2;</div><div class="line">  -webkit-column-gap: 0;</div><div class="line">     -moz-column-gap: 0;</div><div class="line">          column-gap: 0;</div><div class="line">  counter-reset: item-counter;</div><div class="line">  padding:10rpx;</div><div class="line">&#125;</div><div class="line">.item &#123;</div><div class="line">  box-sizing: border-box;</div><div class="line">  -webkit-column-break-inside: avoid;</div><div class="line">     page-break-inside: avoid;</div><div class="line">          break-inside: avoid;</div><div class="line"></div><div class="line">  counter-increment: item-counter;</div><div class="line">  padding:10rpx;</div><div class="line"></div><div class="line">&#125;</div><div class="line">.item__content &#123;</div><div class="line">  position: relative;</div><div class="line">  display: flex;</div><div class="line">  -webkit-box-orient: vertical;</div><div class="line">  -webkit-box-direction: normal;</div><div class="line">      -ms-flex-direction: column;</div><div class="line">          flex-direction: column;</div><div class="line">  -webkit-box-pack: center;</div><div class="line">      -ms-flex-pack: center;</div><div class="line">          justify-content: center;</div><div class="line">  -webkit-box-align: center;</div><div class="line">      -ms-flex-align: center;</div><div class="line">          align-items: center;</div><div class="line">  min-height: 100rpx;</div><div class="line">  font-size: 24rpx;</div><div class="line">  box-sizing: border-box;</div><div class="line">  white-space: normal;</div><div class="line">  word-break: break-all;</div><div class="line">  padding:15rpx;</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;view class=&quot;masonry &quot;&gt;</div><div class="line">  &lt;view class=&quot;item&quot; wx:for=&quot;&#123;&#123;list&#125;&#125;&quot; wx:key=&quot;id&quot; wx:for-item=&quot;item&quot;&gt;</div><div class="line">    &lt;view class=&quot;item__content&quot;&gt;</div><div class="line">      &#123;&#123;item.content&#125;&#125;</div><div class="line">    &lt;/view&gt;</div><div class="line">  &lt;/view&gt;</div><div class="line">&lt;/view&gt;</div></pre></td></tr></table></figure>
 <a id="more"></a>
+<h4 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">.clearfix:after &#123;</div><div class="line">    content: &quot;.&quot;;</div><div class="line">    display: block;</div><div class="line">    clear: both;</div><div class="line">    visibility: hidden;</div><div class="line">    line-height: 0;</div><div class="line">    height: 0;</div><div class="line">&#125;</div><div class="line">.clearfix &#123;</div><div class="line">    display: inline-block;</div><div class="line">&#125;</div><div class="line">html[xmlns] .clearfix &#123;</div><div class="line">    display: block;</div><div class="line">&#125;</div><div class="line">* html .clearfix &#123;</div><div class="line">     height: 1%;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.clearfix:before, .container:after &#123; content: &quot;&quot;; display: table; &#125;</div><div class="line">.clearfix:after &#123; clear: both; &#125;</div><div class="line">/* IE 6/7 */</div><div class="line">.clearfix &#123; zoom: 1; &#125;</div></pre></td></tr></table></figure>
+<h4 id="样式重置"><a href="#样式重置" class="headerlink" title="样式重置"></a>样式重置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video &#123;</div><div class="line">  margin: 0;</div><div class="line">  padding: 0;</div><div class="line">  border: 0;</div><div class="line">  font-size: 100%;</div><div class="line">  font: inherit;</div><div class="line">  vertical-align: baseline;</div><div class="line">  outline: none;</div><div class="line">  -webkit-box-sizing: border-box;</div><div class="line">  -moz-box-sizing: border-box;</div><div class="line">  box-sizing: border-box;</div><div class="line">&#125;</div><div class="line">html &#123; height: 101%; &#125;</div><div class="line">body &#123; font-size: 62.5%; line-height: 1; font-family: Arial, Tahoma, sans-serif; &#125;</div><div class="line">article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section &#123; display: block; &#125;</div><div class="line">ol, ul &#123; list-style: none; &#125;</div><div class="line">blockquote, q &#123; quotes: none; &#125;</div><div class="line">blockquote:before, blockquote:after, q:before, q:after &#123; content: &apos;&apos;; content: none; &#125;</div><div class="line">strong &#123; font-weight: bold; &#125;</div><div class="line">table &#123; border-collapse: collapse; border-spacing: 0; &#125;</div><div class="line">img &#123; border: 0; max-width: 100%; &#125;</div><div class="line">p &#123; font-size: 1.2em; line-height: 1.0em; color: #333; &#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -500,6 +503,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/02/createjs搭建游戏/" rel="prev" title="createjs搭建游戏">
+                createjs搭建游戏 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -573,7 +580,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -584,7 +591,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -650,7 +657,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#瀑布流布局"><span class="nav-number">1.</span> <span class="nav-text">瀑布流布局</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#瀑布流布局"><span class="nav-number">1.</span> <span class="nav-text">瀑布流布局</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清除浮动"><span class="nav-number">2.</span> <span class="nav-text">清除浮动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样式重置"><span class="nav-number">3.</span> <span class="nav-text">样式重置</span></a></li></ol></div>
             
 
           </div>

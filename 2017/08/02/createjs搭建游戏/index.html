@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="构建打包,gulp," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -87,22 +87,61 @@
 
 
 
-<meta name="description" content="入门指南1. 全局安装 gulp：1$ npm install --global gulp
-2. 作为项目的开发依赖（devDependencies）安装：1$ npm install --save-dev gulp
-3. 在项目根目录下创建一个名为 gulpfile.js 的文件：12345var gulp = require(&amp;apos;gulp&amp;apos;);gulp.task(&amp;apos;">
+<meta name="description" content="项目结构
+assets 通用代码块
+css
+js
+
+
+images
+js
+module  模块
+loader.js
+view.jsindexjs 游戏主程
+
+
+
+
+mp3index.html">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gulp构建">
-<meta property="og:url" content="http://yoursite.com/2017/04/20/gulp构建/index.html">
+<meta property="og:title" content="createjs搭建游戏">
+<meta property="og:url" content="http://yoursite.com/2017/08/02/createjs搭建游戏/index.html">
 <meta property="og:site_name" content="Seas0n">
-<meta property="og:description" content="入门指南1. 全局安装 gulp：1$ npm install --global gulp
-2. 作为项目的开发依赖（devDependencies）安装：1$ npm install --save-dev gulp
-3. 在项目根目录下创建一个名为 gulpfile.js 的文件：12345var gulp = require(&amp;apos;gulp&amp;apos;);gulp.task(&amp;apos;">
-<meta property="og:updated_time" content="2017-07-27T02:10:25.000Z">
+<meta property="og:description" content="项目结构
+assets 通用代码块
+css
+js
+
+
+images
+js
+module  模块
+loader.js
+view.jsindexjs 游戏主程
+
+
+
+
+mp3index.html">
+<meta property="og:updated_time" content="2017-08-02T02:00:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="gulp构建">
-<meta name="twitter:description" content="入门指南1. 全局安装 gulp：1$ npm install --global gulp
-2. 作为项目的开发依赖（devDependencies）安装：1$ npm install --save-dev gulp
-3. 在项目根目录下创建一个名为 gulpfile.js 的文件：12345var gulp = require(&amp;apos;gulp&amp;apos;);gulp.task(&amp;apos;">
+<meta name="twitter:title" content="createjs搭建游戏">
+<meta name="twitter:description" content="项目结构
+assets 通用代码块
+css
+js
+
+
+images
+js
+module  模块
+loader.js
+view.jsindexjs 游戏主程
+
+
+
+
+mp3index.html">
 
 
 
@@ -130,13 +169,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/20/gulp构建/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/02/createjs搭建游戏/"/>
 
 
 
 
 
-  <title> gulp构建 | Seas0n </title>
+  <title> createjs搭建游戏 | Seas0n </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -341,7 +380,7 @@
     }
   </style>
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/20/gulp构建/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/02/createjs搭建游戏/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Seas0n">
@@ -362,7 +401,7 @@
             
             
               
-                gulp构建
+                createjs搭建游戏
                 
                   <span class="from fromMe">原</span>
                 
@@ -380,8 +419,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-20T11:09:08+08:00">
-                2017-04-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-02T09:44:38+08:00">
+                2017-08-02
               </time>
             
 
@@ -414,8 +453,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/构建打包/" itemprop="url" rel="index">
-                    <span itemprop="name">构建打包</span>
+                  <a href="/categories/前端/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
                   </a>
                 </span>
 
@@ -425,8 +464,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/构建打包/gulp/" itemprop="url" rel="index">
-                    <span itemprop="name">gulp</span>
+                  <a href="/categories/前端/框架/createjs/" itemprop="url" rel="index">
+                    <span itemprop="name">createjs</span>
                   </a>
                 </span>
 
@@ -443,7 +482,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/04/20/gulp构建/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2017/08/02/createjs搭建游戏/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
                 <span class="post-meta-item-text">条 </span>
@@ -476,12 +515,27 @@
       
 
       
-        <h4 id="入门指南"><a href="#入门指南" class="headerlink" title="入门指南"></a>入门指南</h4><h5 id="1-全局安装-gulp："><a href="#1-全局安装-gulp：" class="headerlink" title="1. 全局安装 gulp："></a>1. 全局安装 gulp：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --global gulp</div></pre></td></tr></table></figure>
-<h5 id="2-作为项目的开发依赖（devDependencies）安装："><a href="#2-作为项目的开发依赖（devDependencies）安装：" class="headerlink" title="2. 作为项目的开发依赖（devDependencies）安装："></a>2. 作为项目的开发依赖（devDependencies）安装：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save-dev gulp</div></pre></td></tr></table></figure>
-<h5 id="3-在项目根目录下创建一个名为-gulpfile-js-的文件："><a href="#3-在项目根目录下创建一个名为-gulpfile-js-的文件：" class="headerlink" title="3. 在项目根目录下创建一个名为 gulpfile.js 的文件："></a>3. 在项目根目录下创建一个名为 gulpfile.js 的文件：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var gulp = require(&apos;gulp&apos;);</div><div class="line"></div><div class="line">gulp.task(&apos;default&apos;, function() &#123;</div><div class="line">  // 将你的默认的任务代码放在这</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h5 id="4-运行-gulp："><a href="#4-运行-gulp：" class="headerlink" title="4. 运行 gulp："></a>4. 运行 gulp：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gulp</div></pre></td></tr></table></figure>
+        <h4 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h4><ul>
+<li>assets <code>通用代码块</code><ul>
+<li>css</li>
+<li>js</li>
+</ul>
+</li>
+<li>images</li>
+<li>js<ul>
+<li>module  <code>模块</code><ul>
+<li>loader.js</li>
+<li>view.js<br>indexjs <code>游戏主程</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>mp3<br>index.html</li>
+</ul>
 <a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div></pre></td><td class="code"><pre><div class="line">var gulp        = require(&apos;gulp&apos;);</div><div class="line">var browserSync = require(&apos;browser-sync&apos;);</div><div class="line">// 引入组件</div><div class="line">var jshint = require(&apos;gulp-jshint&apos;);</div><div class="line">var sass = require(&apos;gulp-sass&apos;);// 编译Sass</div><div class="line">var concat = require(&apos;gulp-concat&apos;);</div><div class="line">var uglify = require(&apos;gulp-uglify&apos;);</div><div class="line">var rename = require(&apos;gulp-rename&apos;);</div><div class="line">var connect = require(&apos;gulp-connect&apos;); //自动刷新服务</div><div class="line">var rev  = require(&apos;gulp-rev&apos;);//加MD5后缀</div><div class="line">var revReplace = require(&apos;gulp-rev-replace&apos;);//替换引用的加了md5后缀的文件名，修改过，用来加cdn前缀</div><div class="line">var minifyHtml = require(&apos;gulp-minify-html&apos;); //压缩html</div><div class="line">var minifyCss = require(&apos;gulp-minify-css&apos;);</div><div class="line">var gulpif = require(&apos;gulp-if&apos;);</div><div class="line">var  cssver = require(&apos;gulp-make-css-url-version&apos;); //css url</div><div class="line">var imagemin = require(&apos;gulp-imagemin&apos;);</div><div class="line">var pngquant = require(&apos;imagemin-pngquant&apos;); //png图片压缩插件</div><div class="line">var spritesmith = require(&apos;gulp-spritesmith&apos;);</div><div class="line">var spriter=require(&apos;gulp-css-spriter&apos;);</div><div class="line">var condition = true;</div><div class="line">var paths = &#123;</div><div class="line">    scripts: &apos;./app/js/*.js&apos;,//js存放</div><div class="line">    scss:&apos;./app/css/scss/*.scss&apos;,//scss存放</div><div class="line">    css:&apos;./app/css/*.css&apos;,//看守的css目录</div><div class="line">    cssScss:&apos;./app/css&apos;,//压缩sass存放的css目录</div><div class="line">    minCss:&apos;./app/css/minCss&apos;,//压缩的minicss</div><div class="line">    rootJs:&apos;./dist/js&apos;, //打包后js</div><div class="line">    rootCss:&apos;./dist/css&apos;,//打包后css</div><div class="line">    minHtml:&apos;./dist&apos;,//打包后html</div><div class="line">&#125;;</div><div class="line">// 检查脚本</div><div class="line">gulp.task(&apos;lint&apos;, function() &#123;</div><div class="line">    return gulp.src(paths.scripts)</div><div class="line">        .pipe(jshint())</div><div class="line">        .pipe(jshint.reporter(&apos;default&apos;));</div><div class="line">&#125;);</div><div class="line">// 编译Sass</div><div class="line">gulp.task(&apos;sass&apos;, function() &#123;</div><div class="line">    gulp.src(paths.scss)</div><div class="line">        .pipe(sass())</div><div class="line">        .pipe(gulp.dest(paths.cssScss));</div><div class="line">&#125;);</div><div class="line">// 合并，压缩文件</div><div class="line">gulp.task(&apos;scripts&apos;, function() &#123;</div><div class="line">    gulp.src(paths.scripts)</div><div class="line">        .pipe(concat(&apos;app.js&apos;))</div><div class="line">        .pipe(gulp.dest(paths.rootJs))</div><div class="line">        .pipe(rename(&apos;app.min.js&apos;))</div><div class="line">        .pipe(uglify())</div><div class="line">        .pipe(gulp.dest(paths.rootJs));</div><div class="line">&#125;);</div><div class="line">//浏览器监听刷新</div><div class="line">gulp.task(&apos;reload&apos;,function()&#123;</div><div class="line">    gulp.src(&apos;./*.html&apos;).pipe(connect.reload());</div><div class="line">&#125;);</div><div class="line">//服务器自动刷新</div><div class="line">gulp.task(&apos;connect&apos;,function()&#123;</div><div class="line">    connect.server(&#123;</div><div class="line">        port:3000,</div><div class="line">        livereload:true</div><div class="line">    &#125;)</div><div class="line">&#125;)</div><div class="line">//压缩Html/更新引入文件版本</div><div class="line">gulp.task(&apos;miniHtml&apos;, function () &#123;</div><div class="line">  return gulp.src(&apos;./*.html&apos;)</div><div class="line">    //.pipe(revCollector())</div><div class="line">    .pipe(gulpif(</div><div class="line">      condition, minifyHtml(&#123;</div><div class="line">        empty: true,</div><div class="line">        spare: true,</div><div class="line">        quotes: true</div><div class="line">      &#125;)</div><div class="line">    ))</div><div class="line">    .pipe(gulp.dest(paths.minHtml));</div><div class="line">&#125;);</div><div class="line">//压缩/合并CSS</div><div class="line">gulp.task(&apos;miniCss&apos;, function () &#123;</div><div class="line">    gulp.src(paths.css)</div><div class="line">        .pipe(minifyCss(&#123;</div><div class="line">            advanced: false,//类型：Boolean 默认：true [是否开启高级优化（合并选择器等）]</div><div class="line">            compatibility: &apos;ie7&apos;,//保留ie7及以下兼容写法 类型：String 默认：&apos;&apos;or&apos;*&apos; [启用兼容模式； &apos;ie7&apos;：IE7兼容模式，&apos;ie8&apos;：IE8兼容模式，&apos;*&apos;：IE9+兼容模式]</div><div class="line">            keepBreaks: true,//类型：Boolean 默认：false [是否保留换行]</div><div class="line">            keepSpecialComments: &apos;*&apos;</div><div class="line">            //保留所有特殊前缀 当你用autoprefixer生成的浏览器前缀，如果不加这个参数，有可能将会删除你的部分前缀</div><div class="line">        &#125;))</div><div class="line">        .pipe(cssver())</div><div class="line">        .pipe(gulp.dest(paths.minCss));</div><div class="line">&#125;);</div><div class="line">gulp.task(&apos;minImage&apos;, function () &#123;</div><div class="line">    return gulp.src(&apos;./app/images/*&apos;)</div><div class="line">        .pipe(imagemin(&#123;</div><div class="line">            progressive: true,</div><div class="line">            use: [pngquant()] //使用pngquant来压缩png图片</div><div class="line">        &#125;))</div><div class="line">        .pipe(gulp.dest(&apos;./dist/images&apos;));</div><div class="line">&#125;);</div><div class="line">gulp.task(&apos;sprite&apos;,function()&#123;</div><div class="line">    var timestamp =+ new Date();</div><div class="line">    //需要自动合并雪碧图的样式文件</div><div class="line">    return gulp.src(&apos;./app/css/*.css&apos;)</div><div class="line">    .pipe(spriter(&#123;</div><div class="line">        //生成的spriter的位置</div><div class="line">        &apos;spriteSheet&apos;:&apos;./dist/images/sprite/sprite&apos;+timestamp+&apos;.png&apos;,</div><div class="line">        //生成样式文件图片引用地址的路径</div><div class="line">        //如下将生产：backgound:url(../images/sprite20324232.png)</div><div class="line">        &apos;pathToSpriteSheetFromCSS&apos;:&apos;../images/sprite&apos;+timestamp+&apos;.png&apos;</div><div class="line">    &#125;))</div><div class="line">    .pipe(minifyCss())</div><div class="line">    //产出路径</div><div class="line">    .pipe(gulp.dest(&apos;./dist/css/sprite&apos;));</div><div class="line">&#125;);</div><div class="line">//监听文件状态</div><div class="line">gulp.task(&apos;watch&apos;, function() &#123;</div><div class="line">    gulp.watch(&quot;./*.html&quot;,[&apos;reload&apos;]);</div><div class="line">&#125;);</div><div class="line">gulp.task(&apos;default&apos;,[&apos;watch&apos;,&apos;scripts&apos;,&apos;sass&apos;,&apos;lint&apos;,&apos;connect&apos;,&apos;miniHtml&apos;,&apos;miniCss&apos;,&apos;minImage&apos;,&apos;sprite&apos;]);</div></pre></td></tr></table></figure>
+<h4 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h4><p>自己写的webpack打包</p>
+<h4 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h4><h6 id="加载模块"><a href="#加载模块" class="headerlink" title="加载模块"></a>加载模块</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line">import &apos;../../assets/js/createjs/createjs&apos;</div><div class="line"></div><div class="line">import view from &apos;./view&apos;</div><div class="line"></div><div class="line">let loader = &#123;</div><div class="line">    manifest:[</div><div class="line">        &#123;src:&quot;background.jpg&quot;,id:&quot;background&quot;&#125;,</div><div class="line">        &#123;src:&apos;spritesheet_grant.png&apos;,id:&apos;sprite&apos;&#125;,</div><div class="line">    ],</div><div class="line">    init:function(game)&#123;</div><div class="line">        loader.game = game</div><div class="line">        if(loader.target != null)&#123;</div><div class="line">            loader.close()</div><div class="line">            return</div><div class="line">        &#125;</div><div class="line">        view.init()</div><div class="line">        loader.ready()</div><div class="line">        loader.target = new createjs.LoadQueue(false, &quot;./images/&quot;);</div><div class="line">        loader.target.on(&quot;complete&quot;, loader.handleComplete);//下载完成处理函数</div><div class="line">        loader.target.on(&quot;fileload&quot;, loader.handleFileLoad);//单个文件下载完成处理函数</div><div class="line">        loader.target.on(&quot;progress&quot;, loader.handleProgress);//下载过程处理函数</div><div class="line">        loader.target.on(&quot;error&quot;, loader.handleFileError);//下载出错处理函数</div><div class="line">        loader.target.setMaxConnections(5);//最大下载线程</div><div class="line">        loader.target.loadManifest(loader.manifest);//开始下载</div><div class="line"></div><div class="line">    &#125;,</div><div class="line">    ready:function()&#123;</div><div class="line">        loader.loadingContainer = new createjs.Container()</div><div class="line">        loader.loadingContainer.width = canvas.width</div><div class="line">        loader.loadingContainer.height = canvas.height</div><div class="line">        stage.addChild(loader.loadingContainer)</div><div class="line">        let bg = new createjs.Shape();</div><div class="line">        bg.graphics.beginFill(&quot;#ccc&quot;).drawRect(0, 0, canvas.width, canvas.height);</div><div class="line">        loader.loadingContainer.addChild(bg)</div><div class="line">        loader.textView = new createjs.Text(&apos;0%&apos;,&apos;30px Microsoft Yahei&apos;,&apos;red&apos;);</div><div class="line">        loader.textView.x = (canvas.width - loader.textView.getMeasuredWidth()) /2</div><div class="line">        loader.textView.y = (canvas.height - loader.textView.getMeasuredHeight()) /2</div><div class="line">        loader.loadingContainer.addChild(loader.textView)</div><div class="line">    &#125;,</div><div class="line">    // 下载完成处理函数</div><div class="line">    handleComplete:function()&#123;</div><div class="line">        createjs.Tween.get(loader.loadingContainer).to(&#123;alpha:0.1&#125;,1000).call(function()&#123;</div><div class="line">            stage.removeChild(loader.loadingContainer)</div><div class="line">            loader.game.ready()</div><div class="line">        &#125;)</div><div class="line">    &#125;,</div><div class="line">    // 单个文件下载完成处理函数</div><div class="line">    handleFileLoad:function()&#123;</div><div class="line"></div><div class="line">    &#125;,</div><div class="line">    // 下载过程处理函数</div><div class="line">    handleProgress:function()&#123;</div><div class="line">        let pencent = parseInt(loader.target.progress * 100);</div><div class="line">        loader.textView.text = pencent + &apos;%&apos;</div><div class="line">    &#125;,</div><div class="line">    // 下载出错处理函数</div><div class="line">    handleFileError:function()&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default loader</div></pre></td></tr></table></figure>
+<h6 id="自适应兼容模块"><a href="#自适应兼容模块" class="headerlink" title="自适应兼容模块"></a>自适应兼容模块</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">import &apos;../../assets/js/createjs/createjs&apos;</div><div class="line"></div><div class="line">let view = &#123;</div><div class="line">    init:function()&#123;</div><div class="line">        stage.addChild(container)</div><div class="line">        createjs.Ticker.timingMode =  createjs.Ticker.RAF_SYNCHED;</div><div class="line">        createjs.Ticker.setFPS(60);</div><div class="line">        createjs.Ticker.addEventListener(&quot;tick&quot;, view.stageBreakHandler);</div><div class="line">        createjs.Touch.enable(stage);//使移动端支持createjs的鼠标事件</div><div class="line">    &#125;,</div><div class="line">    // 处理自适应兼容</div><div class="line">    stageBreakHandler:function(event)&#123;</div><div class="line">        view.stageWidth =  document.documentElement.clientWidth;</div><div class="line">        view.stageHeight = document.documentElement.clientHeight;</div><div class="line"></div><div class="line">        // 竖屏</div><div class="line">        if(view.stageWidth &lt; view.stageHeight)&#123;</div><div class="line">            view.stageScale = view.stageWidth/(750/2);//锁屏的强制横屏标题栏在左边所以要减去128</div><div class="line">            canvas.style.width = 750/2 * view.stageScale + &apos;px&apos;;</div><div class="line">            canvas.style.height = 1206/2 * view.stageScale + &apos;px&apos;;</div><div class="line">            canvas.width = 750</div><div class="line">            canvas.height = 1206</div><div class="line">            container.x = 0</div><div class="line">            container.rotation = 0</div><div class="line">            container.scaleX = 0</div><div class="line">            container.scaleY = 0</div><div class="line">        &#125;else&#123;</div><div class="line">            canvas.width = view.stageWidth ;</div><div class="line">            canvas.height = view.stageHeight;</div><div class="line">            canvas.style.width = canvas.style.height = &quot;&quot;</div><div class="line">            view.stageScale = view.stageWidth/1334;</div><div class="line">            container.rotation = 90;</div><div class="line">            container.x = 0;</div><div class="line">            container.scaleX = view.stageScale;</div><div class="line">            container.scaleY = view.stageScale;</div><div class="line">        &#125;</div><div class="line">        stage.update();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default view</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -503,14 +557,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/构建打包/" rel="tag"># 构建打包</a>
-          
-            <a href="/tags/gulp/" rel="tag"># gulp</a>
-          
-        </div>
-      
 
       
         
@@ -520,8 +566,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/17/前端功能代码块/" rel="next" title="前端功能代码块">
-                <i class="fa fa-chevron-left"></i> 前端功能代码块
+              <a href="/2017/07/18/前端样式代码块/" rel="next" title="前端样式代码块">
+                <i class="fa fa-chevron-left"></i> 前端样式代码块
               </a>
             
           </div>
@@ -529,10 +575,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/20/用户体验设计/" rel="prev" title="用户体验设计">
-                用户体验设计 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -683,7 +725,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#入门指南"><span class="nav-number">1.</span> <span class="nav-text">入门指南</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-全局安装-gulp："><span class="nav-number">1.1.</span> <span class="nav-text">1. 全局安装 gulp：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-作为项目的开发依赖（devDependencies）安装："><span class="nav-number">1.2.</span> <span class="nav-text">2. 作为项目的开发依赖（devDependencies）安装：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-在项目根目录下创建一个名为-gulpfile-js-的文件："><span class="nav-number">1.3.</span> <span class="nav-text">3. 在项目根目录下创建一个名为 gulpfile.js 的文件：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-运行-gulp："><span class="nav-number">1.4.</span> <span class="nav-text">4. 运行 gulp：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#项目结构"><span class="nav-number">1.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打包"><span class="nav-number">2.</span> <span class="nav-text">打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码块"><span class="nav-number">3.</span> <span class="nav-text">代码块</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#加载模块"><span class="nav-number">3.0.1.</span> <span class="nav-text">加载模块</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#自适应兼容模块"><span class="nav-number">3.0.2.</span> <span class="nav-text">自适应兼容模块</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
