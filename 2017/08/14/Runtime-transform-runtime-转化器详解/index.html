@@ -87,16 +87,25 @@
 
 
 
-<meta name="description" content="摇一摇123456789101112131415161718192021222324var speed = 15;//摇动速度var flag=true;var x = y = z = lastX = lastY = lastZ = 0;$(function()&amp;#123;    if(window.DeviceMotionEvent) &amp;#123;    	window.addEventList">
+<meta name="description" content="Runtime transform 运行时编译es6入口文件引用作为辅助和内建，自动添加垫片到你的当前代码模块而非全局
+这个插件建议放在 library/tool中
+注意：实例方法，例如”foobar”.includes(“foo”)将不能够使用，因为它将修正内置的垫片。
+为什么使用它 whyBabel对常用的函数使用非常小的辅助（内置的垫片比较少），例如_extend。默认情况下它将会添加到每个">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端功能代码块">
-<meta property="og:url" content="http://yoursite.com/2017/04/17/前端功能代码块/index.html">
+<meta property="og:title" content="Runtime transform/runtime 转化器详解">
+<meta property="og:url" content="http://yoursite.com/2017/08/14/Runtime-transform-runtime-转化器详解/index.html">
 <meta property="og:site_name" content="Seas0n">
-<meta property="og:description" content="摇一摇123456789101112131415161718192021222324var speed = 15;//摇动速度var flag=true;var x = y = z = lastX = lastY = lastZ = 0;$(function()&amp;#123;    if(window.DeviceMotionEvent) &amp;#123;    	window.addEventList">
-<meta property="og:updated_time" content="2017-07-27T02:13:42.000Z">
+<meta property="og:description" content="Runtime transform 运行时编译es6入口文件引用作为辅助和内建，自动添加垫片到你的当前代码模块而非全局
+这个插件建议放在 library/tool中
+注意：实例方法，例如”foobar”.includes(“foo”)将不能够使用，因为它将修正内置的垫片。
+为什么使用它 whyBabel对常用的函数使用非常小的辅助（内置的垫片比较少），例如_extend。默认情况下它将会添加到每个">
+<meta property="og:updated_time" content="2017-08-14T01:58:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端功能代码块">
-<meta name="twitter:description" content="摇一摇123456789101112131415161718192021222324var speed = 15;//摇动速度var flag=true;var x = y = z = lastX = lastY = lastZ = 0;$(function()&amp;#123;    if(window.DeviceMotionEvent) &amp;#123;    	window.addEventList">
+<meta name="twitter:title" content="Runtime transform/runtime 转化器详解">
+<meta name="twitter:description" content="Runtime transform 运行时编译es6入口文件引用作为辅助和内建，自动添加垫片到你的当前代码模块而非全局
+这个插件建议放在 library/tool中
+注意：实例方法，例如”foobar”.includes(“foo”)将不能够使用，因为它将修正内置的垫片。
+为什么使用它 whyBabel对常用的函数使用非常小的辅助（内置的垫片比较少），例如_extend。默认情况下它将会添加到每个">
 
 
 
@@ -124,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/17/前端功能代码块/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/14/Runtime-transform-runtime-转化器详解/"/>
 
 
 
 
 
-  <title> 前端功能代码块 | Seas0n </title>
+  <title> Runtime transform/runtime 转化器详解 | Seas0n </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -335,7 +344,7 @@
     }
   </style>
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/17/前端功能代码块/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/14/Runtime-transform-runtime-转化器详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Seas0n">
@@ -356,9 +365,9 @@
             
             
               
-                前端功能代码块
+                Runtime transform/runtime 转化器详解
                 
-                  <span class="from fromMe">原</span>
+                  <span class="from fromOther">转</span>
                 
               
             
@@ -374,8 +383,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-17T11:10:57+08:00">
-                2017-04-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T09:54:35+08:00">
+                2017-08-14
               </time>
             
 
@@ -385,39 +394,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/代码块/" itemprop="url" rel="index">
-                    <span itemprop="name">代码块</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -426,7 +402,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/04/17/前端功能代码块/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2017/08/14/Runtime-transform-runtime-转化器详解/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
                 <span class="post-meta-item-text">条 </span>
@@ -459,12 +435,58 @@
       
 
       
-        <h4 id="摇一摇"><a href="#摇一摇" class="headerlink" title="摇一摇"></a>摇一摇</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">var speed = 15;//摇动速度</div><div class="line">var flag=true;</div><div class="line">var x = y = z = lastX = lastY = lastZ = 0;</div><div class="line">$(function()&#123;</div><div class="line">    if(window.DeviceMotionEvent) &#123;</div><div class="line">    	window.addEventListener(&apos;devicemotion&apos;, shakeHandler, false);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">function shakeHandler(event)&#123;</div><div class="line">    var acceleration =event.accelerationIncludingGravity;//将传感值赋给acceleration</div><div class="line">    x = acceleration.x;</div><div class="line">    y = acceleration.y;</div><div class="line">    z = acceleration.z;</div><div class="line">    if(Math.abs(x-lastX) &gt; speed || Math.abs(y-lastY) &gt; speed ) &#123;</div><div class="line">    	if(flag==true)&#123;</div><div class="line">    	   flag=false;</div><div class="line"></div><div class="line">    	&#125;</div><div class="line">    &#125;</div><div class="line">    lastX = x;</div><div class="line">    lastY = y;</div><div class="line">    lastZ = z;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<h4 id="计算rem"><a href="#计算rem" class="headerlink" title="计算rem"></a>计算rem</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">(function (doc, win) &#123;</div><div class="line">  var docEl = doc.documentElement,</div><div class="line">	resizeEvt = &apos;orientationchange&apos; in window ? &apos;orientationchange&apos; : &apos;resize&apos;,</div><div class="line">	recalc = function () &#123;</div><div class="line">	  var clientWidth = docEl.clientWidth;</div><div class="line">	  if (!clientWidth) return;</div><div class="line">	  docEl.style.fontSize = 20 * (clientWidth / 320) + &apos;px&apos;;</div><div class="line">	&#125;;</div><div class="line">  if (!doc.addEventListener) return;</div><div class="line">  win.addEventListener(resizeEvt, recalc, false);</div><div class="line">  doc.addEventListener(&apos;DOMContentLoaded&apos;, recalc, false);</div><div class="line">&#125;)(document, window);</div></pre></td></tr></table></figure>
-<h4 id="禁止连续点击"><a href="#禁止连续点击" class="headerlink" title="禁止连续点击"></a>禁止连续点击</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">checkscroll();</div><div class="line">function checkscroll()&#123;</div><div class="line">	 var agent = navigator.userAgent.toLowerCase();        //检测是否是ios</div><div class="line">		var iLastTouch = null;                                //缓存上一次tap的时间</div><div class="line">		if (agent.indexOf(&apos;iphone&apos;) &gt;= 0 || agent.indexOf(&apos;ipad&apos;) &gt;= 0)</div><div class="line">		&#123;</div><div class="line">			document.body.addEventListener(&apos;touchend&apos;, function(event)</div><div class="line">			&#123;</div><div class="line">				var iNow = new Date()</div><div class="line">					.getTime();</div><div class="line">				iLastTouch = iLastTouch || iNow + 1 /** 第一次时将iLastTouch设为当前时间+1 */ ;</div><div class="line">				var delta = iNow - iLastTouch;</div><div class="line">				if (delta &lt; 500 &amp;&amp; delta &gt; 0)</div><div class="line">				&#123;</div><div class="line">					event.preventDefault();</div><div class="line">					return false;</div><div class="line">				&#125;</div><div class="line">				iLastTouch = iNow;</div><div class="line">			&#125;, false);</div><div class="line">		&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="node删除文件"><a href="#node删除文件" class="headerlink" title="node删除文件"></a>node删除文件</h4><p><code>遍历文件</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//遍历文件</div><div class="line">const deleteFolder = function(path) &#123;</div><div class="line">    let files = []</div><div class="line">    if(fs.existsSync(path)) &#123;</div><div class="line">        files = fs.readdirSync(path)</div><div class="line">        files.forEach(function(file,index)&#123;</div><div class="line">            let curPath = path + &quot;/&quot; + file</div><div class="line">            if(fs.statSync(curPath).isDirectory()) &#123; // recurse</div><div class="line">                deleteFolder(curPath)</div><div class="line">            &#125; else &#123; // delete file</div><div class="line">                fs.unlinkSync(curPath)</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        fs.rmdirSync(path)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><code>执行系统命令</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var exec = require(&apos;child_process&apos;).exec,child;</div><div class="line">child = exec(&apos;rm -rf test&apos;,function(err,out) &#123;</div><div class="line">  console.log(out); err &amp;&amp; console.log(err);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+        <p>Runtime transform 运行时编译es6<br>入口文件引用作为辅助和内建，自动添加垫片到你的当前代码模块而非全局</p>
+<p>这个插件建议放在 library/tool中</p>
+<p>注意：<br>实例方法，例如”foobar”.includes(“foo”)将不能够使用，因为它将修正内置的垫片。</p>
+<p>为什么使用它 why<br>Babel对常用的函数使用非常小的辅助（内置的垫片比较少），例如_extend。默认情况下它将会添加到每个引用的文件。这种重复有时候是非常没必要的。特别是你的应用分散在很多文件中。</p>
+<p>这是transform-runtime插件之所以产生的原因：所有的这些辅助（垫片）将会引用babel-runtime来避免编译时重复。runtime将会编译到你的build中。<br><a id="more"></a><br>另一个目的是，这个转换器为你的代码创建了一个沙盒环境。如果你使用babel-polyfill并且把它内置提供promise,set,map这样的对象或功能，他们将会污染全局环境。也许在一个应用中或者命令行工具中没问题，但是如果你的代码是个库，你想发布给其他人使用，因为使用的人可能在各种各样的执行环境中，所以可能导致错误，不能执行。</p>
+<p>转换器transformer会将这些内置（垫片）设置别名到core-js中，因此你可以不使用require来无缝的使用（垫片中的对象和方法）。</p>
+<p>如何生效和工作，请看技术细节</p>
+<p>安装<br>注意：生产版本(Production) vs 开发版本(development)依赖</p>
+<p>在大多数情况下，你需要安装babel-plugin-transform-runtime作为开发版本的依赖（设置–save-dev）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;code&gt;npm install --save-dev babel-plugin-transform-runtime&lt;/code&gt;</div><div class="line">并且babel-runtime作为生产版本依赖（设置 --save）</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;code&gt;npm install --save babel-runtime&lt;/code&gt;</div><div class="line">转换器插件一般只用在开发时，而里面的实际垫片(runtime itself)的代码在你部署或发布库时是需要放到其中的。</div></pre></td></tr></table></figure>
+<p>请看下面的例子</p>
+<p>用法 通过.babelrc（推荐）<br>把下面的代码添加到你的babelrc文件中（这里说的是两种情况）：</p>
+<p>默认设置选项时的写法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;code&gt;&#123;</div><div class="line">  &quot;plugins&quot;: [&quot;transform-runtime&quot;]</div><div class="line">&#125;&lt;/code&gt;</div></pre></td></tr></table></figure>
+<p>使用自己设置设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;code&gt;&#123;</div><div class="line">  &quot;plugins&quot;: [</div><div class="line">    [&quot;transform-runtime&quot;, &#123;</div><div class="line">      &quot;helpers&quot;: false,</div><div class="line">      &quot;polyfill&quot;: false,</div><div class="line">      &quot;regenerator&quot;: true,</div><div class="line">      &quot;moduleName&quot;: &quot;babel-runtime&quot;</div><div class="line">    &#125;]</div><div class="line">  ]</div><div class="line">&#125;&lt;/code&gt;</div></pre></td></tr></table></figure></p>
+<p>通过命令行(CLI)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;code&gt;babel --plugins transform-runtime script.js&lt;/code&gt;</div></pre></td></tr></table></figure></p>
+<p>通过Node 接口 (Node API)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;code&gt;require(&quot;babel-core&quot;).transform(&quot;code&quot;,&#123;</div><div class="line">    plugins:[&quot;transform-runtime&quot;]</div><div class="line">&#125;)&lt;/code&gt;</div></pre></td></tr></table></figure></p>
+<p>选项/设置 辅助(helpers)<br>默认值是:true</p>
+<p>表示是否开启内联的babel helpers(即babel或者环境本来的存在的垫片或者某些对象方法函数)(clasCallCheck,extends,etc)在调用模块名字(moduleName)时将被替换名字。</p>
+<p>查看详情</p>
+<p>垫片/polyfill<br>默认值是:true</p>
+<p>表示是否把内置的东西(Promise,Set,Map,tec)转换成非全局污染垫片。<br>查看详情</p>
+<p>重新生成/regenerator<br>默认值是:true</p>
+<p>是否开启generator函数转换成使用regenerator runtime来避免污染全局域。</p>
+<p>查看详情</p>
+<p>模块名字/moduleName<br>默认值:babel-runtime</p>
+<p>当调用辅助（内置垫片）设置模块（module）名字/路径.</p>
+<p>例子：<br>json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;code&gt;&#123;</div><div class="line">  &quot;moduleName&quot;: &quot;flavortown/runtime&quot;</div><div class="line">&#125;&lt;/code&gt;</div></pre></td></tr></table></figure>
+<p>javascript</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;code&gt;import extends from &apos;flavortown/runtime/helpers/extends&apos;;&lt;/code&gt;</div></pre></td></tr></table></figure>
+<p>技术细节/Techincal details<br>runtime转换器插件主要做了三件事：</p>
+<p>当你使用generators/async方法、函数时自动调用babel-runtime/regenerator</p>
+<p>当你使用ES6 的Map或者内置的东西时自动调用babel-runtime/core-js</p>
+<p>移除内联babel helpers并替换使用babel-runtime/helpers来替换</p>
+<p>总的来说一句话，你可以使用内置的一些东西例如Promise,Set,Symbol等，就像使用无缝的使用polyfill,来使用babel 特性，并且无全局污染、极高代码库适用性。</p>
+<p>再生器别名 Regenerator aliasing<br>无论你什么时候使用generator函数或者异步函数（async function).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;code&gt;function* foo()&#123;</div><div class="line"></div><div class="line">&#125;&lt;/code&gt;</div></pre></td></tr></table></figure>
+<p>下面的将被生成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;code&gt;&quot;use strict&quot;;</div><div class="line"></div><div class="line">var _marked = [foo].map(regeneratorRuntime.mark);</div><div class="line"></div><div class="line">function foo() &#123;</div><div class="line">  return regeneratorRuntime.wrap(function foo$(_context) &#123;</div><div class="line">    while (1) switch (_context.prev = _context.next) &#123;</div><div class="line">      case 0:</div><div class="line">      case &quot;end&quot;:</div><div class="line">        return _context.stop();</div><div class="line">    &#125;</div><div class="line">  &#125;, _marked[0], this);</div><div class="line">&#125;&lt;/code&gt;</div></pre></td></tr></table></figure>
+<p>这种是不太理想的。因为你regenerator运行时会污染全局域的。<br>作为替代你需要runtime转换器来编译成：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;code&gt;&quot;use strict&quot;;</div><div class="line"></div><div class="line">var _regenerator = require(&quot;babel-runtime/regenerator&quot;);</div><div class="line"></div><div class="line">var _regenerator2 = _interopRequireDefault(_regenerator);</div><div class="line"></div><div class="line">function _interopRequireDefault(obj) &#123; return obj &amp;&amp; obj.__esModule ? obj : &#123; default: obj &#125;; &#125;</div><div class="line"></div><div class="line">var _marked = [foo].map(_regenerator2.default.mark);</div><div class="line"></div><div class="line">function foo() &#123;</div><div class="line">  return regeneratorRuntime.wrap(function foo$(_context) &#123;</div><div class="line">    while (1) switch (_context.prev = _context.next) &#123;</div><div class="line">      case 0:</div><div class="line">      case &quot;end&quot;:</div><div class="line">        return _context.stop();</div><div class="line">    &#125;</div><div class="line">  &#125;, _marked[0], this);</div><div class="line">&#125;&lt;/code&gt;</div></pre></td></tr></table></figure></p>
+<p>这意味着在使用regenerator时不会污染当前的全局环境。</p>
+<p>core-js的别名化/core-js aliasing<br>有时你想去使用内置的的东西(Promise,Set,Map,etc)。通常情况下你会使用一个全局的垫片。<br>runtime转换器所做的是转换成如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;code&gt;var sym = Symbol();</div><div class="line"></div><div class="line">var promise = new Promise;</div><div class="line"></div><div class="line">console.log(arr[Symbol.iterator]());&lt;/code&gt;</div></pre></td></tr></table></figure>
+<p>添加到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;code&gt;&quot;use strict&quot;;</div><div class="line"></div><div class="line">var _getIterator2 = require(&quot;babel-runtime/core-js/get-iterator&quot;);</div><div class="line"></div><div class="line">var _getIterator3 = _interopRequireDefault(_getIterator2);</div><div class="line"></div><div class="line">var _promise = require(&quot;babel-runtime/core-js/promise&quot;);</div><div class="line"></div><div class="line">var _promise2 = _interopRequireDefault(_promise);</div><div class="line"></div><div class="line">var _symbol = require(&quot;babel-runtime/core-js/symbol&quot;);</div><div class="line"></div><div class="line">var _symbol2 = _interopRequireDefault(_symbol);</div><div class="line"></div><div class="line">function _interopRequireDefault(obj) &#123; return obj &amp;&amp; obj.__esModule ? obj : &#123; default: obj &#125;; &#125;</div><div class="line"></div><div class="line">var sym = (0, _symbol2.default)();</div><div class="line"></div><div class="line">var promise = new _promise2.default();</div><div class="line"></div><div class="line">console.log((0, _getIterator3.default)(arr));&lt;/code&gt;</div></pre></td></tr></table></figure></p>
+<p>这意味着你可以无缝的使用本地内置的方法而不用考虑是来自垫片还是本地。。<br>警告,实例方法将不能使用，例如”foobar”.includes(‘foo’)</p>
+<p>辅助重命名 / Helper aliasing<br>通常babel会把辅助放在文件的顶部做一些常用任务来避免重复导入。<br>有时这些辅助的体积有点大并且不需要的没有用的东西也在其中。runtime转换器把所有的辅助转换到一个模块中（按他的意思是说只是把用到的转换到其中）。</p>
+<p>如下演示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;code&gt;class Person &#123;</div><div class="line">&#125;&lt;/code&gt;</div></pre></td></tr></table></figure></p>
+<p>一般的转化成（即不是用runtime）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;code&gt;&quot;use strict&quot;;</div><div class="line"></div><div class="line">function _classCallCheck(instance, Constructor) &#123; if (!(instance instanceof Constructor)) &#123; throw new TypeError(&quot;Cannot call a class as a function&quot;); &#125; &#125;</div><div class="line"></div><div class="line">var Person = function Person() &#123;</div><div class="line">  _classCallCheck(this, Person);</div><div class="line">&#125;;&lt;/code&gt;</div></pre></td></tr></table></figure></p>
+<p>runtime转化器转化成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;code&gt;&quot;use strict&quot;;</div><div class="line"></div><div class="line">var _classCallCheck2 = require(&quot;babel-runtime/helpers/classCallCheck&quot;);</div><div class="line"></div><div class="line">var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);</div><div class="line"></div><div class="line">function _interopRequireDefault(obj) &#123; return obj &amp;&amp; obj.__esModule ? obj : &#123; default: obj &#125;; &#125;</div><div class="line"></div><div class="line">var Person = function Person() &#123;</div><div class="line">  (0, _classCallCheck3.default)(this, Person);</div><div class="line">&#125;;&lt;/code&gt;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -495,8 +517,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/17/正则/" rel="next" title="正则">
-                <i class="fa fa-chevron-left"></i> 正则
+              <a href="/2017/08/02/createjs搭建游戏/" rel="next" title="createjs搭建游戏">
+                <i class="fa fa-chevron-left"></i> createjs搭建游戏
               </a>
             
           </div>
@@ -504,10 +526,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/20/gulp构建/" rel="prev" title="gulp构建">
-                gulp构建 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -556,17 +574,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/user.jpg"
@@ -648,22 +657,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#摇一摇"><span class="nav-number">1.</span> <span class="nav-text">摇一摇</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算rem"><span class="nav-number">2.</span> <span class="nav-text">计算rem</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#禁止连续点击"><span class="nav-number">3.</span> <span class="nav-text">禁止连续点击</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#node删除文件"><span class="nav-number">4.</span> <span class="nav-text">node删除文件</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
