@@ -336,6 +336,153 @@
     }
   </style>
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/13/h5项目常见问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Seas0n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seas0n">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/13/h5项目常见问题/" itemprop="url">
+                    <span>h5项目常见问题</span>
+                  
+                    <span class="from fromOther">转</span>
+                  
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-13T09:55:27+08:00">
+                2017-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <div><article><br>Meta基础知识<br>H5页面窗口自动调整到设备宽度，并禁止用户缩放页面<br><pre class="brush:javascript; toolbar: true; auto-links: false;">//一、HTML页面结构<br>&lt;meta name=”viewport” content=”width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no” /&gt;<br>// width    设置viewport宽度，为一个正整数，或字符串‘device-width’<br>// height   设置viewport高度，一般设置了宽度，会自动解析出高度，可以不用设置<br>// initial-scale    默认缩放比例，为一个数字，可以带小数<br>// minimum-scale    允许用户最小缩放比例，为一个数字，可以带小数<br>// maximum-scale    允许用户最大缩放比例，为一个数字，可以带小数<br>// user-scalable    是否允许手动缩放<br><br>//二、JS动态判断<br>var phoneWidth =  parseInt(window.screen.width);<br>var phoneScale = phoneWidth/640;<br>var ua = navigator.userAgent;<br>if (/Android (\d+.\d+)/.test(ua)){<br>    var version = parseFloat(RegExp.$1);<br>    if(version&gt;2.3){<br>        document.write(‘&lt;meta name=”viewport” content=”width=640, minimum-scale = ‘+phoneScale+’, maximum-scale = ‘+phoneScale+’, target-densitydpi=device-dpi”&gt;’);<br>    }else{<br>        document.write(‘&lt;meta name=”viewport” content=”width=640, target-densitydpi=device-dpi”&gt;’);<br>    }<br>} else {<br>    document.write(‘&lt;meta name=”viewport” content=”width=640, user-scalable=no, target-densitydpi=device-dpi”&gt;’);<br>}</pre><br><br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/13/h5项目常见问题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+  <style>
+    .from{
+        border-radius: 50px;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        text-align: center;
+        margin-left: 6px;
+        line-height: 25px;
+        position: relative;
+        top: -2px;
+        font-size: 17px;
+    }
+    .fromMe{
+        color: #FB7081;
+        border: 2px solid #FB7081;
+
+    }
+    .fromOther{
+        color: #8284E9;
+        border: 2px solid #8284E9;
+    }
+  </style>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/29/浏览器兼容性问题总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1978,154 +2125,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-  <style>
-    .from{
-        border-radius: 50px;
-        width: 25px;
-        height: 25px;
-        display: inline-block;
-        text-align: center;
-        margin-left: 6px;
-        line-height: 25px;
-        position: relative;
-        top: -2px;
-        font-size: 17px;
-    }
-    .fromMe{
-        color: #FB7081;
-        border: 2px solid #FB7081;
-
-    }
-    .fromOther{
-        color: #8284E9;
-        border: 2px solid #8284E9;
-    }
-  </style>
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/01/浅谈csrf攻击方式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Seas0n">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/user.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Seas0n">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/01/浅谈csrf攻击方式/" itemprop="url">
-                    <span>浅谈csrf攻击方式</span>
-                  
-                    <span class="from fromOther">转</span>
-                  
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-01T14:35:08+08:00">
-                2017-06-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="一-CSRF是什么？"><a href="#一-CSRF是什么？" class="headerlink" title="一.CSRF是什么？"></a>一.CSRF是什么？</h4><p>　　CSRF（Cross-site request forgery），中文名称：跨站请求伪造，也被称为：one click attack/session riding，缩写为：CSRF/XSRF。</p>
-<h4 id="二-CSRF可以做什么？"><a href="#二-CSRF可以做什么？" class="headerlink" title="二.CSRF可以做什么？"></a>二.CSRF可以做什么？</h4><p>　　你这可以这么理解CSRF攻击：攻击者盗用了你的身份，以你的名义发送恶意请求。CSRF能够做的事情包括：以你名义发送邮件，发消息，盗取你的账号，甚至于购买商品，虚拟货币转账……造成的问题包括：个人隐私泄露以及财产安全。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/01/浅谈csrf攻击方式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2175,7 +2174,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
