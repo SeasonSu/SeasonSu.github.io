@@ -1338,6 +1338,8 @@ pre .javascript .function {
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   border-left: 10px solid #8193a9;
+  padding-right: 0.3em;
+  margin-bottom: 0.1em;
 }
 .posts-expand .post-title-link {
   display: inline-block;
@@ -1733,7 +1735,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff2e83;
+  background: #ff1f14;
 }
 .links-of-blogroll {
   font-size: 13px;
