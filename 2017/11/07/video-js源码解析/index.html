@@ -1,0 +1,882 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="video," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="写在前面现在视频业务越来越流行了，播放器也比较多，作为前端工程师如何打造一个属于自己的播放器呢？最快最有效的方式是基于开源播放器深度定制，至于选择哪个开源播放器仁者见仁智者见智，可以参考开源播放器列表选择适合自己业务的播放器。
+我们的播放器选择了排名第一的video.js播放器，截至目前该播放器在Github拥有13,991 star, 4,059 fork，流行程度可见一斑。为了让大家更多的了解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="video.js源码解析">
+<meta property="og:url" content="http://yoursite.com/2017/11/07/video-js源码解析/index.html">
+<meta property="og:site_name" content="Seas0n">
+<meta property="og:description" content="写在前面现在视频业务越来越流行了，播放器也比较多，作为前端工程师如何打造一个属于自己的播放器呢？最快最有效的方式是基于开源播放器深度定制，至于选择哪个开源播放器仁者见仁智者见智，可以参考开源播放器列表选择适合自己业务的播放器。
+我们的播放器选择了排名第一的video.js播放器，截至目前该播放器在Github拥有13,991 star, 4,059 fork，流行程度可见一斑。为了让大家更多的了解">
+<meta property="og:updated_time" content="2017-11-07T07:00:51.091Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="video.js源码解析">
+<meta name="twitter:description" content="写在前面现在视频业务越来越流行了，播放器也比较多，作为前端工程师如何打造一个属于自己的播放器呢？最快最有效的方式是基于开源播放器深度定制，至于选择哪个开源播放器仁者见仁智者见智，可以参考开源播放器列表选择适合自己业务的播放器。
+我们的播放器选择了排名第一的video.js播放器，截至目前该播放器在Github拥有13,991 star, 4,059 fork，流行程度可见一斑。为了让大家更多的了解">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/07/video-js源码解析/"/>
+
+
+
+
+
+  <title> video.js源码解析 | Seas0n </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?21d25a2d305d730d5986940ccb294463";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seas0n</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+    s
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+  <style>
+    .from{
+        border-radius: 50px;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        text-align: center;
+        margin-left: 6px;
+        line-height: 25px;
+        position: relative;
+        top: -2px;
+        font-size: 17px;
+    }
+    .fromMe{
+        color: #FB7081;
+        border: 2px solid #FB7081;
+
+    }
+    .fromOther{
+        color: #8284E9;
+        border: 2px solid #8284E9;
+    }
+  </style>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/07/video-js源码解析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Seas0n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seas0n">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                video.js源码解析
+                
+                  <span class="from fromOther">转</span>
+                
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-07T14:56:05+08:00">
+                2017-11-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/插件/" itemprop="url" rel="index">
+                    <span itemprop="name">插件</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/插件/videojs/" itemprop="url" rel="index">
+                    <span itemprop="name">videojs</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>现在视频业务越来越流行了，播放器也比较多，作为前端工程师如何打造一个属于自己的播放器呢？最快最有效的方式是基于开源播放器深度定制，至于选择哪个开源播放器仁者见仁智者见智，可以参考开源播放器列表选择适合自己业务的播放器。</p>
+<p>我们的播放器选择了排名第一的video.js播放器，截至目前该播放器在Github拥有13,991 star, 4,059 fork，流行程度可见一斑。为了让大家更多的了解它，我们细数下优点：</p>
+<ul>
+<li><p>免费开源<br>这个意味着什么就不多说了，附上项目地址</p>
+</li>
+<li><p>兼容主流浏览器<br>在国内的前端开发环境往往需要支持到低级版本的IE浏览器，然后随着Flash的退化，很多公司没有配备Flash开发工程师，video.js提供了流畅的Flash播放器，而且在UI层面做到了和video的效果，实属难得，比如全屏。</p>
+</li>
+<li><p>UI自定义<br>不管开源项目在UI方面做的如何漂亮，对于各具特色的业务来说都要自定义UI，一个方便简单的自定义方式显得格外重要，更何况它还自带了编译工具，只能用一个”赞“字形容。具体怎么实现的，这里先简单描述下是使用JavaScript（es6）构建对象，通过Less编写样式规则，最后借助Grunt编译。</p>
+</li>
+<li><p>灵活插件机制<br>video.js提供一个插件定义的接口，使插件开发简单易行。而且社区论坛也提供了一些好用的插件供开发者使用。附插件列表</p>
+</li>
+<li><p>比较完善的文档<br>完善的文档对于一个稳定的开源项目是多么的重要，video.js提供了教程、API文档、插件、示例、论坛等。官方地址</p>
+</li>
+<li><p>项目热度<br>开源作者对项目的维护比较积极，提出的问题也能很快给予响应。开发者在使用过程中出现问题算是有一定保障。</p>
+</li>
+</ul>
+<a id="more"></a>
+<p>书归正传，要想更自由的驾驭video.js，必然要了解内部原理。本文的宗旨就是通过核心代码演示讲解源码运行机制，如果有兴趣，不要离开，我们马上开始了……</p>
+<h3 id="组织结构"><a href="#组织结构" class="headerlink" title="组织结构"></a>组织结构</h3><p>由于源码量较大，很多同学不知道从何入手，我们先来说下它的组织结构。</p>
+<p>├── control-bar<br>├── menu<br>├── popup<br>├── slider<br>├── tech<br>├── tracks<br>├── utils<br>├── big-play-button.js<br>├── button.js<br>├── clickable-component.js<br>├── close-button.js<br>├── component.js<br>├── error-display.js<br>├── event-target.js<br>├── extend.js<br>├── fullscreen-api.js<br>├── loading-spinner.js<br>├── media-error.js<br>├── modal-dialog.js<br>├── player.js<br>├── plugins.js<br>├── poster-image.js<br>├── setup.js<br>└── video.js</p>
+<p>其中control-bar，menu，popup，slider，tech，tracks，utils是目录，其他是文件。video.js是个非常优秀的面向对象的典型，所有的UI都是通过JavaScript对象组织实现的。</p>
+<p>video.js是个入口文件，看源码可以从这个文件开始。</p>
+<p>setup.js处理播放器的配置安装即data-setup属性。</p>
+<p>poster-image.js处理播放器贴片。</p>
+<p>plugins.js实现了插件机制。</p>
+<p>player.js构造了播放器类也是video.js的核心。</p>
+<p>modal-dialog.js处理弹层相关。</p>
+<p>media-error.js定义了各种错误描述，如果想理解video.js对各语言的支持，这个文件是必看的，它是桥梁。</p>
+<p>loading-spinner.js实现了播放器加载的标志，如果不喜欢默认加载图标在这里修改吧。</p>
+<p>fullscreen-api.js实现各个浏览器的全屏方案。</p>
+<p>extend.js是对node 继承 and babel’s 继承的整合。</p>
+<p>event-target.js 是event类和原生事件的兼容处理。</p>
+<p>error-display.js 主要处理展示错误的样式设置。</p>
+<p>component.js 是video.js框架中最重要的类，是所有类的基类，也是实现组件化的基石。</p>
+<p>close-button.js 是对关闭按钮的封装，功能比较单一。</p>
+<p>clickable-component.js 如果想实现一个支持点击事件和键盘事件具备交互功能的组件可以继承该类，它帮你做了细致的处理。</p>
+<p>button.js 如果想实现一个按钮了解下这个类是必要的。</p>
+<p>big-play-button.js 这个按钮是视频还未播放时显示的按钮，官方将此按钮放置在播放器左上角。</p>
+<p>utils目录顾名思义是一些常用的功能性类和函数。</p>
+<p>tracks目录处理的是音轨、字幕之类的功能。</p>
+<p>tech目录也是非常核心的类，包括对video封装、flash的支持。</p>
+<p>slider目录主要是UI层面可拖动组件的实现，如进度条，音量条都是继承的此类。</p>
+<p>popup目录包含了对弹层相关的类。</p>
+<p>menu目录包含了对菜单UI的实现。</p>
+<p>control-bar目录是非常核心的UI类的集合了，播放器下方的控制器都在此目录中。</p>
+<p>通过对组织结构的描述，大家可以，想了解video.js的哪一部分内容可以快速入手。如果还想更深入的了解如何正确使用这些类，请继续阅读继承关系一节。</p>
+<h3 id="继承关系"><a href="#继承关系" class="headerlink" title="继承关系"></a>继承关系</h3><p>video.js是JavaScript面向对象实现很经典的案例，你一定会好奇在页面上一个DOM节点加上data-setup属性简单配置就能生成一个复杂的播放器，然而在代码中看不到对应的HTML”模板“。其实这都要归功于”继承“关系以及作者巧妙的构思。</p>
+<p>在组织结构一节有提到，所有类的基类都是Component类，在基类中有个createEl方法这个就是JavaScript对象和DOM进行关联的方法。在具体的类中也可以重写该方法自定义DOM内容，然后父类和子类的DOM关系也因JavaScript对象的继承关系被组织起来。</p>
+<h3 id="运行机制"><a href="#运行机制" class="headerlink" title="运行机制"></a>运行机制</h3><p>video.js源码代码量比较大，我们要了解它的运行机制，首先确定它的主线是video.js文件的videojs方法，videojs方法调用player.js的Player类，Player继承component.js文件的Component类，最后播放器成功运行。</p>
+<p>我们来看下videojs方法的代码、Player的构造函数、Component的构造函数，通过对代码的讲解基本整个运行机制就有了基本的了解，注意里面用到的所有方法和其他类对象参照组织结构一节细细阅读就可以掌握更多的运行细节。</p>
+<p>videojs方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">function videojs(id, options, ready) &#123;</div><div class="line">    let tag;</div><div class="line">    // id可以是选择器也可以是DOM节点</div><div class="line">    if (typeof id === &apos;string&apos;) &#123;</div><div class="line">        if (id.indexOf(&apos;#&apos;) === 0) &#123;</div><div class="line">            id = id.slice(1);</div><div class="line">        &#125;</div><div class="line">        //检查播放器是否已被实例化</div><div class="line">        if (videojs.getPlayers()[id]) &#123;</div><div class="line">            if (options) &#123;</div><div class="line">                log.warn(`Player &quot;$&#123;id&#125;&quot;</div><div class="line">                is already initialised.Options will not be applied.`);</div><div class="line">            &#125;</div><div class="line">            if (ready) &#123;</div><div class="line">                videojs.getPlayers()[id].ready(ready);</div><div class="line">            &#125;</div><div class="line">            return videojs.getPlayers()[id];</div><div class="line">        &#125;</div><div class="line">        // 如果播放器没有实例化，返回DOM节点</div><div class="line">        tag = Dom.getEl(id);</div><div class="line">    &#125; else &#123;</div><div class="line">        // 如果是DOM节点直接返回</div><div class="line">        tag = id;</div><div class="line">    &#125;</div><div class="line">    if (!tag || !tag.nodeName) &#123;</div><div class="line">        throw new TypeError(&apos;The element or ID supplied is not valid. (videojs)&apos;);</div><div class="line">    &#125;</div><div class="line">    // 返回播放器实例</div><div class="line">    return tag.player || Player.players[tag.playerId] || new Player(tag, options, ready);</div><div class="line">&#125;</div><div class="line">[]()</div></pre></td></tr></table></figure></p>
+<h3 id="Player的构造函数"><a href="#Player的构造函数" class="headerlink" title="Player的构造函数"></a>Player的构造函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div></pre></td><td class="code"><pre><div class="line">constructor(tag, options, ready) &#123;</div><div class="line">    // 注意这个tag是video原生标签</div><div class="line">    tag.id = tag.id || `vjs_video_$ &#123;</div><div class="line">        Guid.newGUID()</div><div class="line">    &#125;`;</div><div class="line">    // 选项配置的合并</div><div class="line">    options = assign(Player.getTagSettings(tag), options);</div><div class="line">    // 这个选项要关掉否则会在父类自动执行加载子类集合</div><div class="line">    options.initChildren = false;</div><div class="line">    // 调用父类的createEl方法</div><div class="line">    options.createEl = false;</div><div class="line">    // 在移动端关掉手势动作监听</div><div class="line">    options.reportTouchActivity = false;</div><div class="line">    // 检查播放器的语言配置</div><div class="line">    if (!options.language) &#123;</div><div class="line">        if (typeof tag.closest === &apos;function&apos;) &#123;</div><div class="line">            const closest = tag.closest(&apos;[lang]&apos;);</div><div class="line">            if (closest) &#123;</div><div class="line">                options.language = closest.getAttribute(&apos;lang&apos;);</div><div class="line">            &#125;</div><div class="line">        &#125; else &#123;</div><div class="line">            let element = tag;</div><div class="line">            while (element &amp;&amp; element.nodeType === 1) &#123;</div><div class="line">                if (Dom.getElAttributes(element).hasOwnProperty(&apos;lang&apos;)) &#123;</div><div class="line">                    options.language = element.getAttribute(&apos;lang&apos;);</div><div class="line">                    break;</div><div class="line">                &#125;</div><div class="line">                element = element.parentNode;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    // 初始化父类</div><div class="line">    super(null, options, ready);</div><div class="line">    // 检查当前对象必须包含techOrder参数</div><div class="line">    if (!this.options_ || !this.options_.techOrder || !this.options_.techOrder.length) &#123;</div><div class="line">        throw new Error(&apos;No techOrder specified. Did you overwrite &apos; +</div><div class="line">            &apos;videojs.options instead of just changing the &apos; +</div><div class="line">            &apos;properties you want to override?&apos;);</div><div class="line">    &#125;</div><div class="line">    // 存储当前已被实例化的播放器</div><div class="line">    this.tag = tag;</div><div class="line">    // 存储video标签的各个属性</div><div class="line">    this.tagAttributes = tag &amp;&amp; Dom.getElAttributes(tag);</div><div class="line">    // 将默认的英文切换到指定的语言</div><div class="line">    this.language(this.options_.language);</div><div class="line">    if (options.languages) &#123;</div><div class="line">        const languagesToLower = &#123;&#125;;</div><div class="line">        Object.getOwnPropertyNames(options.languages).forEach(function (name) &#123;</div><div class="line">            languagesToLower[name.toLowerCase()] = options.languages[name];</div><div class="line">        &#125;);</div><div class="line">        this.languages_ = languagesToLower;</div><div class="line">    &#125; else &#123;</div><div class="line">        this.languages_ = Player.prototype.options_.languages;</div><div class="line">    &#125;</div><div class="line">    // 缓存各个播放器的各个属性.</div><div class="line">    this.cache_ = &#123;&#125;;</div><div class="line">    // 设置播放器的贴片</div><div class="line">    this.poster_ = options.poster || &apos;&apos;;</div><div class="line">    // 设置播放器的控制</div><div class="line">    this.controls_ = !! options.controls;</div><div class="line">    // 默认是关掉控制</div><div class="line">    tag.controls = false;</div><div class="line">    this.scrubbing_ = false;</div><div class="line">    this.el_ = this.createEl();</div><div class="line">    const playerOptionsCopy = mergeOptions(this.options_);</div><div class="line">    // 自动加载播放器插件</div><div class="line">    if (options.plugins) &#123;</div><div class="line">        const plugins = options.plugins;</div><div class="line">        Object.getOwnPropertyNames(plugins).forEach(function (name) &#123;</div><div class="line">            if (typeof this[name] === &apos;function&apos;) &#123;</div><div class="line">                this[name](plugins[name]);</div><div class="line">            &#125; else &#123;</div><div class="line">                log.error(&apos;Unable to find plugin:&apos;, name);</div><div class="line">            &#125;</div><div class="line">        &#125;, this);</div><div class="line">    &#125;</div><div class="line">    this.options_.playerOptions = playerOptionsCopy;</div><div class="line">    this.initChildren();</div><div class="line">    // 判断是不是音频</div><div class="line">    this.isAudio(tag.nodeName.toLowerCase() === &apos;audio&apos;);</div><div class="line">    if (this.controls()) &#123;</div><div class="line">        this.addClass(&apos;vjs-controls-enabled&apos;);</div><div class="line">    &#125; else &#123;</div><div class="line">        this.addClass(&apos;vjs-controls-disabled&apos;);</div><div class="line">    &#125;</div><div class="line">    this.el_.setAttribute(&apos;role&apos;, &apos;region&apos;);</div><div class="line">    if (this.isAudio()) &#123;</div><div class="line">        this.el_.setAttribute(&apos;aria-label&apos;, &apos;audio player&apos;);</div><div class="line">    &#125; else &#123;</div><div class="line">        this.el_.setAttribute(&apos;aria-label&apos;, &apos;video player&apos;);</div><div class="line">    &#125;</div><div class="line">    if (this.isAudio()) &#123;</div><div class="line">        this.addClass(&apos;vjs-audio&apos;);</div><div class="line">    &#125;</div><div class="line">    if (this.flexNotSupported_()) &#123;</div><div class="line">        this.addClass(&apos;vjs-no-flex&apos;);</div><div class="line">    &#125;</div><div class="line">    if (!browser.IS_IOS) &#123;</div><div class="line">        this.addClass(&apos;vjs-workinghover&apos;);</div><div class="line">    &#125;</div><div class="line">    Player.players[this.id_] = this;</div><div class="line">    this.userActive(true);</div><div class="line">    this.reportUserActivity();</div><div class="line">    this.listenForUserActivity_();</div><div class="line">    this.on(&apos;fullscreenchange&apos;, this.handleFullscreenChange_);</div><div class="line">    this.on(&apos;stageclick&apos;, this.handleStageClick_);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Component的构造函数"><a href="#Component的构造函数" class="headerlink" title="Component的构造函数"></a>Component的构造函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">constructor(player, options, ready) &#123;</div><div class="line">    // 之前说过所有的类都是继承Component，不是所有的类需要传player</div><div class="line">    if (!player &amp;&amp; this.play) &#123;</div><div class="line">        // 这里判断调用的对象是不是Player本身，是本身只需要返回自己</div><div class="line">        this.player_ = player = this; // eslint-disable-line</div><div class="line">    &#125; else &#123;</div><div class="line">        this.player_ = player;</div><div class="line">    &#125;</div><div class="line">    this.options_ = mergeOptions(&#123;&#125;, this.options_);</div><div class="line">    options = this.options_ = mergeOptions(this.options_, options);</div><div class="line">    this.id_ = options.id || (options.el &amp;&amp; options.el.id);</div><div class="line">    if (!this.id_) &#123;</div><div class="line">        const id = player &amp;&amp; player.id &amp;&amp; player.id() || &apos;no_player&apos;;</div><div class="line">        this.id_ = `$ &#123;</div><div class="line">            id</div><div class="line">        &#125;</div><div class="line">        _component_$ &#123;</div><div class="line">            Guid.newGUID()</div><div class="line">        &#125;`;</div><div class="line">    &#125;</div><div class="line">    this.name_ = options.name || null;</div><div class="line">    if (options.el) &#123;</div><div class="line">        this.el_ = options.el;</div><div class="line">    &#125; else if (options.createEl !== false) &#123;</div><div class="line">        this.el_ = this.createEl();</div><div class="line">    &#125;</div><div class="line">    this.children_ = [];</div><div class="line">    this.childIndex_ = &#123;&#125;;</div><div class="line">    this.childNameIndex_ = &#123;&#125;;</div><div class="line">    // 知道Player的构造函数为啥要设置initChildren为false了吧</div><div class="line">    if (options.initChildren !== false) &#123;</div><div class="line">        // 这个initChildren方法是将一个类的子类都实例化，一个类都对应着自己的el（DOM实例），通过这个方法父类和子类的DOM继承关系也就实现了</div><div class="line">        this.initChildren();</div><div class="line">    &#125;</div><div class="line">    this.ready(ready);</div><div class="line">    if (options.reportTouchActivity !== false) &#123;</div><div class="line">        this.enableTouchActivity();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里通过主线把基本的流程演示一下，轮廓出来了，更多细节还请继续阅读。</p>
+<h3 id="插件机制"><a href="#插件机制" class="headerlink" title="插件机制"></a>插件机制</h3><p>一个完善和强大的框架都会继承插件运行功能，给更多的开发者参与开发的机会进而实现框架功能的补充和延伸。我们来看下video.js的插件是如何运作的。</p>
+<p>插件的定义</p>
+<p>如果之前用过video.js插件的同学或者看过插件源码，一定有看到有这句话videojs.plugin= pluginName，我们来看下源码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">import Player from &apos;./player.js&apos;;</div><div class="line">// 将插件种植到Player的原型链</div><div class="line">const plugin = function (name, init) &#123;</div><div class="line">    Player.prototype[name] = init;</div><div class="line">&#125;;</div><div class="line">// 暴露plugin接口</div><div class="line">videojs.plugin = plugin;</div></pre></td></tr></table></figure></p>
+<p>不难看出，原理就是将插件（函数）挂载到Player对象的原型上，接下来看下是怎么执行的。</p>
+<h3 id="插件的运行"><a href="#插件的运行" class="headerlink" title="插件的运行"></a>插件的运行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">if (options.plugins) &#123;</div><div class="line">    const plugins = options.plugins;</div><div class="line">    Object.getOwnPropertyNames(plugins).forEach(function (name) &#123;</div><div class="line">        if (typeof this[name] === &apos;function&apos;) &#123;</div><div class="line">            this[name](plugins[name]);</div><div class="line">        &#125; else &#123;</div><div class="line">            log.error(&apos;Unable to find plugin:&apos;, name);</div><div class="line">        &#125;</div><div class="line">    &#125;, this);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在Player的构造函数里判断是否有插件这个配置，如果有则遍历执行。</p>
+<h3 id="UI”继承”的原理"><a href="#UI”继承”的原理" class="headerlink" title="UI”继承”的原理"></a>UI”继承”的原理</h3><p>在继承关系一节中有提到video.js的所有DOM生成都不是采用的传统模板的方式，都是通过JavaScript对象的继承关系来实现的。</p>
+<p>在Component基类中有个createEl方法，在这里可以使用DOM类生成DOM实例。每个UI类都会有一个el属性，会在实例化的时候自动生成，源代码在Component的构造函数中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if (options.el) &#123;  </div><div class="line">  this.el_ = options.el;</div><div class="line">&#125; else if (options.createEl !== false) &#123;</div><div class="line">  this.el_ = this.createEl();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>每个UI类有一个children属性，用于添加子类，子类有可能扔具有children属性，以此类推，播放器的DOM结构就是通过这样的JavaScript对象结构实现的。</p>
+<p>在Player的构造函数里有一句代码this.initChildren();启动了UI的实例化。这个方法是在Component基类中定义的，我们来看下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line">initChildren() &#123;  </div><div class="line">           // 获取配置的children选项</div><div class="line">    const children = this.options_.children;</div><div class="line"></div><div class="line">    if (children) &#123;</div><div class="line">      const parentOptions = this.options_;</div><div class="line">      const handleAdd = (child) =&gt; &#123;</div><div class="line">        const name = child.name;</div><div class="line">        let opts = child.opts;</div><div class="line">        if (parentOptions[name] !== undefined) &#123;</div><div class="line">          opts = parentOptions[name];</div><div class="line">        &#125;</div><div class="line">        if (opts === false) &#123;</div><div class="line">          return;</div><div class="line">        &#125;</div><div class="line">        if (opts === true) &#123;</div><div class="line">          opts = &#123;&#125;;</div><div class="line">        &#125;</div><div class="line">        opts.playerOptions = this.options_.playerOptions;</div><div class="line">        const newChild = this.addChild(name, opts);</div><div class="line"></div><div class="line">        if (newChild) &#123;</div><div class="line">          this[name] = newChild;</div><div class="line">        &#125;</div><div class="line">      &#125;;</div><div class="line">      let workingChildren;</div><div class="line">      const Tech = Component.getComponent(&apos;Tech&apos;);</div><div class="line"></div><div class="line">      if (Array.isArray(children)) &#123;</div><div class="line">        workingChildren = children;</div><div class="line">      &#125; else &#123;</div><div class="line">        workingChildren = Object.keys(children);</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      workingChildren</div><div class="line">      .concat(Object.keys(this.options_)</div><div class="line">              .filter(function(child) &#123;</div><div class="line">                return !workingChildren.some(function(wchild) &#123;</div><div class="line">                  if (typeof wchild === &apos;string&apos;) &#123;</div><div class="line">                    return child === wchild;</div><div class="line">                  &#125;</div><div class="line">                  return child === wchild.name;</div><div class="line">                &#125;);</div><div class="line">              &#125;))</div><div class="line">      .map((child) =&gt; &#123;</div><div class="line">        let name;</div><div class="line">        let opts;</div><div class="line"></div><div class="line">        if (typeof child === &apos;string&apos;) &#123;</div><div class="line">          name = child;</div><div class="line">          opts = children[name] || this.options_[name] || &#123;&#125;;</div><div class="line">        &#125; else &#123;</div><div class="line">          name = child.name;</div><div class="line">          opts = child;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        return &#123;name, opts&#125;;</div><div class="line">      &#125;)</div><div class="line">      .filter((child) =&gt; &#123;</div><div class="line">        const c = Component.getComponent(child.opts.componentClass ||</div><div class="line">                                       toTitleCase(child.name));</div><div class="line">        return c &amp;&amp; !Tech.isTech(c);</div><div class="line">      &#125;)</div><div class="line">      .forEach(handleAdd);</div><div class="line">    &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<p>通过这段代码不难看出大概的意思是通过initChildren获取children属性，然后遍历通过addChild将子类实例化，实例化的过程会自动重复上述过程从而达到了”继承“的效果。不得不为作者的构思点赞。如果你要问并没看到DOM是怎么关联起来的，请继续看addChild方法的源码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">addChild(child, options = &#123;&#125;, index = this.children_.length) &#123;  </div><div class="line">  let component;</div><div class="line">  let componentName;</div><div class="line">  if (typeof child === &apos;string&apos;) &#123;</div><div class="line">    componentName = child;</div><div class="line">    if (!options) &#123;</div><div class="line">      options = &#123;&#125;;</div><div class="line">    &#125;</div><div class="line">    if (options === true) &#123;</div><div class="line">      log.warn(&apos;Initializing a child component with `true` is deprecated. Children should be defined in an array when possible, but if necessary use an object instead of `true`.&apos;);</div><div class="line">      options = &#123;&#125;;</div><div class="line">    &#125;</div><div class="line">    const componentClassName = options.componentClass || toTitleCase(componentName);</div><div class="line">    options.name = componentName;</div><div class="line">    const ComponentClass = Component.getComponent(componentClassName);</div><div class="line"></div><div class="line">    if (!ComponentClass) &#123;</div><div class="line">      throw new Error(`Component $&#123;componentClassName&#125; does not exist`);</div><div class="line">    &#125;</div><div class="line">    if (typeof ComponentClass !== &apos;function&apos;) &#123;</div><div class="line">      return null;</div><div class="line">    &#125;</div><div class="line">    component = new ComponentClass(this.player_ || this, options);</div><div class="line">  &#125; else &#123;</div><div class="line">    component = child;</div><div class="line">  &#125;</div><div class="line">  this.children_.splice(index, 0, component);</div><div class="line">  if (typeof component.id === &apos;function&apos;) &#123;</div><div class="line">    this.childIndex_[component.id()] = component;</div><div class="line">  &#125;</div><div class="line">  componentName = componentName || (component.name &amp;&amp; component.name());</div><div class="line">  if (componentName) &#123;</div><div class="line">    this.childNameIndex_[componentName] = component;</div><div class="line">  &#125;</div><div class="line">  if (typeof component.el === &apos;function&apos; &amp;&amp; component.el()) &#123;</div><div class="line">    const childNodes = this.contentEl().children;</div><div class="line">    const refNode = childNodes[index] || null;</div><div class="line">    this.contentEl().insertBefore(component.el(), refNode);</div><div class="line">  &#125;</div><div class="line">  return component;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这段代码的大意就是提取子类的名称，然后获取类并实例化，最后通过最关键的一句话this.contentEl().insertBefore(component.el(), refNode);完成了父类和子类的DOM关联。相信inserBefore大家并不陌生吧，原生的DOM操作方法。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>至此，video.js的精华部分都描述完了，不知道大家是否有收获。这里简单的总结一些阅读video.js框架源码的心得：</p>
+<p>找准播放器实现的主线流程，方便我们有条理的阅读代码<br>了解框架代码的组织结构，有的放矢的研究相关功能的代码<br>理解类与类的继承关系，方便自己构造插件或者修改源码的时候知道从哪个类继承<br>理解播放器的运行原理，有利于基于Component构造一个新类的实现<br>理解插件的运行机制，学会自己构造插件还是有必要的<br>理解UI的实现原理，就知道自己如何为播放器添加视觉层面的东西了<br>看看我的源码解读吧，能帮一点是一点，哈哈</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/video/" rel="tag"># video</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/27/git常用命令/" rel="next" title="git常用命令">
+                <i class="fa fa-chevron-left"></i> git常用命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMTQwNC83OTY4"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/user.jpg"
+               alt="Seas0n" />
+          <p class="site-author-name" itemprop="name">Seas0n</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/seasonsu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github-alt"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://wpa.qq.com/msgrd?v=3&uin=459705913&site=qq&menu=yes" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                  QQ
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组织结构"><span class="nav-number">2.</span> <span class="nav-text">组织结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承关系"><span class="nav-number">3.</span> <span class="nav-text">继承关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行机制"><span class="nav-number">4.</span> <span class="nav-text">运行机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Player的构造函数"><span class="nav-number">5.</span> <span class="nav-text">Player的构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Component的构造函数"><span class="nav-number">6.</span> <span class="nav-text">Component的构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件机制"><span class="nav-number">7.</span> <span class="nav-text">插件机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件的运行"><span class="nav-number">8.</span> <span class="nav-text">插件的运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UI”继承”的原理"><span class="nav-number">9.</span> <span class="nav-text">UI”继承”的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">10.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+</script>
+<div class="copyright" >
+  <span class="author" itemprop="copyrightHolder"> 欢迎来到Seas0n的博客</span>
+  <br>
+  <span class="author" itemprop="copyrightHolder"> PS: 本博客用于日常记录，并非全部原创</span>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i> 你是第<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>位旅客</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>  总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+
+
+</body>
+</html>
