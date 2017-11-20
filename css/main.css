@@ -1735,7 +1735,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #83d654;
+  background: #ff95b9;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2324,13 +2324,16 @@ pre .javascript .function {
 .category-all-page .category-list-item {
   margin: 5px 10px;
 }
+.category-all-page .noCircle>.category-list-link {
+  color: #e04b16;
+}
 .category-all-page .category-list>.category-list-item .triangle {
   content: "";
   display: inline-block;
   background: transparent !important;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
-  border-left: 5px solid #64cbda;
+  border-left: 5px solid #e04b16;
   margin-left: -16px;
   margin-right: 10px;
   -webkit-transform: rotate(90deg);
