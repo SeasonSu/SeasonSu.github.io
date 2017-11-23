@@ -1,0 +1,836 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Immutable," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前言&amp;emsp;&amp;emsp;本文主要介绍facebook推出的一个类库immutable.js，以及如何将immutable.js集成到我们团队现有的react+redux架构的移动端项目中。要点：什么是immutable.js,它的出现能解决什么问题immutable.js的特性以及使用api在一个redux+react的项目中，引入immutable.js能带来什么提升如何集成immutabl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Immutable.js && React-Redux">
+<meta property="og:url" content="http://yoursite.com/2017/11/23/Immutable-js-React-Redux/index.html">
+<meta property="og:site_name" content="Seas0n">
+<meta property="og:description" content="前言&amp;emsp;&amp;emsp;本文主要介绍facebook推出的一个类库immutable.js，以及如何将immutable.js集成到我们团队现有的react+redux架构的移动端项目中。要点：什么是immutable.js,它的出现能解决什么问题immutable.js的特性以及使用api在一个redux+react的项目中，引入immutable.js能带来什么提升如何集成immutabl">
+<meta property="og:image" content="https://dn-mhke0kuv.qbox.me/3a7a2cd51b6fb6850e00.gif">
+<meta property="og:image" content="https://dn-mhke0kuv.qbox.me/203eee65192ccb61d3d3.jpg">
+<meta property="og:image" content="https://dn-mhke0kuv.qbox.me/c07ad7d742c234e1f342.jpg">
+<meta property="og:image" content="https://dn-mhke0kuv.qbox.me/7c108cc86cd6b65ce38e.jpg">
+<meta property="og:image" content="https://dn-mhke0kuv.qbox.me/f048f20e035056014dfb.png">
+<meta property="og:image" content="https://dn-mhke0kuv.qbox.me/0cd51739fc8dc98b4986.png">
+<meta property="og:image" content="https://dn-mhke0kuv.qbox.me/6ac16c0725646004ba1c.png">
+<meta property="og:image" content="https://dn-mhke0kuv.qbox.me/4e6d781925205a133772.png">
+<meta property="og:image" content="https://dn-mhke0kuv.qbox.me/16ca50a5805d820d5aca.png">
+<meta property="og:image" content="https://dn-mhke0kuv.qbox.me/1752f5c1932895e84d73.png">
+<meta property="og:image" content="https://dn-mhke0kuv.qbox.me/cfc07faa4104132c8a6f.png">
+<meta property="og:image" content="https://dn-mhke0kuv.qbox.me/46508e7fe01297e57b31.png">
+<meta property="og:image" content="https://dn-mhke0kuv.qbox.me/2d90e7d01818f9793e6b.png">
+<meta property="og:updated_time" content="2017-11-23T07:05:17.821Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Immutable.js && React-Redux">
+<meta name="twitter:description" content="前言&amp;emsp;&amp;emsp;本文主要介绍facebook推出的一个类库immutable.js，以及如何将immutable.js集成到我们团队现有的react+redux架构的移动端项目中。要点：什么是immutable.js,它的出现能解决什么问题immutable.js的特性以及使用api在一个redux+react的项目中，引入immutable.js能带来什么提升如何集成immutabl">
+<meta name="twitter:image" content="https://dn-mhke0kuv.qbox.me/3a7a2cd51b6fb6850e00.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/23/Immutable-js-React-Redux/"/>
+
+
+
+
+
+  <title> Immutable.js && React-Redux | Seas0n </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?21d25a2d305d730d5986940ccb294463";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seas0n</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-keyword">
+          <a href="/keyword" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-file-word-o"></i> <br />
+            
+            关键词
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+    s
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+  <style>
+    .from{
+        border-radius: 50px;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        text-align: center;
+        margin-left: 6px;
+        line-height: 25px;
+        position: relative;
+        top: -2px;
+        font-size: 17px;
+    }
+    .fromMe{
+        color: #FB7081;
+        border: 2px solid #FB7081;
+
+    }
+    .fromOther{
+        color: #8284E9;
+        border: 2px solid #8284E9;
+    }
+  </style>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/23/Immutable-js-React-Redux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Seas0n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seas0n">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Immutable.js && React-Redux
+                
+                  <span class="from fromOther">转</span>
+                
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-23T15:02:12+08:00">
+                2017-11-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/框架/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div id="article_content" class="article_content csdn-tracking-statistics" data-mod="popu_519" data-dsm="post" style="overflow: hidden;"><h3 id="-" style="color:rgb(51,51,51)"><a name="t0"></a>前言</h3><br>&emsp;&emsp;本文主要介绍facebook推出的一个类库immutable.js，以及如何将immutable.js集成到我们团队现有的react+redux架构的移动端项目中。<br><br><h3 id="-" style="color:rgb(51,51,51)"><a name="t1"></a>要点：</h3><ul style="padding:0px 0px 0px 2.7rem; margin:0px; color:rgb(51,51,51); font-size:16px"><br><li style="list-style:inherit; margin-bottom:0.6rem">什么是immutable.js,它的出现能解决什么问题</li><li style="list-style:inherit; margin-bottom:0.6rem">immutable.js的特性以及使用api</li><li style="list-style:inherit; margin-bottom:0.6rem">在一个redux+react的项目中，引入immutable.js能带来什么提升</li><li style="list-style:inherit; margin-bottom:0.6rem">如何集成immutable.js到react+redux中</li><li style="list-style:inherit; margin-bottom:0.6rem">集成前后的数据对比</li><li style="list-style:inherit; margin-bottom:0.6rem">immutabe.js使用过程中的一些注意点</li></ul><br><a id="more"></a><br><h3 id="-" style="color:rgb(51,51,51)"><a name="t2"></a>目录</h3><br><ul style="padding:0px 0px 0px 2.7rem; margin:0px; color:rgb(51,51,51); font-size:16px"><br><li style="list-style:inherit; margin-bottom:0.6rem">一. immutable.js<br><ul style="padding:0px 0px 0px 2.7rem; margin:0.27rem 0px 0px"><br><li style="list-style:inherit; margin-bottom:0.6rem">1.1 原生js引用类型的坑</li><li style="list-style:inherit; margin-bottom:0.6rem">1.2 immutable.js介绍<br><ul style="padding:0px 0px 0px 2.7rem; margin:0.27rem 0px 0px"><br><li style="list-style:inherit; margin-bottom:0.6rem">1.2.1 Persistent data structure （持久化数据结构）</li><li style="list-style:inherit; margin-bottom:0.6rem">1.2.2 structural sharing （结构共享）</li><li style="list-style:inherit; margin-bottom:0.6rem">1.2.3 support lazy operation （惰性操作）</li></ul><br></li><li style="list-style:inherit; margin-bottom:0.6rem">1.3 常用api介绍</li><li style="list-style:inherit; margin-bottom:0.6rem">1.4 immutable.js的优缺点</li></ul><br></li><li style="list-style:inherit; margin-bottom:0.6rem">二. 在react+redux中集成immutable.js实践<br><ul style="padding:0px 0px 0px 2.7rem; margin:0.27rem 0px 0px"><br><li style="list-style:inherit; margin-bottom:0.6rem">2.1 点餐H5项目引入immutable.js前的现状</li><li style="list-style:inherit; margin-bottom:0.6rem">2.2 如何将immutableJS集成到一个react+redux项目中<br><ul style="padding:0px 0px 0px 2.7rem; margin:0.27rem 0px 0px"><br><li style="list-style:inherit; margin-bottom:0.6rem">2.2.1 明确集成方案，边界界定</li><li style="list-style:inherit; margin-bottom:0.6rem">2.2.2 具体集成代码实现方法</li></ul><br></li><li style="list-style:inherit; margin-bottom:0.6rem">2.3 点餐H5项目优化前后对比</li></ul><br></li><li style="list-style:inherit; margin-bottom:0.6rem">三. immutable.js使用过程中的一些注意点</li><li style="list-style:inherit; margin-bottom:0.6rem">四. 总结</li></ul><br><h1 id="-immutable-js" style="margin:1.3rem 0px; line-height:1.2; color:rgb(51,51,51)"><a name="t3"></a><br>一. immutable.js</h1><br><h2 id="1-1-js-" style="color:rgb(51,51,51)"><a name="t4"></a>1.1 原生js引用类型的坑</h2><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">先考虑如下两个场景：</p><br><pre style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:16px; line-height:1.93rem; color:rgb(51,51,51); background-color:rgb(255,255,255)"><code class="hljs javascript" style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:1rem; padding:0.67rem 1.3rem; word-break:normal; background:rgb(248,248,248); margin:0px; display:block; overflow-x:auto"><span class="hljs-comment" style="color:rgb(153,153,136)">// 场景一</span><br><span class="hljs-keyword" style="font-weight:700">var</span> obj = {<span class="hljs-attr">a</span>:<span class="hljs-number" style="color:teal">1</span>, <span class="hljs-attr">b</span>:{<span class="hljs-attr">c</span>:<span class="hljs-number" style="color:teal">2</span>}};<br>func(obj);<br><span class="hljs-built_in" style="color:rgb(0,134,179)">console</span>.log(obj)  <span class="hljs-comment" style="color:rgb(153,153,136)">//输出什么？？</span><br><br><span class="hljs-comment" style="color:rgb(153,153,136)">// 场景二</span><br><span class="hljs-keyword" style="font-weight:700">var</span> obj = ={<span class="hljs-attr">a</span>:<span class="hljs-number" style="color:teal">1</span>};<br><span class="hljs-keyword" style="font-weight:700">var</span> obj2 = obj;<br>obj2.a = <span class="hljs-number" style="color:teal">2</span>;<br><span class="hljs-built_in" style="color:rgb(0,134,179)">console</span>.log(obj.a);  <span class="hljs-comment" style="color:rgb(153,153,136)">// 2</span><br><span class="hljs-built_in" style="color:rgb(0,134,179)">console</span>.log(obj2.a);  <span class="hljs-comment" style="color:rgb(153,153,136)">// 2</span></code></pre><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">&emsp;&emsp;上面两个场景相信大家平日里开发过程中非常常见，具体原因相信大家也都知道了，这边不展开细说了，通常这类问题的解决方案是通过浅拷贝或者深拷贝复制一个新对象，从而使得新对象与旧对象引用地址不同。<br><br>&emsp;&emsp;在js中，引用类型的数据，优点在于频繁的操作数据都是在原对象的基础上修改，不会创建新对象，从而可以有效的利用内存，不会浪费内存，这种特性称为mutable（可变），但恰恰它的优点也是它的缺点，太过于灵活多变在复杂数据的场景下也造成了它的不可控性，假设一个对象在多处用到，在某一处不小心修改了数据，其他地方很难预见到数据是如何改变的，针对这种问题的解决方法，一般就像刚才的例子，会想复制一个新对象，再在新对象上做修改，这无疑会造成更多的性能问题以及内存浪费。<br><br>&emsp;&emsp;为了解决这种问题，出现了immutable对象，每次修改immutable对象都会创建一个新的不可变对象，而老的对象不会改变。</p><br><h2 id="1-2-immutable-js-" style="color:rgb(51,51,51)"><a name="t5"></a>1.2 immutable.js介绍</h2><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">&emsp;&emsp;现今，实现了immutable数据结构的js类库有好多，immutable.js就是其中比较主流的类库之一。</p><br><blockquote style="margin:1em 0px; border-left:4px solid rgb(221,221,221); padding:0px 1.3rem; color:rgb(102,102,102); font-size:16px"><br><p style="line-height:2.27rem; margin-top:0.6rem; margin-bottom:0.6rem">Immutable.js出自Facebook，是最流行的不可变数据结构的实现之一。它从头开始实现了完全的持久化数据结构，通过使用像tries这样的先进技术来实现结构共享。所有的更新操作都会返回新的值，但是在内部结构是共享的，来减少内存占用(和垃圾回收的失效)。</p><br></blockquote><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">immutable.js主要有三大特性：</p><br><ul style="padding:0px 0px 0px 2.7rem; margin:0px; color:rgb(51,51,51); font-size:16px"><br><li style="list-style:inherit; margin-bottom:0.6rem">Persistent data structure （持久化数据结构）</li><li style="list-style:inherit; margin-bottom:0.6rem">structural sharing （结构共享）</li><li style="list-style:inherit; margin-bottom:0.6rem">support lazy operation （惰性操作）</li></ul><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">下面我们来一一具体介绍下这三个特性：</p><br><h3 id="1-2-1-persistent-data-structure-" style="color:rgb(51,51,51)"><a name="t6"></a>1.2.1 Persistent data structure （持久化数据结构）</h3><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">&emsp;&emsp;一般听到持久化，在编程中第一反应应该是，数据存在某个地方，需要用到的时候就能从这个地方拿出来直接使用<br><br>&emsp;&emsp;但这里说的持久化是另一个意思，用来描述一种数据结构，一般函数式编程中非常常见，指一个数据，在被修改时，仍然能够保持修改前的状态，从本质来说，这种数据类型就是不可变类型，也就是immutable<br><br>&emsp;&emsp;immutable.js提供了十余种不可变的类型（List，Map，Set，Seq，Collection，Range等）<br><br>&emsp;&emsp;到这，有些同学可能会觉得，这和之前讲的拷贝有什么区别，也是每次都创建一个新对象，开销一样很大。ok，那接下来第二个特性会为你揭开疑惑。</p><br><h3 id="1-2-2-structural-sharing-" style="color:rgb(51,51,51)"><a name="t7"></a>1.2.2 structural sharing （结构共享）</h3><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px"></p><br><img src="https://dn-mhke0kuv.qbox.me/3a7a2cd51b6fb6850e00.gif" class="medium-zoom-image" alt="" style="border-style:none; max-height:668px; max-width:100%; margin:0px!important"><span style="color:rgb(51,51,51); font-size:16px">(图片来自网络)</span><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px"></p><br><blockquote style="margin:1em 0px; border-left:4px solid rgb(221,221,221); padding:0px 1.3rem; color:rgb(102,102,102); font-size:16px"><br><p style="line-height:2.27rem; margin-top:0.6rem; margin-bottom:0.6rem">immutable使用先进的tries(字典树)技术实现结构共享来解决性能问题，当我们对一个Immutable对象进行操作的时候，ImmutableJS会只clone该节点以及它的祖先节点，其他保持不变，这样可以共享相同的部分，大大提高性能。</p><br></blockquote><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px"><span style="font-weight:700">这边岔开介绍一下tries（字典树），我们来看一个例子</span><br><br></p><br><img src="https://dn-mhke0kuv.qbox.me/203eee65192ccb61d3d3.jpg" class="medium-zoom-image" alt="" style="border-style:none; max-height:668px; max-width:100%; margin:0px!important"><br style="color:rgb(51,51,51); font-size:16px"><br><img src="https://dn-mhke0kuv.qbox.me/c07ad7d742c234e1f342.jpg" class="medium-zoom-image" alt="" style="border-style:none; max-height:668px; max-width:100%; margin:0px!important"><br style="color:rgb(51,51,51); font-size:16px"><br><img src="https://dn-mhke0kuv.qbox.me/7c108cc86cd6b65ce38e.jpg" class="medium-zoom-image" alt="" style="border-style:none; max-height:668px; max-width:100%; margin:0px!important"><br style="color:rgb(51,51,51); font-size:16px"><br><span style="color:rgb(51,51,51); font-size:16px">(图片来自网络)</span><br style="color:rgb(51,51,51); font-size:16px"><br><span style="color:rgb(51,51,51); font-size:16px">&emsp;&emsp;图1就是一个字典树结构object对象，顶端是root节点，每个子节点都有一个唯一标示（在immutable.js中就是hashcode）</span><br style="color:rgb(51,51,51); font-size:16px"><br><span style="color:rgb(51,51,51); font-size:16px">&emsp;&emsp;假设我们现在取data.in的值，根据标记i和n的路径.可以找到包含5的节点.，可知data.in=5, 完全不需要遍历整个对象</span><br style="color:rgb(51,51,51); font-size:16px"><br><span style="color:rgb(51,51,51); font-size:16px">&emsp;&emsp;那么，现在我们要把data.tea从3修改成14，怎么做呢？</span><br style="color:rgb(51,51,51); font-size:16px"><br><span style="color:rgb(51,51,51); font-size:16px">&emsp;&emsp;可以看到图2绿色部分，不需要去遍历整棵树，只要从root开始找就行</span><br style="color:rgb(51,51,51); font-size:16px"><br><span style="color:rgb(51,51,51); font-size:16px">&emsp;&emsp;实际使用时，可以创建一个新的引用，如图3，data.tea建一个新的节点，其他节点和老的对象共享，而老的对象还是保持不变</span><br style="color:rgb(51,51,51); font-size:16px"><br><span style="color:rgb(51,51,51); font-size:16px">&emsp;&emsp;由于这个特性，比较两个对象时，只要他们的hashcode是相同的，他们的值就是一样的，这样可以避免深度遍历</span><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px"></p><br><h3 id="1-2-3-support-lazy-operation-" style="color:rgb(51,51,51)"><a name="t8"></a>1.2.3 support lazy operation （惰性操作）</h3><br><ul style="padding:0px 0px 0px 2.7rem; margin:0px; color:rgb(51,51,51); font-size:16px"><br><li style="list-style:inherit; margin-bottom:0.6rem">惰性操作 Seq</li><li style="list-style:inherit; margin-bottom:0.6rem">特征1：Immutable (不可变)</li><li style="list-style:inherit; margin-bottom:0.6rem">特征2：lazy（惰性，延迟）</li></ul><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">这个特性非常的有趣，这里的lazy指的是什么？很难用语言来描述，我们看一个demo，看完你就明白了<br><br></p><br><img src="https://dn-mhke0kuv.qbox.me/f048f20e035056014dfb.png" class="medium-zoom-image" alt="" style="border-style:none; max-height:668px; max-width:100%; margin:0px!important"><br style="color:rgb(51,51,51); font-size:16px"><br><span style="color:rgb(51,51,51); font-size:16px">&emsp;&emsp;这段代码的意思就是，数组先取奇数，然后再对基数进行平方操作，然后在console.log第2个数，同样的代码，用immutable的seq对象来实现，filter只执行了3次，但原生执行了8次。</span><br style="color:rgb(51,51,51); font-size:16px"><br><span style="color:rgb(51,51,51); font-size:16px">&emsp;&emsp;其实原理就是，用seq创建的对象，其实代码块没有被执行，只是被声明了，代码在get(1)的时候才会实际被执行，取到index=1的数之后，后面的就不会再执行了，所以在filter时，第三次就取到了要的数，从4-8都不会再执行</span><br style="color:rgb(51,51,51); font-size:16px"><br><span style="color:rgb(51,51,51); font-size:16px">&emsp;&emsp;想想，如果在实际业务中，数据量非常大，如在我们点餐业务中，商户的菜单列表可能有几百道菜，一个array的长度是几百，要操作这样一个array，如果应用惰性操作的特性，会节省非常多的性能</span><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px"></p><br><h2 id="1-3-api-" style="color:rgb(51,51,51)"><a name="t9"></a>1.3 常用api介绍</h2><br><pre style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:16px; line-height:1.93rem; color:rgb(51,51,51); background-color:rgb(255,255,255)"><code class="hljs javascript" style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:1rem; padding:0.67rem 1.3rem; word-break:normal; background:rgb(248,248,248); margin:0px; display:block; overflow-x:auto"><span class="hljs-comment" style="color:rgb(153,153,136)">//Map()  原生object转Map对象 (只会转换第一层，注意和fromJS区别)</span><br>immutable.Map({<span class="hljs-attr">name</span>:<span class="hljs-string" style="color:rgb(221,17,68)">‘danny’</span>, <span class="hljs-attr">age</span>:<span class="hljs-number" style="color:teal">18</span>})<br><br><span class="hljs-comment" style="color:rgb(153,153,136)">//List()  原生array转List对象 (只会转换第一层，注意和fromJS区别)</span><br>immutable.List([<span class="hljs-number" style="color:teal">1</span>,<span class="hljs-number" style="color:teal">2</span>,<span class="hljs-number" style="color:teal">3</span>,<span class="hljs-number" style="color:teal">4</span>,<span class="hljs-number" style="color:teal">5</span>])<br><br><span class="hljs-comment" style="color:rgb(153,153,136)">//fromJS()   原生js转immutable对象  (深度转换，会将内部嵌套的对象和数组全部转成immutable)</span><br>immutable.fromJS([<span class="hljs-number" style="color:teal">1</span>,<span class="hljs-number" style="color:teal">2</span>,<span class="hljs-number" style="color:teal">3</span>,<span class="hljs-number" style="color:teal">4</span>,<span class="hljs-number" style="color:teal">5</span>])    <span class="hljs-comment" style="color:rgb(153,153,136)">//将原生array  –&gt; List</span><br>immutable.fromJS({<span class="hljs-attr">name</span>:<span class="hljs-string" style="color:rgb(221,17,68)">‘danny’</span>, <span class="hljs-attr">age</span>:<span class="hljs-number" style="color:teal">18</span>})   <span class="hljs-comment" style="color:rgb(153,153,136)">//将原生object  –&gt; Map</span><br><br><span class="hljs-comment" style="color:rgb(153,153,136)">//toJS()  immutable对象转原生js  (深度转换，会将内部嵌套的Map和List全部转换成原生js)</span><br>immutableData.toJS();<br><br><span class="hljs-comment" style="color:rgb(153,153,136)">//查看List或者map大小  </span><br>immutableData.size  或者 immutableData.count()<br><br><span class="hljs-comment" style="color:rgb(153,153,136)">// is()   判断两个immutable对象是否相等</span><br>immutable.is(imA, imB);<br><br><span class="hljs-comment" style="color:rgb(153,153,136)">//merge()  对象合并</span><br><span class="hljs-keyword" style="font-weight:700">var</span> imA = immutable.fromJS({<span class="hljs-attr">a</span>:<span class="hljs-number" style="color:teal">1</span>,<span class="hljs-attr">b</span>:<span class="hljs-number" style="color:teal">2</span>});<br><span class="hljs-keyword" style="font-weight:700">var</span> imA = immutable.fromJS({<span class="hljs-attr">c</span>:<span class="hljs-number" style="color:teal">3</span>});<br><span class="hljs-keyword" style="font-weight:700">var</span> imC = imA.merge(imB);<br><span class="hljs-built_in" style="color:rgb(0,134,179)">console</span>.log(imC.toJS())  <span class="hljs-comment" style="color:rgb(153,153,136)">//{a:1,b:2,c:3}</span><br><br><span class="hljs-comment" style="color:rgb(153,153,136)">//增删改查（所有操作都会返回新的值，不会修改原来值）</span><br><span class="hljs-keyword" style="font-weight:700">var</span> immutableData = immutable.fromJS({<br>    <span class="hljs-attr">a</span>:<span class="hljs-number" style="color:teal">1</span>,<br>    <span class="hljs-attr">b</span>:<span class="hljs-number" style="color:teal">2</span>，<br>    c:{<br>        <span class="hljs-attr">d</span>:<span class="hljs-number" style="color:teal">3</span><br>    }<br>});<br><span class="hljs-keyword" style="font-weight:700">var</span> data1 = immutableData.get(<span class="hljs-string" style="color:rgb(221,17,68)">‘a’</span>) <span class="hljs-comment" style="color:rgb(153,153,136)">//  data1 = 1  </span><br><span class="hljs-keyword" style="font-weight:700">var</span> data2 = immutableData.getIn([<span class="hljs-string" style="color:rgb(221,17,68)">‘c’</span>, <span class="hljs-string" style="color:rgb(221,17,68)">‘d’</span>]) <span class="hljs-comment" style="color:rgb(153,153,136)">// data2 = 3   getIn用于深层结构访问</span><br><span class="hljs-keyword" style="font-weight:700">var</span> data3 = immutableData.set(<span class="hljs-string" style="color:rgb(221,17,68)">‘a’</span> , <span class="hljs-number" style="color:teal">2</span>);   <span class="hljs-comment" style="color:rgb(153,153,136)">// data3中的 a = 2</span><br><span class="hljs-keyword" style="font-weight:700">var</span> data4 = immutableData.setIn([<span class="hljs-string" style="color:rgb(221,17,68)">‘c’</span>, <span class="hljs-string" style="color:rgb(221,17,68)">‘d’</span>], <span class="hljs-number" style="color:teal">4</span>);   <span class="hljs-comment" style="color:rgb(153,153,136)">//data4中的 d = 4</span><br><span class="hljs-keyword" style="font-weight:700">var</span> data5 = immutableData.update(<span class="hljs-string" style="color:rgb(221,17,68)">‘a’</span>,<span class="hljs-function"><span class="hljs-keyword" style="font-weight:700">function</span>(<span class="hljs-params">x</span>)</span>{<span class="hljs-keyword" style="font-weight:700">return</span> x+<span class="hljs-number" style="color:teal">4</span>})   <span class="hljs-comment" style="color:rgb(153,153,136)">//data5中的 a = 5</span><br><span class="hljs-keyword" style="font-weight:700">var</span> data6 = immutableData.updateIn([<span class="hljs-string" style="color:rgb(221,17,68)">‘c’</span>, <span class="hljs-string" style="color:rgb(221,17,68)">‘d’</span>],<span class="hljs-function"><span class="hljs-keyword" style="font-weight:700">function</span>(<span class="hljs-params">x</span>)</span>{<span class="hljs-keyword" style="font-weight:700">return</span> x+<span class="hljs-number" style="color:teal">4</span>})   <span class="hljs-comment" style="color:rgb(153,153,136)">//data6中的 d = 7</span><br><span class="hljs-keyword" style="font-weight:700">var</span> data7 = immutableData.delete(<span class="hljs-string" style="color:rgb(221,17,68)">‘a’</span>)   <span class="hljs-comment" style="color:rgb(153,153,136)">//data7中的 a 不存在</span><br><span class="hljs-keyword" style="font-weight:700">var</span> data8 = immutableData.deleteIn([<span class="hljs-string" style="color:rgb(221,17,68)">‘c’</span>, <span class="hljs-string" style="color:rgb(221,17,68)">‘d’</span>])   <span class="hljs-comment" style="color:rgb(153,153,136)">//data8中的 d 不存在</span></code></pre><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">上面只列举了部分常用方法，具体查阅<span style="font-weight:700">官网api:<a target="_blank" href="https://link.juejin.im/?target=http%3A%2F%2Ffacebook.github.io%2Fimmutable-js%2Fdocs%2F%23%2F" rel="nofollow noopener noreferrer" style="background-color:transparent; color:rgb(34,85,153)">http://facebook.github.io/immutable-js/docs/#/</a></span><br><br>immutablejs还有很多类似underscore语法糖，使用immutable.js之后完全可以在项目中去除lodash或者underscore之类的工具库。</p><br><h2 id="1-4-immutable-js-" style="color:rgb(51,51,51)"><a name="t10"></a>1.4 immutable.js的优缺点</h2><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px"><span style="font-weight:700">优点：</span></p><br><ul style="padding:0px 0px 0px 2.7rem; margin:0px; color:rgb(51,51,51); font-size:16px"><br><li style="list-style:inherit; margin-bottom:0.6rem">降低mutable带来的复杂度</li><li style="list-style:inherit; margin-bottom:0.6rem">节省内存</li><li style="list-style:inherit; margin-bottom:0.6rem">历史追溯性（时间旅行）：时间旅行指的是，每时每刻的值都被保留了，想回退到哪一步只要简单的将数据取出就行，想一下如果现在页面有个撤销的操作，撤销前的数据被保留了，只需要取出就行，这个特性在redux或者flux中特别有用</li><li style="list-style:inherit; margin-bottom:0.6rem">拥抱函数式编程：immutable本来就是函数式编程的概念，纯函数式编程的特点就是，只要输入一致，输出必然一致，相比于面向对象，这样开发组件和调试更方便</li></ul><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px"><span style="font-weight:700">缺点：</span></p><br><ul style="padding:0px 0px 0px 2.7rem; margin:0px; color:rgb(51,51,51); font-size:16px"><br><li style="list-style:inherit; margin-bottom:0.6rem">需要重新学习api</li><li style="list-style:inherit; margin-bottom:0.6rem">资源包大小增加（源码5000行左右）</li><li style="list-style:inherit; margin-bottom:0.6rem">容易与原生对象混淆：由于api与原生不同，混用的话容易出错。</li></ul><br><h1 id="-react-redux-immutable-js-" style="margin:1.3rem 0px; line-height:1.2; color:rgb(51,51,51)"><a name="t11"></a><br>二. 在react+redux中集成immutable.js实践</h1><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">&emsp;&emsp;前面介绍了这么多，其实是想引出这块重点，这章节会<span style="font-weight:700">结合点评点餐团队在实际项目中的实践，给出使用immutable.js前后对react+redux项目的性能提升</span></p><br><h2 id="2-1-h5-immutable-js-" style="color:rgb(51,51,51)"><a name="t12"></a>2.1 点餐H5项目引入immutable.js前的现状</h2><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">&emsp;&emsp;目前项目使用react+redux，由于项目的不断迭代以及需求复杂度的提高，redux中维护的state结构日渐庞大，已经不是一个简单的平铺数据了，如菜单页state已经会出现三四层的object以及array嵌套，我们知道，JS中的object与array是引用类型，在不断的操作过程中，state经过多次的action改变之后， 原本复杂state已经变得不可控，结果就是导致了一次state变化牵动了许多自身状态没有发生改动的component去re-render。如下图<br><br></p><br><img src="https://dn-mhke0kuv.qbox.me/0cd51739fc8dc98b4986.png" class="medium-zoom-image" alt="" style="border-style:none; max-height:668px; max-width:100%; margin:0px!important"><br style="color:rgb(51,51,51); font-size:16px"><br><span style="color:rgb(51,51,51); font-size:16px">&emsp;&emsp;这里推荐一下react的性能指标工具react-addons-perf</span><br style="color:rgb(51,51,51); font-size:16px"><br><span style="color:rgb(51,51,51); font-size:16px">&emsp;&emsp;如果你没有使用这个工具看之前，别人问你，图中这个简单的堂食/外带的button的变化会引起哪些component去re-render，你可能会回答只有就餐方式这个component。</span><br style="color:rgb(51,51,51); font-size:16px"><br><span style="color:rgb(51,51,51); font-size:16px">&emsp;&emsp;但当你真正使用react-addons-perf去查看之后你会发现，WTF？？！一次操作竟然导致了这么多没任何关系的component重新渲染了？？</span><br style="color:rgb(51,51,51); font-size:16px"><br><span style="color:rgb(51,51,51); font-size:16px">&emsp;&emsp;</span><span style="font-weight:700; color:rgb(51,51,51); font-size:16px">什么原因？？</span><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px"></p><br><h4 id="shouldcomponentupdate" style="color:rgb(51,51,51); font-size:16px">shouldComponentUpdate</h4><br><pre style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:16px; line-height:1.93rem; color:rgb(51,51,51); background-color:rgb(255,255,255)"><code class="hljs javascript" style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:1rem; padding:0.67rem 1.3rem; word-break:normal; background:rgb(248,248,248); margin:0px; display:block; overflow-x:auto">shouldComponentUpdate (nextProps, nextState) {<br>   <span class="hljs-keyword" style="font-weight:700">return</span> nextProps.id !== <span class="hljs-keyword" style="font-weight:700">this</span>.props.id;<br>};</code></pre><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">&emsp;&emsp;相信接触过react开发的同学都知道，react有个重要的性能优化的点就是shouldComponentUpdate，shouldComponentUpdate返回true代码该组件要re-render，false则不重新渲染<br><br>&emsp;&emsp;那简单的场景可以直接使用==去判断this.props和nextProps是否相等，但当props是一个复杂的结构时，==肯定是没用的<br><br>&emsp;&emsp;网上随便查一下就会发现shallowCompare这个东西，我们来试一下<br><br><span style="font-weight:700">使用shallowCompare的例子：</span><br><br></p><br><img src="https://dn-mhke0kuv.qbox.me/6ac16c0725646004ba1c.png" class="medium-zoom-image" alt="" style="border-style:none; max-height:668px; max-width:100%; margin:0px!important"><br style="color:rgb(51,51,51); font-size:16px"><br><span style="color:rgb(51,51,51); font-size:16px">可以看到，其实2个对象的count是不相等的，但shallowCompare返回的还是true</span><br style="color:rgb(51,51,51); font-size:16px"><br><span style="font-weight:700; color:rgb(51,51,51); font-size:16px">原因：</span><br style="color:rgb(51,51,51); font-size:16px"><br><span style="color:rgb(51,51,51); font-size:16px">&emsp;&emsp;shallowCompare只是进行了对象的顶层节点比较，也就是浅比较，上图中的props由于结构比较复杂，在深层的对象中有count不一样，所以这种情况无法通过shallowCompare处理。</span><br style="color:rgb(51,51,51); font-size:16px"><br><span style="font-weight:700; color:rgb(51,51,51); font-size:16px">shallowEqual源码：</span><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px"></p><br><pre style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:16px; line-height:1.93rem; color:rgb(51,51,51); background-color:rgb(255,255,255)"><code class="hljs javascript" style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:1rem; padding:0.67rem 1.3rem; word-break:normal; background:rgb(248,248,248); margin:0px; display:block; overflow-x:auto"><span class="hljs-function"><span class="hljs-keyword" style="font-weight:700">function</span> <span class="hljs-title" style="color:rgb(153,0,0); font-weight:700">shallowEqual</span>(<span class="hljs-params">objA, objB</span>) </span>{<br>  <span class="hljs-keyword" style="font-weight:700">if</span> (is(objA, objB)) {<br>    <span class="hljs-keyword" style="font-weight:700">return</span> <span class="hljs-literal" style="color:teal">true</span>;<br>  }<br><br>  <span class="hljs-keyword" style="font-weight:700">if</span> (<span class="hljs-keyword" style="font-weight:700">typeof</span> objA !== <span class="hljs-string" style="color:rgb(221,17,68)">‘object’</span> || objA === <span class="hljs-literal" style="color:teal">null</span> || <span class="hljs-keyword" style="font-weight:700">typeof</span> objB !== <span class="hljs-string" style="color:rgb(221,17,68)">‘object’</span> || objB === <span class="hljs-literal" style="color:teal">null</span>) {<br>    <span class="hljs-keyword" style="font-weight:700">return</span> <span class="hljs-literal" style="color:teal">false</span>;<br>  }<br><br>  <span class="hljs-keyword" style="font-weight:700">var</span> keysA = <span class="hljs-built_in" style="color:rgb(0,134,179)">Object</span>.keys(objA);<br>  <span class="hljs-keyword" style="font-weight:700">var</span> keysB = <span class="hljs-built_in" style="color:rgb(0,134,179)">Object</span>.keys(objB);<br><br>  <span class="hljs-keyword" style="font-weight:700">if</span> (keysA.length !== keysB.length) {<br>    <span class="hljs-keyword" style="font-weight:700">return</span> <span class="hljs-literal" style="color:teal">false</span>;<br>  }<br><span class="hljs-comment" style="color:rgb(153,153,136)">//这里只比较了对象A和B第一层是否相等，当对象过深时，无法返回正确结果</span><br>  <span class="hljs-comment" style="color:rgb(153,153,136)">// Test for A’s keys different from B.</span><br>  <span class="hljs-keyword" style="font-weight:700">for</span> (<span class="hljs-keyword" style="font-weight:700">var</span> i = <span class="hljs-number" style="color:teal">0</span>; i &lt; keysA.length; i++) {<br>    <span class="hljs-keyword" style="font-weight:700">if</span> (!hasOwnProperty.call(objB, keysA[i]) || !is(objA[keysA[i]], objB[keysA[i]])) {<br>      <span class="hljs-keyword" style="font-weight:700">return</span> <span class="hljs-literal" style="color:teal">false</span>;<br>    }<br>  }<br><br>  <span class="hljs-keyword" style="font-weight:700">return</span> <span class="hljs-literal" style="color:teal">true</span>;<br>}</code></pre><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px"><span style="font-weight:700">&emsp;&emsp;这里，我们肯定不可能每次比较都是用深比较，去遍历所有的结构，这样带来的性能代价是巨大的，刚才我们说到immutable.js有个特性是引用比较（hashcode），这个特性就完美契合这边的场景</span></p><br><h2 id="2-2-immutablejs-react-redux-" style="color:rgb(51,51,51)"><a name="t13"></a>2.2 如何将immutableJS集成到一个react+redux项目中</h2><br><h3 id="2-2-1-" style="color:rgb(51,51,51)"><a name="t14"></a>2.2.1 明确集成方案，边界界定</h3><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">&emsp;&emsp;首先，我们有必要来划分一下边界，哪些数据需要使用不可变数据，哪些数据要使用原生js数据结构，哪些地方需要做互相转换</p><br><ul style="padding:0px 0px 0px 2.7rem; margin:0px; color:rgb(51,51,51); font-size:16px"><br><li style="list-style:inherit; margin-bottom:0.6rem">在redux中，全局state必须是immutable的，这点毋庸置疑是我们使用immutable来优化redux的核心</li><li style="list-style:inherit; margin-bottom:0.6rem">组件props是通过redux的connect从state中获得的，并且引入immutableJS的另一个目的是减少组件shouldComponentUpdate中不必要渲染，shouldComponentUpdate中比对的是props，如果props是原生JS就失去了优化的意义</li><li style="list-style:inherit; margin-bottom:0.6rem">组件内部state如果需要提交到store的，必须是immutable，否则不强制</li><li style="list-style:inherit; margin-bottom:0.6rem">view提交到action中的数据必须是immutable</li><li style="list-style:inherit; margin-bottom:0.6rem">Action提交到reducer中的数据必须是immutable</li><li style="list-style:inherit; margin-bottom:0.6rem">reducer中最终处理state必须是以immutable的形式处理并返回</li><li style="list-style:inherit; margin-bottom:0.6rem">与服务端ajax交互中返回的callback统一封装，第一时间转换成immutable数据</li></ul><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">&emsp;&emsp;从上面这些点可以看出，几乎整个项目都是必须使用immutable的，只有在少数与外部依赖有交互的地方使用了原生js。<br><br>&emsp;&emsp;这么做的目的其实就是为了防止在大型项目中，原生js与immutable混用，导致coder自己都不清楚一个变量中存储的到底是什么类型的数据。<br><br>&emsp;&emsp;那有人可能会觉得说，在一个全新项目中这样是可行的，但在一个已有的成熟项目中，要将所有的变量全部改成immutablejs，代码的改动量与侵入性非常大，风险也高。那他们会想到，将reducer中的state用fromJS()改成immutable进行state操作，然后再通过toJS()转成原生js返回出来，这样不就可以即让state变得可追溯，又不用去修改reducer以外的代码，代价非常的小。</p><br><pre style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:16px; line-height:1.93rem; color:rgb(51,51,51); background-color:rgb(255,255,255)"><code class="hljs javascript" style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:1rem; padding:0.67rem 1.3rem; word-break:normal; background:rgb(248,248,248); margin:0px; display:block; overflow-x:auto"><span class="hljs-keyword" style="font-weight:700">export</span> <span class="hljs-keyword" style="font-weight:700">default</span> <span class="hljs-function"><span class="hljs-keyword" style="font-weight:700">function</span> <span class="hljs-title" style="color:rgb(153,0,0); font-weight:700">indexReducer</span>(<span class="hljs-params">state, action</span>) </span>{<br>    <span class="hljs-keyword" style="font-weight:700">switch</span> (action.type) {<br>    <span class="hljs-keyword" style="font-weight:700">case</span> RECEIVE_MENU:<br>        state = immutable.fromJS(state);   <span class="hljs-comment" style="color:rgb(153,153,136)">//转成immutable</span><br>        state = state.merge({<span class="hljs-attr">a</span>:<span class="hljs-number" style="color:teal">1</span>});<br>        <span class="hljs-keyword" style="font-weight:700">return</span> state.toJS()    <span class="hljs-comment" style="color:rgb(153,153,136)">//转回原生js</span><br>    }<br>}</code></pre><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px"><span style="font-weight:700">两点问题：</span></p><br><ol style="padding-left:2.7rem; color:rgb(51,51,51); font-size:16px"><br><li style="list-style:inherit; margin-bottom:0.6rem">fromJS() 和 toJS() 是深层的互转immutable对象和原生对象，性能开销大，尽量不要使用（见下一章节做了具体的对比）</li><li style="list-style:inherit; margin-bottom:0.6rem">组件中props和state还是原生js，shouldComponentUpdate仍然无法做利用immutablejs的优势做深度比较</li></ol><br><h3 id="2-2-2-" style="color:rgb(51,51,51)"><a name="t15"></a>2.2.2 具体集成代码实现方法</h3><br><h4 id="redux-immutable" style="color:rgb(51,51,51); font-size:16px">redux-immutable</h4><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">&emsp;&emsp;redux中，第一步肯定利用combineReducers来合并reducer并初始化state，redux自带的combineReducers只支持state是原生js形式的，所以这里我们需要使用redux-immutable提供的combineReducers来替换原来的方法</p><br><pre style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:16px; line-height:1.93rem; color:rgb(51,51,51); background-color:rgb(255,255,255)"><code class="hljs javascript" style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:1rem; padding:0.67rem 1.3rem; word-break:normal; background:rgb(248,248,248); margin:0px; display:block; overflow-x:auto"><span class="hljs-keyword" style="font-weight:700">import</span> {combineReducers} <span class="hljs-keyword" style="font-weight:700">from</span> <span class="hljs-string" style="color:rgb(221,17,68)">‘redux-immutable’</span>;<br><span class="hljs-keyword" style="font-weight:700">import</span> dish <span class="hljs-keyword" style="font-weight:700">from</span> <span class="hljs-string" style="color:rgb(221,17,68)">‘./dish’</span>;<br><span class="hljs-keyword" style="font-weight:700">import</span> menu <span class="hljs-keyword" style="font-weight:700">from</span> <span class="hljs-string" style="color:rgb(221,17,68)">‘./menu’</span>;<br><span class="hljs-keyword" style="font-weight:700">import</span> cart <span class="hljs-keyword" style="font-weight:700">from</span> <span class="hljs-string" style="color:rgb(221,17,68)">‘./cart’</span>;<br><br><span class="hljs-keyword" style="font-weight:700">const</span> rootReducer = combineReducers({<br>    dish,<br>    menu,<br>    cart,<br>});<br><br><span class="hljs-keyword" style="font-weight:700">export</span> <span class="hljs-keyword" style="font-weight:700">default</span> rootReducer;</code></pre><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">&emsp;&emsp;reducer中的initialState肯定也需要初始化成immutable类型</p><br><pre style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:16px; line-height:1.93rem; color:rgb(51,51,51); background-color:rgb(255,255,255)"><code class="hljs javascript" style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:1rem; padding:0.67rem 1.3rem; word-break:normal; background:rgb(248,248,248); margin:0px; display:block; overflow-x:auto"><span class="hljs-keyword" style="font-weight:700">const</span> initialState = Immutable.Map({});<br><span class="hljs-keyword" style="font-weight:700">export</span> <span class="hljs-keyword" style="font-weight:700">default</span> <span class="hljs-function"><span class="hljs-keyword" style="font-weight:700">function</span> <span class="hljs-title" style="color:rgb(153,0,0); font-weight:700">menu</span>(<span class="hljs-params">state = initialState, action</span>) </span>{<br>    <span class="hljs-keyword" style="font-weight:700">switch</span> (action.type) {<br>    <span class="hljs-keyword" style="font-weight:700">case</span> SET_ERROR:<br>        <span class="hljs-keyword" style="font-weight:700">return</span> state.set(<span class="hljs-string" style="color:rgb(221,17,68)">‘isError’</span>, <span class="hljs-literal" style="color:teal">true</span>);<br>    }<br>}</code></pre><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">&emsp;&emsp;state成为了immutable类型，那相应的页面其他文件都需要做相应的写法改变</p><br><pre style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:16px; line-height:1.93rem; color:rgb(51,51,51); background-color:rgb(255,255,255)"><code class="hljs javascript" style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:1rem; padding:0.67rem 1.3rem; word-break:normal; background:rgb(248,248,248); margin:0px; display:block; overflow-x:auto"><span class="hljs-comment" style="color:rgb(153,153,136)">//connect</span><br><span class="hljs-function"><span class="hljs-keyword" style="font-weight:700">function</span> <span class="hljs-title" style="color:rgb(153,0,0); font-weight:700">mapStateToProps</span>(<span class="hljs-params">state</span>) </span>{<br>    <span class="hljs-keyword" style="font-weight:700">return</span> {<br>        <span class="hljs-attr">menuList</span>: state.getIn([<span class="hljs-string" style="color:rgb(221,17,68)">‘dish’</span>, <span class="hljs-string" style="color:rgb(221,17,68)">‘list’</span>]),  <span class="hljs-comment" style="color:rgb(153,153,136)">//使用get或者getIn来获取state中的变量</span><br>        CartList: state.getIn([<span class="hljs-string" style="color:rgb(221,17,68)">‘dish’</span>, <span class="hljs-string" style="color:rgb(221,17,68)">‘cartList’</span>])<br>    }<br>}</code></pre><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">&emsp;&emsp;页面中原来的原生js变量需要改造成immutable类型，不一一列举了</p><br><h4 id="-ajax-" style="color:rgb(51,51,51); font-size:16px">服务端交互ajax封装</h4><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">&emsp;&emsp;前端代码使用了immutable，但服务端下发的数据还是json，所以需要统一在ajax处做封装并且将服务端返回数据转成immutable</p><br><pre style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:16px; line-height:1.93rem; color:rgb(51,51,51); background-color:rgb(255,255,255)"><code class="hljs javascript" style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:1rem; padding:0.67rem 1.3rem; word-break:normal; background:rgb(248,248,248); margin:0px; display:block; overflow-x:auto"><span class="hljs-comment" style="color:rgb(153,153,136)">//伪代码</span><br>$.ajax({<br>    <span class="hljs-attr">type</span>: <span class="hljs-string" style="color:rgb(221,17,68)">‘get’</span>,<br>    <span class="hljs-attr">url</span>: <span class="hljs-string" style="color:rgb(221,17,68)">‘XXX’</span>,<br>    <span class="hljs-attr">dataType</span>: <span class="hljs-string" style="color:rgb(221,17,68)">‘json’</span>,<br>    success(res){<br>        res = immutable.fromJS(res || {});<br>        callback &amp;&amp; callback(res);<br>    },<br>    error(e) {<br>        e = immutable.fromJS(e || {});<br>        callback &amp;&amp; callback(e);<br>    },<br>});</code></pre><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">这样的话，页面中统一将ajax返回当做immutable类型来处理，不用担心混淆</p><br><h4 id="shouldcomponentupdate" style="color:rgb(51,51,51); font-size:16px">shouldComponentUpdate</h4><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">&emsp;&emsp;<span style="font-weight:700">重中之重！</span>之前已经介绍了很多为什么要用immutable来改造shouldComponentUpdate，这里就不多说了，直接看怎么改造<br><br>shouldComponentUpdate具体怎么封装有很多种办法，我们这里选择了封装一层component的基类，在基类中去统一处理shouldComponentUpdate，组件中直接继承基类的方式</p><br><pre style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:16px; line-height:1.93rem; color:rgb(51,51,51); background-color:rgb(255,255,255)"><code class="hljs javascript" style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:1rem; padding:0.67rem 1.3rem; word-break:normal; background:rgb(248,248,248); margin:0px; display:block; overflow-x:auto"><span class="hljs-comment" style="color:rgb(153,153,136)">//baseComponent.js   component的基类方法</span><br><br><span class="hljs-keyword" style="font-weight:700">import</span> React <span class="hljs-keyword" style="font-weight:700">from</span> <span class="hljs-string" style="color:rgb(221,17,68)">‘react’</span>;<br><span class="hljs-keyword" style="font-weight:700">import</span> {is} <span class="hljs-keyword" style="font-weight:700">from</span> <span class="hljs-string" style="color:rgb(221,17,68)">‘immutable’</span>;<br><br><span class="hljs-class"><span class="hljs-keyword" style="font-weight:700">class</span> <span class="hljs-title" style="color:rgb(68,85,136); font-weight:700">BaseComponent</span> <span class="hljs-keyword" style="font-weight:700">extends</span> <span class="hljs-title" style="color:rgb(68,85,136); font-weight:700">React</span>.<span class="hljs-title" style="color:rgb(68,85,136); font-weight:700">Component</span> </span>{<br>    <span class="hljs-keyword" style="font-weight:700">constructor</span>(props, context, updater) {<br>        <span class="hljs-keyword" style="font-weight:700">super</span>(props, context, updater);<br>    }<br><br>    shouldComponentUpdate(nextProps, nextState) {<br>        <span class="hljs-keyword" style="font-weight:700">const</span> thisProps = <span class="hljs-keyword" style="font-weight:700">this</span>.props || {};<br>        <span class="hljs-keyword" style="font-weight:700">const</span> thisState = <span class="hljs-keyword" style="font-weight:700">this</span>.state || {};<br>        nextState = nextState || {};<br>        nextProps = nextProps || {};<br><br>        <span class="hljs-keyword" style="font-weight:700">if</span> (<span class="hljs-built_in" style="color:rgb(0,134,179)">Object</span>.keys(thisProps).length !== <span class="hljs-built_in" style="color:rgb(0,134,179)">Object</span>.keys(nextProps).length ||<br>            <span class="hljs-built_in" style="color:rgb(0,134,179)">Object</span>.keys(thisState).length !== <span class="hljs-built_in" style="color:rgb(0,134,179)">Object</span>.keys(nextState).length) {<br>            <span class="hljs-keyword" style="font-weight:700">return</span> <span class="hljs-literal" style="color:teal">true</span>;<br>        }<br><br>        <span class="hljs-keyword" style="font-weight:700">for</span> (<span class="hljs-keyword" style="font-weight:700">const</span> key <span class="hljs-keyword" style="font-weight:700">in</span> nextProps) {<br>            <span class="hljs-keyword" style="font-weight:700">if</span> (!is(thisProps[key], nextProps[key])) {<br>                <span class="hljs-keyword" style="font-weight:700">return</span> <span class="hljs-literal" style="color:teal">true</span>;<br>            }<br>        }<br><br>        <span class="hljs-keyword" style="font-weight:700">for</span> (<span class="hljs-keyword" style="font-weight:700">const</span> key <span class="hljs-keyword" style="font-weight:700">in</span> nextState) {<br>            <span class="hljs-keyword" style="font-weight:700">if</span> (!is(thisState[key], nextState[key])) {<br>                <span class="hljs-keyword" style="font-weight:700">return</span> <span class="hljs-literal" style="color:teal">true</span>;<br>            }<br>        }<br>        <span class="hljs-keyword" style="font-weight:700">return</span> <span class="hljs-literal" style="color:teal">false</span>;<br>    }<br>}<br><br><span class="hljs-keyword" style="font-weight:700">export</span> <span class="hljs-keyword" style="font-weight:700">default</span> BaseComponent;</code></pre><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">&emsp;&emsp;组件中如果需要使用统一封装的shouldComponentUpdate，则直接继承基类</p><br><pre style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:16px; line-height:1.93rem; color:rgb(51,51,51); background-color:rgb(255,255,255)"><code class="hljs javascript" style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:1rem; padding:0.67rem 1.3rem; word-break:normal; background:rgb(248,248,248); margin:0px; display:block; overflow-x:auto"><span class="hljs-keyword" style="font-weight:700">import</span> BaseComponent <span class="hljs-keyword" style="font-weight:700">from</span> <span class="hljs-string" style="color:rgb(221,17,68)">‘./BaseComponent’</span>;<br><span class="hljs-class"><span class="hljs-keyword" style="font-weight:700">class</span> <span class="hljs-title" style="color:rgb(68,85,136); font-weight:700">Menu</span> <span class="hljs-keyword" style="font-weight:700">extends</span> <span class="hljs-title" style="color:rgb(68,85,136); font-weight:700">BaseComponent</span> </span>{<br>    <span class="hljs-keyword" style="font-weight:700">constructor</span>() {<br>        <span class="hljs-keyword" style="font-weight:700">super</span>();<br>    }<br>    …………<br>}</code></pre><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">&emsp;&emsp;当然如果组件不想使用封装的方法，那直接在该组件中重写shouldComponentUpdate就行了</p><br><h3 id="2-3-h5-" style="color:rgb(51,51,51)"><a name="t16"></a>2.3 点餐H5项目优化前后对比</h3><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">这边只是截了几张图举例<br><br>优化前搜索页：<br><br></p><br><img src="https://dn-mhke0kuv.qbox.me/4e6d781925205a133772.png" class="medium-zoom-image" alt="" style="border-style:none; max-height:668px; max-width:100%; margin:0px!important"><br style="color:rgb(51,51,51); font-size:16px"><br><span style="color:rgb(51,51,51); font-size:16px">优化后：</span><br style="color:rgb(51,51,51); font-size:16px"><br><img src="https://dn-mhke0kuv.qbox.me/16ca50a5805d820d5aca.png" class="medium-zoom-image" alt="" style="border-style:none; max-height:668px; max-width:100%; margin:0px!important"><br style="color:rgb(51,51,51); font-size:16px"><br><span style="color:rgb(51,51,51); font-size:16px">优化前购物车页：</span><br style="color:rgb(51,51,51); font-size:16px"><br><img src="https://dn-mhke0kuv.qbox.me/1752f5c1932895e84d73.png" class="medium-zoom-image" alt="" style="border-style:none; max-height:668px; max-width:100%; margin:0px!important"><br style="color:rgb(51,51,51); font-size:16px"><br><span style="color:rgb(51,51,51); font-size:16px">优化后：</span><br style="color:rgb(51,51,51); font-size:16px"><br><img src="https://dn-mhke0kuv.qbox.me/cfc07faa4104132c8a6f.png" class="medium-zoom-image" alt="" style="border-style:none; max-height:668px; max-width:100%; margin:0px!important"><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px"></p><br><h1 id="-immutable-js-" style="margin:1.3rem 0px; line-height:1.2; color:rgb(51,51,51)"><a name="t17"></a><br>三. immutable.js使用过程中的一些注意点</h1><br><h4 id="1-fromjs-tojs-map-list-" style="color:rgb(51,51,51); font-size:16px">1.fromJS和toJS会深度转换数据，随之带来的开销较大，尽可能避免使用，单层数据转换使用Map()和List()</h4><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">（做了个简单的fromJS和Map性能对比，同等条件下，分别用两种方法处理1000000条数据，可以看到fromJS开销是Map的4倍）<br><br></p><br><img src="https://dn-mhke0kuv.qbox.me/46508e7fe01297e57b31.png" class="medium-zoom-image" alt="" style="border-style:none; max-height:668px; max-width:100%; margin:0px!important"><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px"></p><br><h4 id="2-js-map-key-string-" style="color:rgb(51,51,51); font-size:16px">2.js是弱类型，但Map类型的key必须是string！(看下图官网说明)</h4><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px"></p><br><img src="https://dn-mhke0kuv.qbox.me/2d90e7d01818f9793e6b.png" class="medium-zoom-image" alt="" style="border-style:none; max-height:668px; max-width:100%; margin:0px!important"><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px"></p><br><h4 id="3-immutable-" style="color:rgb(51,51,51); font-size:16px">3.所有针对immutable变量的增删改必须左边有赋值，因为所有操作都不会改变原来的值，只是生成一个新的变量</h4><br><pre style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:16px; line-height:1.93rem; color:rgb(51,51,51); background-color:rgb(255,255,255)"><code class="hljs javascript" style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:1rem; padding:0.67rem 1.3rem; word-break:normal; background:rgb(248,248,248); margin:0px; display:block; overflow-x:auto"><span class="hljs-comment" style="color:rgb(153,153,136)">//javascript</span><br><span class="hljs-keyword" style="font-weight:700">var</span> arr = [<span class="hljs-number" style="color:teal">1</span>,<span class="hljs-number" style="color:teal">2</span>,<span class="hljs-number" style="color:teal">3</span>,<span class="hljs-number" style="color:teal">4</span>];<br>arr.push(<span class="hljs-number" style="color:teal">5</span>);<br><span class="hljs-built_in" style="color:rgb(0,134,179)">console</span>.log(arr) <span class="hljs-comment" style="color:rgb(153,153,136)">//[1,2,3,4,5]</span><br><br><span class="hljs-comment" style="color:rgb(153,153,136)">//immutable</span><br><span class="hljs-keyword" style="font-weight:700">var</span> arr = immutable.fromJS([<span class="hljs-number" style="color:teal">1</span>,<span class="hljs-number" style="color:teal">2</span>,<span class="hljs-number" style="color:teal">3</span>,<span class="hljs-number" style="color:teal">4</span>])<br><span class="hljs-comment" style="color:rgb(153,153,136)">//错误用法</span><br>arr.push(<span class="hljs-number" style="color:teal">5</span>);<br><span class="hljs-built_in" style="color:rgb(0,134,179)">console</span>.log(arr) <span class="hljs-comment" style="color:rgb(153,153,136)">//[1,2,3,4]</span><br><span class="hljs-comment" style="color:rgb(153,153,136)">//正确用法</span><br>arr = arr.push(<span class="hljs-number" style="color:teal">5</span>);<br><span class="hljs-built_in" style="color:rgb(0,134,179)">console</span>.log(arr) <span class="hljs-comment" style="color:rgb(153,153,136)">//[1,2,3,4,5]</span></code></pre><br><h4 id="4-immutablejs-" style="color:rgb(51,51,51); font-size:16px">4.引入immutablejs后，不应该再出现对象数组拷贝的代码(如下举例)</h4><br><pre style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:16px; line-height:1.93rem; color:rgb(51,51,51); background-color:rgb(255,255,255)"><code class="hljs javascript" style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:1rem; padding:0.67rem 1.3rem; word-break:normal; background:rgb(248,248,248); margin:0px; display:block; overflow-x:auto"><span class="hljs-comment" style="color:rgb(153,153,136)">//es6对象复制</span><br><span class="hljs-keyword" style="font-weight:700">var</span> state = <span class="hljs-built_in" style="color:rgb(0,134,179)">Object</span>.assign({}, state, {<br>    <span class="hljs-attr">key</span>: value<br>});<br><br><span class="hljs-comment" style="color:rgb(153,153,136)">//array复制</span><br><span class="hljs-keyword" style="font-weight:700">var</span> newArr = [].concat([<span class="hljs-number" style="color:teal">1</span>,<span class="hljs-number" style="color:teal">2</span>,<span class="hljs-number" style="color:teal">3</span>])</code></pre><br><h4 id="5-" style="color:rgb(51,51,51); font-size:16px">5. 获取深层深套对象的值时不需要做每一层级的判空</h4><br><pre style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:16px; line-height:1.93rem; color:rgb(51,51,51); background-color:rgb(255,255,255)"><code class="hljs javascript" style="font-family:Menlo,Monaco,Consolas,&quot;Courier New&quot;,monospace; font-size:1rem; padding:0.67rem 1.3rem; word-break:normal; background:rgb(248,248,248); margin:0px; display:block; overflow-x:auto"><span class="hljs-comment" style="color:rgb(153,153,136)">//javascript</span><br><span class="hljs-keyword" style="font-weight:700">var</span> obj = {<span class="hljs-attr">a</span>:<span class="hljs-number" style="color:teal">1</span>}<br><span class="hljs-keyword" style="font-weight:700">var</span> res = obj.a.b.c   <span class="hljs-comment" style="color:rgb(153,153,136)">//error</span><br><br><span class="hljs-comment" style="color:rgb(153,153,136)">//immutable</span><br><span class="hljs-keyword" style="font-weight:700">var</span> immutableData=immutable.fromJS({<span class="hljs-attr">a</span>:<span class="hljs-number" style="color:teal">1</span>})<br><span class="hljs-keyword" style="font-weight:700">var</span> res = immutableData.getIn([<span class="hljs-string" style="color:rgb(221,17,68)">‘a’</span>, <span class="hljs-string" style="color:rgb(221,17,68)">‘b’</span>, <span class="hljs-string" style="color:rgb(221,17,68)">‘c’</span>])  <span class="hljs-comment" style="color:rgb(153,153,136)">//undefined</span></code></pre><br><h4 id="6-immutable-json-stringify-tojs-" style="color:rgb(51,51,51); font-size:16px"><br>6.immutable对象直接可以转JSON.stringify(),不需要显式手动调用toJS()转原生</h4><br><h4 id="7-size" style="color:rgb(51,51,51); font-size:16px">7. 判断对象是否是空可以直接用size</h4><br><h4 id="8-immutable-chrome-console-tojs-" style="color:rgb(51,51,51); font-size:16px"><br>8.调试过程中要看一个immutable变量中真实的值，可以chrome中加断点，在console中使用.toJS()方法来查看</h4><br><h1 id="-" style="margin:1.3rem 0px; line-height:1.2; color:rgb(51,51,51)"><a name="t18"></a>四. 总结</h1><br><p style="line-height:2.27rem; color:rgb(51,51,51); font-size:16px">&emsp;&emsp;总的来说immutable.js的出现解决了许多原生js的痛点，并且自身对性能方面做了许多的优化处理，而且immuable.js作为和react同期推出的一个产品，完美的契合了react+redux的state流处理，redux的宗旨就是单一数据流，可追溯，这两点恰恰是immutable.js的优势，自然水到渠成，何乐而不为。<br><br>&emsp;&emsp;当然也不是所有使用react+redux的场景都需要使用immutable.js，建议满足项目足够大，state结构足够复杂的原则，小项目可以手动处理shouldComponentUpdate，不建议使用，得不偿失。</p><br>                    </div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Immutable/" rel="tag"># Immutable</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/21/时间复杂度和空间复杂度/" rel="next" title="时间复杂度和空间复杂度">
+                <i class="fa fa-chevron-left"></i> 时间复杂度和空间复杂度
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMTQwNC83OTY4"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/user.jpg"
+               alt="Seas0n" />
+          <p class="site-author-name" itemprop="name">Seas0n</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/seasonsu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github-alt"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://wpa.qq.com/msgrd?v=3&uin=459705913&site=qq&menu=yes" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                  QQ
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#-"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#-"><span class="nav-number">2.</span> <span class="nav-text">要点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#-"><span class="nav-number">3.</span> <span class="nav-text">目录</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-immutable-js"><span class="nav-number"></span> <span class="nav-text">一. immutable.js</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-js-"><span class="nav-number"></span> <span class="nav-text">1.1 原生js引用类型的坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-immutable-js-"><span class="nav-number"></span> <span class="nav-text">1.2 immutable.js介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-persistent-data-structure-"><span class="nav-number">1.</span> <span class="nav-text">1.2.1 Persistent data structure （持久化数据结构）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-structural-sharing-"><span class="nav-number">2.</span> <span class="nav-text">1.2.2 structural sharing （结构共享）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-support-lazy-operation-"><span class="nav-number">3.</span> <span class="nav-text">1.2.3 support lazy operation （惰性操作）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-api-"><span class="nav-number"></span> <span class="nav-text">1.3 常用api介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-immutable-js-"><span class="nav-number"></span> <span class="nav-text">1.4 immutable.js的优缺点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-react-redux-immutable-js-"><span class="nav-number"></span> <span class="nav-text">二. 在react+redux中集成immutable.js实践</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-h5-immutable-js-"><span class="nav-number"></span> <span class="nav-text">2.1 点餐H5项目引入immutable.js前的现状</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#shouldcomponentupdate"><span class="nav-number">0.1.</span> <span class="nav-text">shouldComponentUpdate</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-immutablejs-react-redux-"><span class="nav-number"></span> <span class="nav-text">2.2 如何将immutableJS集成到一个react+redux项目中</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-"><span class="nav-number">1.</span> <span class="nav-text">2.2.1 明确集成方案，边界界定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-"><span class="nav-number">2.</span> <span class="nav-text">2.2.2 具体集成代码实现方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#redux-immutable"><span class="nav-number">2.1.</span> <span class="nav-text">redux-immutable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#-ajax-"><span class="nav-number">2.2.</span> <span class="nav-text">服务端交互ajax封装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#shouldcomponentupdate"><span class="nav-number">2.3.</span> <span class="nav-text">shouldComponentUpdate</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-h5-"><span class="nav-number">3.</span> <span class="nav-text">2.3 点餐H5项目优化前后对比</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-immutable-js-"><span class="nav-number"></span> <span class="nav-text">三. immutable.js使用过程中的一些注意点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-fromjs-tojs-map-list-"><span class="nav-number">0.1.</span> <span class="nav-text">1.fromJS和toJS会深度转换数据，随之带来的开销较大，尽可能避免使用，单层数据转换使用Map()和List()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-js-map-key-string-"><span class="nav-number">0.2.</span> <span class="nav-text">2.js是弱类型，但Map类型的key必须是string！(看下图官网说明)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-immutable-"><span class="nav-number">0.3.</span> <span class="nav-text">3.所有针对immutable变量的增删改必须左边有赋值，因为所有操作都不会改变原来的值，只是生成一个新的变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-immutablejs-"><span class="nav-number">0.4.</span> <span class="nav-text">4.引入immutablejs后，不应该再出现对象数组拷贝的代码(如下举例)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-"><span class="nav-number">0.5.</span> <span class="nav-text">5. 获取深层深套对象的值时不需要做每一层级的判空</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-immutable-json-stringify-tojs-"><span class="nav-number">0.6.</span> <span class="nav-text">6.immutable对象直接可以转JSON.stringify(),不需要显式手动调用toJS()转原生</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-size"><span class="nav-number">0.7.</span> <span class="nav-text">7. 判断对象是否是空可以直接用size</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-immutable-chrome-console-tojs-"><span class="nav-number">0.8.</span> <span class="nav-text">8.调试过程中要看一个immutable变量中真实的值，可以chrome中加断点，在console中使用.toJS()方法来查看</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-"><span class="nav-number"></span> <span class="nav-text">四. 总结</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+</script>
+<div class="copyright" >
+  <span class="author" itemprop="copyrightHolder"> 欢迎来到Seas0n的博客</span>
+  <br>
+  <span class="author" itemprop="copyrightHolder"> PS: 本博客用于日常积累，并非全部原创</span>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i> 你是第<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>位旅客</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>  总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+
+
+</body>
+</html>
