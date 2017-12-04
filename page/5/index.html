@@ -302,6 +302,206 @@
     }
   </style>
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/08/借助nodejs探究websocket/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Seas0n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seas0n">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/08/借助nodejs探究websocket/" itemprop="url">
+                    <span>借助nodejs探究websocket</span>
+                  
+                    <span class="from fromOther">转</span>
+                  
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-08T15:49:22+08:00">
+                2017-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后台/" itemprop="url" rel="index">
+                    <span itemprop="name">后台</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后台/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后台/node/websocket/" itemprop="url" rel="index">
+                    <span itemprop="name">websocket</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="文章导读："><a href="#文章导读：" class="headerlink" title="文章导读："></a>文章导读：</h4><blockquote>
+<ul>
+<li>一、概述-what’s WebSocket?</li>
+<li>二、运行在浏览器中的WebSocket客户端+使用ws模块搭建的简单服务器</li>
+<li>三、Node中的WebSocket</li>
+<li>四、socket.io</li>
+<li>五、扩展阅读<h4 id="一、概述-what’s-WebSocket"><a href="#一、概述-what’s-WebSocket" class="headerlink" title="一、概述-what’s WebSocket?"></a>一、概述-what’s WebSocket?</h4></li>
+</ul>
+</blockquote>
+<h5 id="1-1-为什么我们需要WebSocket这样的实时的通信协议？"><a href="#1-1-为什么我们需要WebSocket这样的实时的通信协议？" class="headerlink" title="1.1 为什么我们需要WebSocket这样的实时的通信协议？"></a>1.1 为什么我们需要WebSocket这样的实时的通信协议？</h5><p>WebSocket是web通信方式的一种，像我们熟知的HTTP协议也是web通信方式的一种。但是我们知道HTTP协议是一种无状态的协议，其服务端本身不具备识别客户端的能力，必须借助外部的一些信息比如说session和cookie，才能与特定的客户端保持通信。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/08/借助nodejs探究websocket/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+  <style>
+    .from{
+        border-radius: 50px;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        text-align: center;
+        margin-left: 6px;
+        line-height: 25px;
+        position: relative;
+        top: -2px;
+        font-size: 17px;
+    }
+    .fromMe{
+        color: #FB7081;
+        border: 2px solid #FB7081;
+
+    }
+    .fromOther{
+        color: #8284E9;
+        border: 2px solid #8284E9;
+    }
+  </style>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/08/nodejs模版引擎/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -367,7 +567,18 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/node/" itemprop="url" rel="index">
+                  <a href="/categories/后台/" itemprop="url" rel="index">
+                    <span itemprop="name">后台</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后台/node/" itemprop="url" rel="index">
                     <span itemprop="name">node</span>
                   </a>
                 </span>
@@ -378,7 +589,7 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/node/node模版引擎/" itemprop="url" rel="index">
+                  <a href="/categories/后台/node/node模版引擎/" itemprop="url" rel="index">
                     <span itemprop="name">node模版引擎</span>
                   </a>
                 </span>
@@ -1132,7 +1343,18 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                  <a href="/categories/后台/" itemprop="url" rel="index">
+                    <span itemprop="name">后台</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后台/PHP/" itemprop="url" rel="index">
                     <span itemprop="name">PHP</span>
                   </a>
                 </span>
@@ -1852,8 +2074,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/html5/" itemprop="url" rel="index">
-                    <span itemprop="name">html5</span>
+                  <a href="/categories/前端/知识点/" itemprop="url" rel="index">
+                    <span itemprop="name">知识点</span>
                   </a>
                 </span>
 
@@ -1925,194 +2147,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-  <style>
-    .from{
-        border-radius: 50px;
-        width: 25px;
-        height: 25px;
-        display: inline-block;
-        text-align: center;
-        margin-left: 6px;
-        line-height: 25px;
-        position: relative;
-        top: -2px;
-        font-size: 17px;
-    }
-    .fromMe{
-        color: #FB7081;
-        border: 2px solid #FB7081;
-
-    }
-    .fromOther{
-        color: #8284E9;
-        border: 2px solid #8284E9;
-    }
-  </style>
-  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/09/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Seas0n">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/user.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Seas0n">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/09/hello-world/" itemprop="url">
-                    <span>Hello World</span>
-                  
-                    <span class="from fromOther">转</span>
-                  
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-09T22:28:32+08:00">
-                2017-03-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/部署/" itemprop="url" rel="index">
-                    <span itemprop="name">部署</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/部署/博客系统搭建/" itemprop="url" rel="index">
-                    <span itemprop="name">博客系统搭建</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p>需要git,Node.js环境</p>
-<p>安装hexo<br>利用 npm 命令即可安装。（在任意位置点击鼠标右键，选择Git bash）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo</div></pre></td></tr></table></figure>
-<p>创建hexo文件夹<br>选择存放hexo文件的位置,执行以下指令(Git bash终端下)，Hexo即会自动在目标文件夹建立网站所需要的所有文件。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/09/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2157,7 +2196,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2168,7 +2207,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2179,7 +2218,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

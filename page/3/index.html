@@ -302,6 +302,188 @@
     }
   </style>
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/05/HTTP、HTTP2-0、SPDY、HTTPS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Seas0n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seas0n">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/05/HTTP、HTTP2-0、SPDY、HTTPS/" itemprop="url">
+                    <span>HTTP、HTTP2.0、SPDY、HTTPS</span>
+                  
+                    <span class="from fromOther">转</span>
+                  
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-05T17:36:15+08:00">
+                2017-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/知识点/" itemprop="url" rel="index">
+                    <span itemprop="name">知识点</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>作为一个经常和web打交道的程序员，了解这些协议是必须的，本文就向大家介绍一下这些协议的区别和基本概念，文中可能不局限于前端知识，还包括一些运维，协议方面的知识</p>
+<h4 id="1-web始祖HTTP"><a href="#1-web始祖HTTP" class="headerlink" title="1. web始祖HTTP"></a>1. web始祖HTTP</h4><p>　　全称：超文本传输协议(HyperText Transfer Protocol)<br>　　伴随着计算机网络和浏览器的诞生，HTTP1.0也随之而来，处于计算机网络中的应用层。<br>　　HTTP是建立在TCP协议之上，所以HTTP协议的瓶颈及其优化技巧都是基于TCP协议本身的特性，例如tcp建立连接的3次握手和断开连接的4次挥手以及每次建立连接带来的RTT延迟时间。</p>
+<h4 id="2-HTTP与现代化浏览器"><a href="#2-HTTP与现代化浏览器" class="headerlink" title="2. HTTP与现代化浏览器"></a>2. HTTP与现代化浏览器</h4><p>　　早在HTTP建立之初，主要就是为了将超文本标记语言(HTML)文档从Web服务器传送到客户端的浏览器。也是说对于前端来说，我们所写的HTML页面将要放在我们的web服务器上，用户端通过浏览器访问url地址来获取网页的显示内容。<br>　　但是到了WEB2.0以来，我们的页面变得复杂，不仅仅单纯的是一些简单的文字和图片，同时我们的HTML页面有了CSS，Java，来丰富我们的页面展示。<br>　　当ajax的出现，我们又多了一种向服务器端获取数据的方法，这些其实都是基于HTTP协议的。<br>　　同样到了移动互联网时代，我们页面可以跑在手机端浏览器里面，但是和PC相比，手机端的网络情况更加复杂，这使得我们开始了不得不对HTTP进行深入理解并不断优化过程中。<br><img src="http://n1.itc.cn/img8/wb/recom/2016/08/24/147198399719339368.PNG" alt=""><br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/05/HTTP、HTTP2-0、SPDY、HTTPS/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+  <style>
+    .from{
+        border-radius: 50px;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        text-align: center;
+        margin-left: 6px;
+        line-height: 25px;
+        position: relative;
+        top: -2px;
+        font-size: 17px;
+    }
+    .fromMe{
+        color: #FB7081;
+        border: 2px solid #FB7081;
+
+    }
+    .fromOther{
+        color: #8284E9;
+        border: 2px solid #8284E9;
+    }
+  </style>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/01/浅谈csrf攻击方式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1886,194 +2068,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-  <style>
-    .from{
-        border-radius: 50px;
-        width: 25px;
-        height: 25px;
-        display: inline-block;
-        text-align: center;
-        margin-left: 6px;
-        line-height: 25px;
-        position: relative;
-        top: -2px;
-        font-size: 17px;
-    }
-    .fromMe{
-        color: #FB7081;
-        border: 2px solid #FB7081;
-
-    }
-    .fromOther{
-        color: #8284E9;
-        border: 2px solid #8284E9;
-    }
-  </style>
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/17/正则/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Seas0n">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/user.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Seas0n">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/17/正则/" itemprop="url">
-                    <span>正则</span>
-                  
-                    <span class="from fromOther">转</span>
-                  
-                </a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-17T10:39:40+08:00">
-                2017-04-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/正则/" itemprop="url" rel="index">
-                    <span itemprop="name">正则</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="1-校验密码强度"><a href="#1-校验密码强度" class="headerlink" title="1 . 校验密码强度"></a>1 . 校验密码强度</h4><p>密码的强度必须是包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间。</p>
-<p>^(?=.<em>\d)(?=.</em>[a-z])(?=.*[A-Z]).{8,10}$</p>
-<h4 id="2-校验中文"><a href="#2-校验中文" class="headerlink" title="2. 校验中文"></a>2. 校验中文</h4><p>字符串仅能是中文。</p>
-<p>^[\u4e00-\u9fa5]{0,}$<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/17/正则/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2118,7 +2117,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">50</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2129,7 +2128,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2140,7 +2139,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
