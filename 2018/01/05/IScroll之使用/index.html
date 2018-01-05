@@ -1,0 +1,831 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iscroll," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="基础调用12345678910111213141516171819202122232425262728293031323334353637383940myScroll = new IScroll(&amp;quot;#wrapper&amp;quot;,&amp;#123;        probeType: 3,//      momentum: false,//关闭惯性滑动        mouseWheel: tr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IScroll之使用">
+<meta property="og:url" content="http://yoursite.com/2018/01/05/IScroll之使用/index.html">
+<meta property="og:site_name" content="Seas0n">
+<meta property="og:description" content="基础调用12345678910111213141516171819202122232425262728293031323334353637383940myScroll = new IScroll(&amp;quot;#wrapper&amp;quot;,&amp;#123;        probeType: 3,//      momentum: false,//关闭惯性滑动        mouseWheel: tr">
+<meta property="og:updated_time" content="2018-01-05T03:38:02.874Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IScroll之使用">
+<meta name="twitter:description" content="基础调用12345678910111213141516171819202122232425262728293031323334353637383940myScroll = new IScroll(&amp;quot;#wrapper&amp;quot;,&amp;#123;        probeType: 3,//      momentum: false,//关闭惯性滑动        mouseWheel: tr">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/05/IScroll之使用/"/>
+
+
+
+
+
+  <title> IScroll之使用 | Seas0n </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?21d25a2d305d730d5986940ccb294463";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seas0n</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-keyword">
+          <a href="/keyword" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-file-word-o"></i> <br />
+            
+            关键词
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+    s
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+  <style>
+    .from{
+        border-radius: 50px;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        text-align: center;
+        margin-left: 6px;
+        line-height: 25px;
+        position: relative;
+        top: -2px;
+        font-size: 17px;
+    }
+    .fromMe{
+        color: #FB7081;
+        border: 2px solid #FB7081;
+
+    }
+    .fromOther{
+        color: #8284E9;
+        border: 2px solid #8284E9;
+    }
+  </style>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/05/IScroll之使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Seas0n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seas0n">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                IScroll之使用
+                
+                  <span class="from fromOther">转</span>
+                
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-05T11:27:04+08:00">
+                2018-01-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/插件/" itemprop="url" rel="index">
+                    <span itemprop="name">插件</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/插件/IScroll/" itemprop="url" rel="index">
+                    <span itemprop="name">IScroll</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="基础调用"><a href="#基础调用" class="headerlink" title="基础调用"></a>基础调用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">myScroll = new IScroll(&quot;#wrapper&quot;,&#123;</div><div class="line"></div><div class="line">        probeType: 3,</div><div class="line"></div><div class="line">//      momentum: false,//关闭惯性滑动</div><div class="line"></div><div class="line">        mouseWheel: true,//鼠标滑轮开启</div><div class="line"></div><div class="line">        scrollbars: true,//滚动条可见</div><div class="line"></div><div class="line">        fadeScrollbars: true,//滚动条渐隐</div><div class="line"></div><div class="line">        interactiveScrollbars: true,//滚动条可拖动</div><div class="line"></div><div class="line">        shrinkScrollbars: &apos;scale&apos;, // 当滚动边界之外的滚动条是由少量的收缩</div><div class="line"></div><div class="line">        useTransform: true,//CSS转化</div><div class="line"></div><div class="line">        useTransition: true,//CSS过渡</div><div class="line"></div><div class="line">        bounce: true,//反弹</div><div class="line"></div><div class="line">        freeScroll: false,//只能在一个方向上滑动</div><div class="line"></div><div class="line">        startX: 0,</div><div class="line"></div><div class="line">        startY: 0,</div><div class="line"></div><div class="line">//      snap: &quot;li&quot;,//以 li 为单位</div><div class="line"></div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    myScroll.on(&apos;scroll&apos;,function()&#123;&#125;);</div><div class="line"></div><div class="line">    myScroll.on(&quot;scrollEnd&quot;,function()&#123;&#125;);</div><div class="line"></div><div class="line"></div><div class="line">    document.addEventListener(&apos;touchmove&apos;, function (e) &#123;</div><div class="line">        e.preventDefault();</div><div class="line">    &#125;, false);</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<style>
+    td{word-wrap: break-word;}
+</style>
+
+<h4 id="参数属性"><a href="#参数属性" class="headerlink" title="参数属性"></a>参数属性</h4><table><tbody><tr><td valign="center">所属</td><td valign="center">属性名</td><td valign="center">说明</td><td valign="center">默认值</td></tr><tr><td rowspan="4" valign="top">核心库croe</td><td valign="top">options.useTransform</td><td valign="top">是否使用CSS3的Transform属性</td><td valign="top">true</td></tr><tr><td valign="top">options.useTransition</td><td valign="top">是否使用CSS3的Transition属性，否则使用requestAnimationFram代替</td><td valign="top">true</td></tr><tr><td valign="top">options.HWCompositing</td><td valign="top">是否启用硬件加速</td><td valign="top">true</td></tr><tr><td valign="top">options.bounce</td><td valign="top">是否启用弹力动画效果，关掉可以加速</td><td valign="top">true</td></tr><tr><td rowspan="14" valign="top">基础特性Basic&nbsp;features</td><td valign="top">options.click</td><td valign="top">是否启用click事件。建议关闭此选项并启用自定义的tap事件（options.tap）</td><td valign="top">false</td></tr><tr><td valign="top">options.disableMouse</td><td valign="top">是否关闭鼠标事件探测。如知道运行在哪个平台，可以开启它来加速。</td><td valign="top">false</td></tr><tr><td valign="top">options.disablePointer</td><td valign="top">是否关闭指针事件探测。如知道运行在哪个平台，可以开启它来加速。</td><td valign="top">false</td></tr><tr><td valign="top">options.disableTouch</td><td valign="top">是否关闭触摸事件探测。如知道运行在哪个平台，可以开启它来加速。</td><td valign="top">false</td></tr><tr><td valign="top">options.eventPassthrough</td><td valign="top">使用IScroll的横轴滚动时，如想使用系统立轴滚动并在横轴上生效，请开启。<a href="http://lab.cubiq.org/iscroll5/demos/event-passthrough/" target="_blank">event&nbsp;passthrough&nbsp;demo</a></td><td valign="top">false</td></tr><tr><td valign="top">options.freeScroll</td><td valign="top">主要在上下左右滚动都生效时使用，可以向任意方向滚动。<a href="http://lab.cubiq.org/iscroll5/demos/2d-scroll/" target="_blank">2D&nbsp;scroll&nbsp;demo</a></td><td valign="top">false</td></tr><tr><td valign="top">options.keyBindings</td><td valign="top">绑定按键事件。<a href="http://iscrolljs.com/#key-bindings" target="_blank">Key&nbsp;bindings</a>&nbsp;</td><td valign="top">false</td></tr><tr><td valign="top">options.invertWheelDirection</td><td valign="top">反向鼠标滚轮。</td><td valign="top">false</td></tr><tr><td valign="top">options.momentum</td><td valign="top">是否开启动量动画，关闭可以提升效率。</td><td valign="top">true</td></tr><tr><td valign="top">options.mouseWheel</td><td valign="top">是否监听鼠标滚轮事件。</td><td valign="top">false</td></tr><tr><td valign="top">options.preventDefault</td><td valign="top">是否屏蔽默认事件。</td><td valign="top">true</td></tr><tr><td valign="top">options.scrollbars</td><td valign="top">是否显示默认滚动条</td><td valign="top">false</td></tr><tr><td valign="top">options.scrollXoptions.scrollY</td><td valign="top">可以设置是否显示横向或纵向滚动条</td><td valign="top">scrollX &nbsp;falsescrollY &nbsp;true</td></tr><tr><td valign="top">options.tap</td><td valign="top">是否启用自定义的tap事件可以自定义tap事件名</td><td valign="top">false</td></tr><tr><td rowspan="5" valign="top">滚动条Scrollbars</td><td valign="top">options.scrollbars</td><td valign="top">是否显示默认滚动条</td><td valign="top">false</td></tr><tr><td valign="top">options.fadeScrollbars</td><td valign="top">是否渐隐滚动条，关掉可以加速</td><td valign="top">true</td></tr><tr><td valign="top">options.interactiveScrollbars</td><td valign="top">用户是否可以拖动滚动条</td><td valign="top">false</td></tr><tr><td valign="top">options.resizeScrollbars</td><td valign="top">是否固定滚动条大小，建议自定义滚动条时可开启。</td><td valign="top">false</td></tr><tr><td valign="top">options.shrinkScrollbars</td><td valign="top">滚动超出滚动边界时，是否收缩滚动条。‘clip’：裁剪超出的滚动条‘scale’:按比例的收缩滚动条（占用CPU资源）false:不收缩，</td><td valign="top">false</td></tr><tr><td rowspan="7" valign="top">&nbsp;</td><td valign="top">options.indicators</td><td valign="top">指示IScroll该如何滚动，Scrollbars的底层实现方式。</td><td valign="top">&nbsp;</td></tr><tr><td valign="top">options.indicators.el</td><td valign="top">制定滚动条的容器。容器中的第一个元素即为指示器。例如：indicators:&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;el:&nbsp;document.getElementById(‘indicator’)}indicators:&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;el:&nbsp;’#indicator’}</td><td valign="top">&nbsp;</td></tr><tr><td valign="top">options.indicators.ignoreBoundaries</td><td valign="top">是否忽略容器边界。设为true&nbsp;可以设置滚动速度<a href="http://lab.cubiq.org/iscroll5/demos/parallax/" target="_blank">parallax&nbsp;demo</a></td><td valign="top">false</td></tr><tr><td valign="top">options.indicators.listenXoptions.indicators.listenY</td><td valign="top">指示器监听那个方向的滚动，可以设置为一个方向或2个方向</td><td valign="top">true</td></tr><tr><td valign="top">options.indicators.speedRatioXoptions.indicators.speedRatioY</td><td valign="top">指示器相对主滚动条的速度</td><td valign="top">0</td></tr><tr><td valign="top">options.indicators.fadeoptions.indicators.interactiveoptions.indicators.resizeoptions.indicators.shrink</td><td valign="top">如scrollbars的设置<a href="http://lab.cubiq.org/iscroll5/demos/minimap/" target="_blank">minimap&nbsp;demo</a></td><td valign="top">&nbsp;</td></tr><tr><td valign="top">options.probeType</td><td valign="top">需要使用iscroll-probe.js才能生效probeType：1&nbsp;&nbsp;滚动不繁忙的时候触发probeType：2&nbsp;&nbsp;滚动时每隔一定时间触发probeType：3&nbsp;&nbsp;每滚动一像素触发一次</td><td valign="top">&nbsp;</td></tr><tr><td valign="top">分割页面snap</td><td valign="top">options.snap</td><td valign="top">自动分割容器，用于制作走马灯效果等。Options.snap:true//根据容器尺寸自动分割Options.snap:el//根据元素分割</td><td valign="top">false</td></tr><tr><td rowspan="5" valign="top">缩放zoom</td><td valign="top">options.zoom</td><td valign="top">是否打开缩放最好使用iscroll-zoom.js如放大模糊，可将源容器定义为2倍大小，然后scale(0.5)<a href="http://lab.cubiq.org/iscroll5/demos/zoom/" target="_blank">zoom&nbsp;demo</a></td><td valign="top">false</td></tr><tr><td valign="top">options.zoomMax</td><td valign="top">最大缩放等级</td><td valign="top">4</td></tr><tr><td valign="top">options.zoomMin</td><td valign="top">最小缩放等级</td><td valign="top">1</td></tr><tr><td valign="top">options.startZoom</td><td valign="top">初始缩放等级</td><td valign="top">1</td></tr><tr><td valign="top">options.wheelAction</td><td valign="top">滚轮动作设为’zoom’，可以用滚轮缩放</td><td valign="top">undefined</td></tr><tr><td rowspan="7" valign="top">更多设置</td><td valign="top">options.bindToWrapper</td><td valign="top">光标、触摸超出容器时，是否停止滚动</td><td valign="top">false</td></tr><tr><td valign="top">options.bounceEasing</td><td valign="top">弹力动画效果预置效果：’quadratic’,&nbsp;’circular’,&nbsp;’back’,&nbsp;’bounce’,&nbsp;’elastic’（最后两个不能通过css3表现）还可以自定义效果bounceEasing:&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;style:&nbsp;’cubic-bezier(0,0,1,1)’,//css3时&nbsp;&nbsp;&nbsp;&nbsp;fn:&nbsp;function&nbsp;(k)&nbsp;{&nbsp;return&nbsp;k;&nbsp;}//不使用css3，使用requestAnimationFrame时}</td><td valign="top">‘circular’</td></tr><tr><td valign="top">options.bounceTime</td><td valign="top">弹力动画持续的毫秒数</td><td valign="top">600</td></tr><tr><td valign="top">options.deceleration</td><td valign="top">滚动动量减速越大越快，建议不大于0.01</td><td valign="top">0.0006</td></tr><tr><td valign="top">options.mouseWheelSpeed</td><td valign="top">鼠标滚轮速度</td><td valign="top">&nbsp;</td></tr><tr><td valign="top">options.preventDefaultException</td><td valign="top">列出哪些元素不屏蔽默认事件；</td><td valign="top">{tagName:&nbsp;/^(INPUT|TEXTAREA|BUTTON|SELECT)$/&nbsp;}</td></tr><tr><td valign="top">options.resizePolling</td><td valign="top">重新调整窗口大小时，重新计算IScroll的时间间隔</td><td valign="top">60</td></tr><tr><td valign="top">键位绑定</td><td valign="top">options.keyBindings</td><td valign="top">监听按键事件控制IScroll例如：keyBindings:&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;pageUp:&nbsp;33,&nbsp;&nbsp;&nbsp;&nbsp;pageDown:&nbsp;34,&nbsp;&nbsp;&nbsp;&nbsp;end:&nbsp;35,&nbsp;&nbsp;&nbsp;&nbsp;home:&nbsp;36,&nbsp;&nbsp;&nbsp;&nbsp;left:&nbsp;37,&nbsp;&nbsp;&nbsp;&nbsp;up:&nbsp;38,&nbsp;&nbsp;&nbsp;&nbsp;right:&nbsp;39,&nbsp;&nbsp;&nbsp;&nbsp;down:&nbsp;40}</td><td valign="top">&nbsp;</td></tr><tr><td valign="top">&nbsp;</td><td valign="top">&nbsp;</td><td valign="top">&nbsp;</td><td valign="top">&nbsp;</td></tr></tbody></table>
+
+
+<h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><table><tbody><tr><td valign="center"><p>所属</p></td><td valign="center"><p>方法名</p></td><td valign="center"><p>说明</p></td></tr><tr><td valign="top"><p>滚动</p></td><td valign="top"><p>scrollTo(x,&nbsp;y,&nbsp;time,&nbsp;easing)</p></td><td valign="top"><p>滚动到：x，y，事件，easing方式</p><p>x:int</p><p>y:int</p><p>time:int</p><p>Easing:&nbsp;quadratic&nbsp;|&nbsp;circular&nbsp;|&nbsp;back&nbsp;|&nbsp;bounce&nbsp;|&nbsp;elastic</p><p>见IScroll.utils.ease&nbsp;对象</p><p>例：</p><p>myScroll.scrollTo(0,&nbsp;-100,&nbsp;1000,&nbsp;IScroll.utils.ease.elastic);</p></td></tr><tr><td valign="top"><p>&nbsp;</p></td><td valign="top"><p>scrollBy(x,&nbsp;y,&nbsp;time,&nbsp;easing)</p></td><td valign="top"><p>滚动到相对于当前位置的某处</p><p>其余同上</p></td></tr><tr><td valign="top"><p>&nbsp;</p></td><td valign="top"><p>scrollToElement(el,&nbsp;time,&nbsp;offsetX,&nbsp;offsetY,&nbsp;easing)</p></td><td valign="top"><p>滚动到某个元素。el为必须的参数</p><p>offsetX/offsetY：相对于el元素的位移。设为true即为屏幕中心</p><p><a href="http://lab.cubiq.org/iscroll5/demos/scroll-to-element/" target="_blank">scroll&nbsp;to&nbsp;element</a></p></td></tr><tr><td rowspan="2" valign="top"><p>分割页面snap</p></td><td valign="top"><p>goToPage(x,&nbsp;y,&nbsp;time,&nbsp;easing)</p></td><td valign="top"><p>根据options.snap分割页面，跳转到横向、纵向某页。XY可以同时生效。</p><p>结合options.snap使用</p></td></tr><tr><td valign="top"><p>next()</p><p>prev()</p></td><td valign="top"><p>上一页，下一页</p><p>结合options.snap使用</p></td></tr><tr><td valign="top"><p>缩放</p></td><td valign="top"><p>zoom(scale,&nbsp;x,&nbsp;y,&nbsp;time)</p></td><td valign="top"><p>缩放容器</p><p>Scale:缩放因子</p></td></tr><tr><td valign="top"><p>刷新</p></td><td valign="top"><p>refresh()</p></td><td valign="top"><p>刷新IScroll</p></td></tr><tr><td valign="top"><p>销毁</p></td><td valign="top"><p>destroy()</p></td><td valign="top"><p>销毁IScroll，节省资源</p></td></tr><tr><td valign="top">&nbsp;</td><td valign="top">&nbsp;</td><td valign="top">&nbsp;<br><br></td></tr></tbody></table>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iscroll/" rel="tag"># iscroll</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/04/scss语法/" rel="next" title="scss语法">
+                <i class="fa fa-chevron-left"></i> scss语法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMTQwNC83OTY4"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/user.jpg"
+               alt="Seas0n" />
+          <p class="site-author-name" itemprop="name">Seas0n</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/seasonsu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github-alt"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://wpa.qq.com/msgrd?v=3&uin=459705913&site=qq&menu=yes" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                  QQ
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础调用"><span class="nav-number">1.</span> <span class="nav-text">基础调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数属性"><span class="nav-number">2.</span> <span class="nav-text">参数属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#API"><span class="nav-number">3.</span> <span class="nav-text">API</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+</script>
+<div class="copyright" >
+  <span class="author" itemprop="copyrightHolder"> 欢迎来到Seas0n的博客</span>
+  <br>
+  <span class="author" itemprop="copyrightHolder"> PS: 本博客用于日常积累，并非全部原创</span>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i> 你是第<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>位旅客</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>  总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+
+
+</body>
+</html>
