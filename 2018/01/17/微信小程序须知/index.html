@@ -1,0 +1,827 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="小程序," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="小程序刚开放公测，互联网圈内开始了各种解读和猜测。其中有观点认为小程序和HTML5有着紧密关联，甚至小程序就是基于HTML5开发。 经过仔细研究文档和代码开发，从视图层的角度来说，小程序与传统HTML5还是有明显的区别，主要区别在于：1、开发工具不同；区别于H5的开发工具+浏览器Device Mode预览的模式，小程序的开发基于自己的开发者工具，可以实现同步本地文件+开发调试+编译+预览+上传+发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序须知">
+<meta property="og:url" content="http://yoursite.com/2018/01/17/微信小程序须知/index.html">
+<meta property="og:site_name" content="Seas0n">
+<meta property="og:description" content="小程序刚开放公测，互联网圈内开始了各种解读和猜测。其中有观点认为小程序和HTML5有着紧密关联，甚至小程序就是基于HTML5开发。 经过仔细研究文档和代码开发，从视图层的角度来说，小程序与传统HTML5还是有明显的区别，主要区别在于：1、开发工具不同；区别于H5的开发工具+浏览器Device Mode预览的模式，小程序的开发基于自己的开发者工具，可以实现同步本地文件+开发调试+编译+预览+上传+发">
+<meta property="og:image" content="https://dn-Myg6wSTV.qbox.me/ed6f25389724a41f64a1.png?imageView2/0/w/1280/h/960/ignore-error/1">
+<meta property="og:image" content="https://dn-Myg6wSTV.qbox.me/d17a75c7c8fd85610dcf.png?imageView2/0/w/1280/h/960/ignore-error/1">
+<meta property="og:image" content="https://dn-Myg6wSTV.qbox.me/2ff68443f7fa78402c14.png?imageView2/0/w/1280/h/960/ignore-error/1">
+<meta property="og:image" content="https://dn-Myg6wSTV.qbox.me/03f1fc20c7b0868a40bf.png?imageView2/0/w/1280/h/960/ignore-error/1">
+<meta property="og:image" content="https://dn-Myg6wSTV.qbox.me/ecc829873d02b9cdb3ea.jpg?imageView2/0/w/1280/h/960/ignore-error/1">
+<meta property="og:updated_time" content="2018-01-17T02:57:33.841Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信小程序须知">
+<meta name="twitter:description" content="小程序刚开放公测，互联网圈内开始了各种解读和猜测。其中有观点认为小程序和HTML5有着紧密关联，甚至小程序就是基于HTML5开发。 经过仔细研究文档和代码开发，从视图层的角度来说，小程序与传统HTML5还是有明显的区别，主要区别在于：1、开发工具不同；区别于H5的开发工具+浏览器Device Mode预览的模式，小程序的开发基于自己的开发者工具，可以实现同步本地文件+开发调试+编译+预览+上传+发">
+<meta name="twitter:image" content="https://dn-Myg6wSTV.qbox.me/ed6f25389724a41f64a1.png?imageView2/0/w/1280/h/960/ignore-error/1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/17/微信小程序须知/"/>
+
+
+
+
+
+  <title> 微信小程序须知 | Seas0n </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?21d25a2d305d730d5986940ccb294463";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seas0n</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-keyword">
+          <a href="/keyword" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-file-word-o"></i> <br />
+            
+            关键词
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+    s
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+  <style>
+    .from{
+        border-radius: 50px;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        text-align: center;
+        margin-left: 6px;
+        line-height: 25px;
+        position: relative;
+        top: -2px;
+        font-size: 17px;
+    }
+    .fromMe{
+        color: #FB7081;
+        border: 2px solid #FB7081;
+
+    }
+    .fromOther{
+        color: #8284E9;
+        border: 2px solid #8284E9;
+    }
+  </style>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/17/微信小程序须知/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Seas0n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seas0n">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                微信小程序须知
+                
+                  <span class="from fromOther">转</span>
+                
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-17T10:40:00+08:00">
+                2018-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/小程序/" itemprop="url" rel="index">
+                    <span itemprop="name">小程序</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p></p><p>小程序刚开放公测，互联网圈内开始了各种解读和猜测。其中有观点认为小程序和HTML5有着紧密关联，甚至小程序就是基于HTML5开发。 </p><p>经过仔细研究文档和代码开发，从视图层的角度来说，小程序与传统HTML5还是有明显的区别，主要区别在于：</p><br>1、开发工具不同；<p>区别于H5的开发工具+浏览器Device Mode预览的模式，小程序的开发基于自己的开发者工具，可以实现同步本地文件+开发调试+编译+预览+上传+发布等一整套流程。</p><p>2、开发语言不同；</p><p>小程序自己开发了一套WXML标签语言和WXSS样式语言，并非直接使用标准的HTML5+CSS3。</p><p>3、组件封装不同；</p><p>小程序独立出来了很多原生APP的组件，在HTML5需要模拟才能实现的功能，小程序里可以直接调用组件。</p><br><a id="more"></a><p></p>
+<p></p><p><b>小程序开发者工具</b></p><p>微信小程序的开发工具，基于MINA框架（现已取消该名称），现在官方公布的工具名为<b>微信web开发者工具</b>。小程序开发工具是一种基于Native System系统层的框架，由于并非运行在浏览器中，所以JavaScript在web中的一些诸如Document、Window等方法无法使用。 </p><p>从执行的速度方面，普通HTML5和小程序有哪些不同呢，用一张图表简单表示下：</p><img data-rawwidth="678" data-rawheight="276" width="678" data-original="https://pic1.zhimg.com/v2-f22f385ea09ba2705cc34ee66512bd58_r.png" style="" class="lazyload" src="https://dn-Myg6wSTV.qbox.me/ed6f25389724a41f64a1.png?imageView2/0/w/1280/h/960/ignore-error/1" data-width="800" data-height="600"><br><ul><li>传统HTML5在加载的时候受限于网络环境，需要顺序加载HTML、CSS、JS，然后返回数据，最后渲染页面显示在浏览器中。用户经常需要等待很长时间，体验会受到影响。<br></li><li>相比之下，小程序的两个线程：Appservice Thread和View Thread会同时进行、并行加载，甚至Appservice Thread会更早执行，当视图线程加载完，通知Appservice，Appservice 会把准备好的数据用setData的方法返回给视图线程。<br></li></ul><p>小程序的这种优化策略，可以减少用户的等待时间、加快小程序的响应速度。</p><h3 data-id="heading-1"><b>WXML</b></h3><p><strong>1、标签</strong></p><p>WXML在语法上更接近XML语言，遵循SGML规范，区别于HTML语言随意的标签闭合方式，WXML语言必须包括开始标签和结束标签，以image标签为例，以下2种写法都支持：</p><div><pre><code> src=”” /&gt;<br>or<br> src=”” &gt;<br></code></pre></div><p>这里需要注意的是： <br></p><p><strong>所有组件与属性都是小写，以连字符-连接。</strong></p><p><strong>2、文件引入</strong></p><p>WXML提供两种文件引入方式，import和include。区别在于：import可以引入定义好的template模板，模板是有作用域的；而include就是拷贝一个公用的代码片段到目标文件中，适合做公共页面片的拆分。</p><div><pre><code><!--import--><br> src=”../template/a.wxml”/&gt;<br><!--include--><br> src=”../include/footer.wxml”/&gt;<br></code></pre></div><p>文件引入在小程序做模块化拆分的过程中非常重要。<br></p><h3 data-id="heading-2"><b>WXSS</b></h3><p><strong>1、尺寸单位</strong></p><p>WXSS支持的单位有px、rem和rpx，其中rem和rpx可以针对屏幕容器进行适配，px则为固定尺寸。 其中1rpx=0.5px，在WXSS和WXML中定义的rpx单位最终会转换为在手机端可以识别的rem单位。 </p><p><strong>建议</strong>：开发微信小程序时设计师可以用 iPhone6 作为视觉稿的标准。 <br>所以工程师拿到750的设计稿，在PS中量取的容器大小，可以直接定义为rpx，不需要进行2倍尺寸的换算。</p><div><pre><code>view{<br>    font-size:26rpx;<br>    width:400rpx;<br>    height:400rpx;<br>}<br></code></pre></div><p>备注：rpx的单位不光在样式中会自适应，写在WXML的style里也会根据屏幕自适应。<br></p><p><strong>2、样式引入</strong></p><p>看到很多文章说小程序不支持样式的@import，其实官方公布的第一个正式开发者工具就已经支持了。</p><div><pre><code>import “../../wxss/common.wxss”;<br></code></pre></div><p><strong>3、选择器</strong><br></p><p>小程序支持的选择器在官方公布的文档中包括.class、#id、 element、element,element、::after(注意是双冒号)、::before这6种选择器。 </p><p>经过测试，小程序对于:first-child、:last-child、.class-a .class-b{}，甚至更多层级的嵌套都是支持的。 不过官方并不推荐级联的这种写法，因为考虑到后面切Native的扩展可能，会没办法支持级联选择。 </p><p>所以保险起见，不建议.class-a .class-b{}这种级联的写法，以免后期工具过滤导致页面错乱。</p><h3 data-id="heading-3"><b>组件</b></h3><p>小程序在0.10.102800的版本中加入了 textarea，并即将废弃操作反馈的系列组件。 <br>我们简单通过一个表格来对比下HTML5和小程序的组件标签的区别；</p><img data-rawwidth="620" data-rawheight="411" width="620" data-original="https://pic2.zhimg.com/v2-7d628fc0f220e3231745703054f50001_r.png" style="" class="lazyload" src="https://dn-Myg6wSTV.qbox.me/d17a75c7c8fd85610dcf.png?imageView2/0/w/1280/h/960/ignore-error/1" data-width="800" data-height="600"><p>下面一一来分析下： </p><p><b>1、view </b></p><p>div和view都是盒模型，默认display:block。 盒模型在布局过程中，一般推荐display:flex的写法，配合justify-content:center;align-items:center;的定义实现盒模型在横向和纵向的居中。</p><p><strong>2、text</strong></p><p>除了text文本节点以外的其他节点都无法长按选中。截止到0.10.102800的开发者工具text支持嵌套text，不过有class的text会被面板过滤，样式不影响。</p><div><pre><code> class=”text-tips”&gt;<br>     class=”text-light”&gt;* 友情提示!<p></p>
+<!--支持text嵌套text-->
+<p><text></text><br>    <view></view></p>
+<!--不支持text嵌套其他标签-->
+<p></p></code></pre></div><p><strong>3、 icon</strong><br></p><p>icon可以直接用微信组件默认的图标，默认是iconfont格式的，从WeUI那边沿袭过来的一种做法。 自定义的icon推荐svg sprite格式或者iconfont。 </p><p>目前来看，市面上还没有很好的自动合并单个svg为svg sprite的工具，需要手动拼图。</p><p><strong>4、input</strong></p><p>input 的类型，有效值：text, number, idcard, digit, time, date 。 input不需要设置line-height或padding来纵向居中，默认placeholder的文字是居中的。 小程序把checkbox和radio都单独做成了组件，默认的input只支持输入文本。 上传文件在小程序里需要调用chooseImage事件完成；</p><div><pre><code> type=”file” class=”upload-input” accept=”image/*”&gt;<br><!--HTML5的上传文件--><br> class=” upload-block” bindtap=”chooseImage”&gt;<br> class=”upload-block” wx:for=”&lcub;&lcub;imageList&rcub;&rcub;” wx:for-item=”image”&gt;<br>   src=”&lcub;&lcub;image&rcub;&rcub;” class=”pic” src=”&lcub;&lcub;image&rcub;&rcub;” bindtap=”previewImage”&gt;<p></p>
+<!--小程序的上传图片，可以调用app原生的拍照和上传图片接口-->
+<p></p></code></pre></div><p>小程序CSS里的 :focus 不生效，需要修改placehoder的样式，通过placeholder-class=”class”来定义。</p><div><pre><code>.login .input-group input::-webkit-input-placeholder {<br>    color: #c0c0c0;<br>}<br>.login .input-group input:focus::-webkit-input-placeholder {<br>    color: transparent;<br>}<br><!--HTML5通过focus修改placeholder默认和点击时候的样式--><br> type=”text”  placeholder=”邮箱” placeholder-style=”color:#c0c0c0” /&gt;<br> password type=”number” placeholder=”密码” placeholder-class=”placeholder”  /&gt;<br><!--小程序里通过placeholder-style和placeholder-class修改样式，不过并不能修改点击时候input的边框颜色--><br></code></pre></div><p><strong>5、picker</strong></p><p>picker默认支持普通、日期和时间三种选择器。 picker通过bindchange事件来调取range中自定义的数据数据，并展示到页面中，调用的是系统原生的select。 </p><p>这里小程序废弃了select组件，考虑到的是这个组件的交互不适合移动场景，最终用picker代替了。</p><div><pre><code> class=”select-block”&gt;<br>     value=”0”&gt;选择<br>     value=”1”&gt;北京<br>     value=”2”&gt;上海<p></p>
+<!--HTML5的下拉框-->
+<p> bindchange=”bindPickerChange” value=”&lcub;&lcub;index&rcub;&rcub;” range=”&lcub;&lcub;area&rcub;&rcub;”&gt;<br>    class=”picker”&gt;<br>      &lcub;&lcub;area[index]&rcub;&rcub;</p>
+<p>Page({<br>  data: {<br>    area: [‘中国’, ‘美国’, ‘巴西’, ‘日本’],<br>  }<br>})<br><!--js里的area数组--><br><!--picker下拉框--><br></p></code></pre></div><p><strong>6、 navigator</strong><br></p><p>navigator支持相对路径和绝对路径的跳转，默认是打开新页面，当前页面打开需要加redirect； </p><p>navigator仅支持5级页面的跳转； </p><p>navigator不可跳转到小程序外的链接地址；</p><div><pre><code><navigator redirect="" url="../login/index">登录页</navigator><br></code></pre></div><p>在小程序开发工具里，默认打开新页面，工具左上角有返回按钮。加上redirect，当前页打开，不出现返回按钮。<br></p><p><strong>7、image</strong></p><p>小程序的image与HTML5的img最大的区别在于：小程序的image是按照background-image来实现的。 默认image的高宽是320*240。必须通过样式定义去覆盖这个默认高宽，auto在这里不生效。</p><p>（<strong>开发者说这样设置的原因是：如果设置 auto ，页面布局会因为图片加载的过程有一个闪的现象（例如高度从 0 到 height ），所以要求一定要设置一个宽度和高度。</strong>） </p><p>最新的api支持获取图片的高宽。不过这里返回的高宽是px单位，不支持屏幕自适应； </p><p>图片包括三种缩放模式scaleToFill、aspectFit、aspectFill和9种裁剪模式，三种缩放模式的实现原理对应如下：</p><div><pre><code>scaleToFill{<br>    background-size:100% 100%;//不保持纵横比缩放图片，使图片的宽高完全拉伸至填满 image 元素<br>}<br>aspectFit{<br>    background-size:contain;//保持纵横比缩放图片，使图片的长边能完全显示出来。也就是说，可以完整地将图片显示出来。<br>}<br>aspectFill{<br>    background-size:cover;//保持纵横比缩放图片，只保证图片的短边能完全显示出来。也就是说，图片通常只在水平或垂直方向是完整的，另一个方向将会发生截取。<br>}<br></code></pre></div><p><strong>8、button</strong><br></p><p>额外补充下button的实现方式，button的边框是用:after方式实现的，用户如果在button上定义边框会出现两条线，需用:after的方式去覆盖默认值。不过这个应该会在最近的开发者工具中修复。</p><div><pre><code>button::after {<br>content:” “;<br>width:200%;<br>height:200%;<br>border:1px solid rgba(0, 0, 0, 0.2);<br>}<br></code></pre></div><p>小程序不支持button:active这种样式的写法，button的点击态通过.button-hover{}的样式覆盖，也可修改hover-class为自定义的样式名。<br></p><p><strong>9、css3动画</strong></p><p>最新版的开发工具已经支持transition和keyframes动画，不用js苦哈哈的写动画队列了。</p><p>除了官方公布的小程序的组件之外，有一些标签比如，span、em、strong、b也是支持的，只是官方并不推荐使用。</p><h3 data-id="heading-4"><b>浏览器内核</b></h3><ul><li><p>在iOS平台上，微信的浏览器渲染内核是wkwebview；</p></li><li><p>而在Android平台上，微信则采用了腾讯QQ浏览器2016年4月份发布的X5内核（blink内核）作为渲染引擎。</p></li><li><p>在小程序的开发工具上，小程序的JavaScript是运行在chrome内核（nwjs）中。</p></li></ul><h3 data-id="heading-5"><b>autoprefixer</b></h3><p>小程序会在接下来的版本中加入自动补全css前缀，使用的插件是postcss的autoprefixer，设置的兼容级别是&gt; ios 8及&gt; android 4.1。</p><div><pre><code>const browserOptions = {<br>  browsers: [<br>  ‘last 3 versions’,<br>  ‘ios &gt;= 8’,<br>  ‘android &gt;= 4.1’,<br>  ]<br>}<br></code></pre></div><p>也就是说，我们在写css的时候只需要写没有前缀的写法。比如：display:flex，工具自动编译为display:flex;display:-webkit-flex。</p><h3 data-id="heading-6"><b>OM小程序实战</b></h3><p><img data-rawwidth="673" data-rawheight="409" width="673" data-original="https://pic2.zhimg.com/v2-78c39ab7529312124f35529f6e234f79_r.png" style="" class="lazyload" src="https://dn-Myg6wSTV.qbox.me/2ff68443f7fa78402c14.png?imageView2/0/w/1280/h/960/ignore-error/1" data-width="800" data-height="600">上图为OM小程序的开发界面。下面我们从布局、智能裁图和loading动画几个方面简单说下OM小程序具体的UI开发经验。 </p><p><strong>1、flex布局</strong><br></p><img data-rawwidth="620" data-rawheight="547" width="620" data-original="https://pic3.zhimg.com/v2-cf0627c42290ee1d16a80c4021a240ba_r.png" style="" class="lazyload" src="https://dn-Myg6wSTV.qbox.me/03f1fc20c7b0868a40bf.png?imageView2/0/w/1280/h/960/ignore-error/1" data-width="800" data-height="600"><p>以上图om的文章列表为例，文章的形态包括纯文字的和图文混合的。图文混合的文字不管是1行还是2行都需要相对于图片纵向居中。用flex的布局，就可以实现这3种状态不修改CSS文件，只按需隐藏DOM结构就搞定。</p><div><pre><code>.media {<br>  display: flex;<br>  justify-content:center;//设置或检索弹性盒子元素在主轴（横轴）方向上的对齐方式。<br>  align-items:center;//定义flex子项在flex容器的当前行的侧轴（纵轴）方向上的对齐方式。<br>}<br>.media .content {<br>    flex: 1;<br>}<br></code></pre></div><p>在做传统H5的时候，为了兼容各种低端设备的机型，通常不太敢轻易尝试flex，但在小程序里就可以大胆的使用了。</p><p><strong>2、智能裁图</strong></p><p>正是由于小程序把图片处理成背景图片，OM的素材管理页面图片的实现方式在这里遇到了一个挑战。 简单列举下om各种不同尺寸图片在平台上的展示方案。</p><blockquote><p>1、高<50px： <="" p=""><p>（1）宽<175px，原图居中显示； <br="">（2）宽&gt;175px，定宽等比上下居中显示； </175px，原图居中显示；></p><p>2、50px&lt;高<400px： <="" p=""><p>（1）宽<175px，原图居中显示； <br="">（2）宽&gt;175px，定宽等比显示； </175px，原图居中显示；></p><p>3、高&gt;400px： </p><p>（1）宽<175px，原图居中显示、超出400px高度隐藏； <br="">（2）宽&gt;175px，定宽等比显示、超出400px高度隐藏；</175px，原图居中显示、超出400px高度隐藏；></p>&lt;/高<400px：></400px：></400px：></p></50px：></p></blockquote><p>这种方案，用css和img实现起来，只需要设置外层盒子最大高宽，图片自适应缩放即可。</p><div><pre><code>.pic-list .pic-item .pic-body .pic {<br>    width: 100%;<br>    text-align: center;<br>    overflow: hidden;<br>    max-height: 4rem;<br>    min-height: 0.5rem;<br>    display: -webkit-box;<br>    -webkit-box-orient: horizontal;<br>    -webkit-box-align: center;<br>    -webkit-box-pack: center;<br>}<br>.pic img {<br>    -webkit-box-flex: 1;<br>}<br></code></pre></div><p>然而因为小程序里是用背景图片的方式，简单的css设置并不能实现智能裁图的方案。需要配合js计算出不同尺寸图片对应的适配尺寸。</p><div><pre><code>.pic-list .pic-item .pic-body .pic {<br>  width: 100%;<br>  text-align: center;<br>  overflow: hidden;<br>  max-height: 800rpx;<br>  min-height: 100rpx;<br>  display:flex;<br>  align-items:center;<br>  justify-content:center;<br>}<br></code></pre></div><p>这里需要后台接口提供数据列表的图片高宽，js对拿到图片的不同尺寸进行算法计算，重新赋值再返回给数据。</p><p><strong>3、css3动画改变默认loading</strong></p><p>小程序默认提供的loading是普通的菊花loading，这里OM使用自定义的keyframes序列帧动画。</p><img data-rawwidth="578" data-rawheight="89" width="578" data-original="https://pic4.zhimg.com/v2-645a755d637bcd7743486c633cfd6c73_r.jpg" style="" class="lazyload" src="https://dn-Myg6wSTV.qbox.me/ecc829873d02b9cdb3ea.jpg?imageView2/0/w/1280/h/960/ignore-error/1" data-width="800" data-height="600"><div><pre><code>.icon-loading {<br>    animation: loadingWhite 1.2s infinite linear;<br>    animation-timing-function: steps(10);<br>}<br>@keyframes loadingWhite {<br>    0% {<br>        background-position:0 0;<br>    }<br>    100%{<br>        background-position:-500rpx 0;<br>    }<br>}<br></code></pre></div><h3 data-id="heading-7"><b>写在最后</b></h3><ol><li><p>微信小程序集成了很多原生APP的组件，从体验和页面流畅度来说，都会比HTML5要优秀很多。</p></li><li><p>微信小程序相对于HTML5开发来说，除了熟悉API需要学习成本之外，开发难度指数3颗星，还是很容易上手的。</p></li><li><p>开发者工具、组件和API目前刚刚对外公测，还不算太成熟，里面还有很多坑需要开发者去填。</p></li></ol><p></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/小程序/" rel="tag"># 小程序</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/05/IScroll之使用/" rel="next" title="IScroll之使用">
+                <i class="fa fa-chevron-left"></i> IScroll之使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMTQwNC83OTY4"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/user.jpg"
+               alt="Seas0n" />
+          <p class="site-author-name" itemprop="name">Seas0n</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/seasonsu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github-alt"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://wpa.qq.com/msgrd?v=3&uin=459705913&site=qq&menu=yes" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                  QQ
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">WXML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">WXSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">浏览器内核</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">autoprefixer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">6.</span> <span class="nav-text">OM小程序实战</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+</script>
+<div class="copyright" >
+  <span class="author" itemprop="copyrightHolder"> 欢迎来到Seas0n的博客</span>
+  <br>
+  <span class="author" itemprop="copyrightHolder"> PS: 本博客用于日常积累，并非全部原创</span>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i> 你是第<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>位旅客</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>  总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+
+
+</body>
+</html>
