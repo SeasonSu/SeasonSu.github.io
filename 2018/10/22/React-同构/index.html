@@ -1,0 +1,845 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="框架,react," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="React 的实践从去年在 PC QQ家校群开始，由于 PC 上的网络及环境都相当好，所以在使用时可谓一帆风顺，偶尔遇到点小磕绊，也能够快速地填补磨平。而最近一段时间，我们将手Q的家校群重构成 React，除了原有框架上存在明显问题的原因外，选择React也是因为它确实有足够的吸引力以及优势，加之在PC家校群上的实践经验，斟酌下便开始了，到现在已有页面在线上正常跑起。由于移动端上的网络及环境迥异，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React 同构">
+<meta property="og:url" content="http://yoursite.com/2018/10/22/React-同构/index.html">
+<meta property="og:site_name" content="Seas0n">
+<meta property="og:description" content="React 的实践从去年在 PC QQ家校群开始，由于 PC 上的网络及环境都相当好，所以在使用时可谓一帆风顺，偶尔遇到点小磕绊，也能够快速地填补磨平。而最近一段时间，我们将手Q的家校群重构成 React，除了原有框架上存在明显问题的原因外，选择React也是因为它确实有足够的吸引力以及优势，加之在PC家校群上的实践经验，斟酌下便开始了，到现在已有页面在线上正常跑起。由于移动端上的网络及环境迥异，">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/10385585/15822781/7122b71c-2c2a-11e6-946a-bb7912759395.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/10385585/15822809/9658984e-2c2a-11e6-980e-bca200655749.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/10385585/15822951/1f550bc8-2c2b-11e6-9551-d143d5cc1992.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/10385585/15844706/fc3854be-2c9e-11e6-8de9-2ba5f9e5a9fb.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/10385585/15844528/a8adcc9e-2c9d-11e6-94b9-3bb273f48e53.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/10385585/15845314/7085895e-2ca4-11e6-97e7-772d817a892c.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/10385585/15845159/cfc6d0c8-2ca2-11e6-9cbc-45b8318b33dc.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/10385585/15846321/a270a976-2cae-11e6-9044-ec7bdac63e9f.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/10385585/15846264/ea6735d4-2cad-11e6-85af-416c9e803bbb.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/10385585/15856812/996ecf24-2cea-11e6-87e2-401cf4cccbc4.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/10385585/15851481/89e43398-2ccf-11e6-98bf-c8da79c957b1.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/10385585/15851509/aa7d4fae-2ccf-11e6-8e10-f707ef6b84d0.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/10385585/15857589/b968f026-2cee-11e6-9105-892a4d3f5fff.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/10385585/16036325/f328bac6-324d-11e6-8cea-70f96fe35112.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/10385585/15857814/e356beda-2cef-11e6-9b0a-0d4784599ede.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/10385585/15848674/f04152a6-2cc0-11e6-9e01-486d81e38858.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/10385585/16036246/98525f26-324d-11e6-8d52-4b48e80a2b6c.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/10385585/16036236/8e5c8ae6-324d-11e6-94f4-bc60517e460a.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/10385585/15852386/43ea10e8-2cd3-11e6-9864-863b2a5f55db.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/10385585/15852400/56f713c0-2cd3-11e6-81fa-07521fa7f52b.png">
+<meta property="og:updated_time" content="2018-10-22T07:29:33.884Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React 同构">
+<meta name="twitter:description" content="React 的实践从去年在 PC QQ家校群开始，由于 PC 上的网络及环境都相当好，所以在使用时可谓一帆风顺，偶尔遇到点小磕绊，也能够快速地填补磨平。而最近一段时间，我们将手Q的家校群重构成 React，除了原有框架上存在明显问题的原因外，选择React也是因为它确实有足够的吸引力以及优势，加之在PC家校群上的实践经验，斟酌下便开始了，到现在已有页面在线上正常跑起。由于移动端上的网络及环境迥异，">
+<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/10385585/15822781/7122b71c-2c2a-11e6-946a-bb7912759395.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/22/React-同构/"/>
+
+
+
+
+
+  <title> React 同构 | Seas0n </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?21d25a2d305d730d5986940ccb294463";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Seas0n</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-keyword">
+          <a href="/keyword" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-file-word-o"></i> <br />
+            
+            关键词
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+    s
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+  <style>
+    .from{
+        border-radius: 50px;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        text-align: center;
+        margin-left: 6px;
+        line-height: 25px;
+        position: relative;
+        top: -2px;
+        font-size: 17px;
+    }
+    .fromMe{
+        color: #FB7081;
+        border: 2px solid #FB7081;
+
+    }
+    .fromOther{
+        color: #8284E9;
+        border: 2px solid #8284E9;
+    }
+  </style>
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/22/React-同构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Seas0n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Seas0n">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                React 同构
+                
+                  <span class="from fromOther">转</span>
+                
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-22T15:27:00+08:00">
+                2018-10-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/框架/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown"><hr><p>React 的实践从去年在 PC QQ家校群开始，由于 PC 上的网络及环境都相当好，所以在使用时可谓一帆风顺，偶尔遇到点小磕绊，也能够快速地填补磨平。而最近一段时间，我们将手Q的家校群重构成 React，除了原有框架上存在明显问题的原因外，选择React也是因为它确实有足够的吸引力以及优势，加之在PC家校群上的实践经验，斟酌下便开始了，到现在已有页面在线上正常跑起。</p><br><p>由于移动端上的网络及环境迥异，性能偏差。所以在移动端上用 React 时，遇到了不少的坑点，也花了一些力气在上面。关于在移动端上的优化，可看我们团队的另一篇文章的 <a href="https://github.com/lcxfs1991/blog/issues/8" target="_blank" rel="external">React移动端web极致优化</a></p><br><p><strong>一提到优化，不得不提直出</strong><br><br>关于这块可以查看 <a href="https://github.com/joeyguo/blog/issues/8" target="_blank" rel="external">Node直出理论与实践总结</a>，这篇文章较详细的分析直出的概念及一步步优化，也结合了 手Q家校群使用快速的<strong>数据直出</strong>方式来优化性能的总结与性能数据分析</p><br><p><strong>一提到 React，不得不提同构</strong><br><br>同构基于服务端渲染，却不止是服务端渲染。</p><br><a id="more"></a><br><h1 id="服务端渲染到同构的这一路">服务端渲染到同构的这一路</h1><br><h3 id="后台包办">后台包办</h3><br><p>服务端渲染的方案早在后台程序前后端包办的时代上就有了，那时候使用JSP、PHP等动态语言将数据与页面模版整合后输出给浏览器，一步到位</p><br><p><img src="https://cloud.githubusercontent.com/assets/10385585/15822781/7122b71c-2c2a-11e6-946a-bb7912759395.png" alt="22"></p><br><p>这个时候，前端开发跟后端揉为一体，项目小的时候，前后端的开发和调试还真可以称为一步到位。但当项目庞大起来的时候，无论是修改某个样式要起一个庞大服务的尴尬，还是前后端糅合的地带变得越来越难以维护，都很难过。</p><br><h3 id="前后分离">前后分离</h3><br><p>前后端分离后，服务端渲染的模式就开始被淡化了。这时候的服务端渲染比较尴尬，由于前后端的编码语言不同，连页面模板都不能复用，只能让在前后端开发完成后，再将前端代码改为给后端使用的页面模板，增大了工作量。最终也还是跟后台包办殊途同归。</p><br><h3 id="语言变通">语言变通</h3><br><p>Node 驾着祥云腾空而来，谷歌 V8 引擎给力支持，众前端拿着看家本领(JavaScript)开始涉足服务端，于是服务端渲染上又一步进阶</p><br><p><img src="https://cloud.githubusercontent.com/assets/10385585/15822809/9658984e-2c2a-11e6-980e-bca200655749.png" alt="33"></p><br><p>由于前后端时候的相同的语言，所以前后端在代码的共用上达到了新的高度，页面模版、node modules 都可以做成前后通用。同构的雏形，只是共用的代码还是有局限。</p><br><h3 id="前后同构">前后同构</h3><br><p>有了Node 后，前端便有了更多的想象空间。前端框架开始考虑兼容服务端渲染，提供更方便的 API，前后端共用一套代码的方案，让服务端渲染越来越便捷。当然，不只是 React 做了这件事，但 React 将这种思想推向高潮，同构的概念也开始广为人传。</p><br><p><img src="https://cloud.githubusercontent.com/assets/10385585/15822951/1f550bc8-2c2b-11e6-9551-d143d5cc1992.png" alt="55"></p><br><p>关于 React 网上已有大多教程，可以查看阮老师的<a href="https://github.com/ruanyf/react-demos" target="_blank" rel="external">react-demos</a>。关于 React 上的数据流管理方案，现在最为火热的 Redux 应该是首选，具体可以查看另一篇文章 <a href="https://github.com/joeyguo/blog/issues/3" target="_blank" rel="external">React 数据流管理架构之Redux</a>，此篇就不再赘述，下面讲讲 React 同构的理论与在手Q家校群上的具体实践总结。</p><br><h1 id="react-同构">React 同构</h1><br><h2 id="react-虚拟-dom">React 虚拟 Dom</h2><br><p>React 的虚拟 Dom 以对象树的形式保存在内存中，并存在前后端两种展露原型的形式</p><br><p><img src="https://cloud.githubusercontent.com/assets/10385585/15844706/fc3854be-2c9e-11e6-8de9-2ba5f9e5a9fb.png" alt="rendertype"></p><br><ol><br><li>客户端上，虚拟 Dom 通过 ReactDOM 的 Render 方法渲染到页面中</li><br><li><p>服务端上，React 提供的另外两个方法：ReactDOMServer.renderToString 和 ReactDOMServer.renderToStaticMarkup 可将其渲染为 HTML 字符串。</p><br><h2 id="react-同构的关键要素">React 同构的关键要素</h2></li><br></ol><br><p>完善的 Compponent 属性及生命周期与客户端的 render 时机是 React 同构的关键。<br><br><strong>DOM 的一致性</strong><br><br>在前后端渲染相同的 Compponent，将输出一致的 Dom 结构。<br><br><strong>不同的生命周期</strong><br><br>在服务端上 Component 生命周期只会到 componentWillMount，客户端则是完整的。<br><br><strong>客户端 render 时机</strong><br><br>同构时，服务端结合数据将 Component 渲染成完整的 HTML 字符串并将数据状态返回给客户端，客户端会判断是否可以直接使用或需要重新挂载。</p><br><p>以上便是 React 在同构/服务端渲染的提供的基础条件。在实际项目应用中，还需要考虑其他边角问题，例如服务器端没有 window 对象，需要做不同处理等。下面将通过在手Q家校群上的具体实践，分享一些同构的 Tips 及优化成果</p><br><h1 id="以手q家校群-react-同构实践为例">以手Q家校群 React 同构实践为例</h1><br><p>手Q家校群使用 React + Redux + Webpack 的架构</p><br><h2 id="同构实践-tips">同构实践 Tips</h2><br><h3 id="rendertostring-和-rendertostaticmarkup">1. renderToString 和 renderToStaticMarkup</h3><br><p>ReactDOMServer 提供 renderToString 和 renderToStaticMarkup 的方法，大多数情况使用 <strong>renderToString</strong>，这样会为组件增加 checksum</p><br><p><img src="https://cloud.githubusercontent.com/assets/10385585/15844528/a8adcc9e-2c9d-11e6-94b9-3bb273f48e53.png" alt="checknum"></p><br><p>React 在客户端通过 checksum 判断是否需要重新render<br><br><strong>相同</strong>则不重新render，省略创建DOM和挂载DOM的过程，接着触发 componentDidMount 等事件来处理服务端上的未尽事宜(事件绑定等)，从而加快了交互时间；<strong>不同</strong>时，组件将客户端上被重新挂载 render。</p><br><p><strong>renderToStaticMarkup</strong> 则不会生成与 react 相关的data-*，也不存在 checksum，输出的 html 如下</p><br><p><img src="https://cloud.githubusercontent.com/assets/10385585/15845314/7085895e-2ca4-11e6-97e7-772d817a892c.png" alt="3333"></p><br><p>在客户端时组件会被重新挂载，客户端重新挂载不生成 checknum( 也没这个必要 )，所以该方法只当服务端上所渲染的组件在客户端不需要时才使用</p><br><p><img src="https://cloud.githubusercontent.com/assets/10385585/15845159/cfc6d0c8-2ca2-11e6-9cbc-45b8318b33dc.png" alt="checknum"></p><br><h3 id="服务端上的数据状态与同步给客户端">2. 服务端上的数据状态与同步给客户端</h3><br><p>服务端上的产生的数据需要随着页面一同返回，客户端使用该数据去 render，从而保持状态一致。服务端上使用 renderToString 而在客户端上依然重新挂载组件的情况大多是因为在返回 HTML 的时候没有将服务端上的数据一同返回，或者是返回的数据格式不对导致，开发时可以留意 chrome 上的提示如</p><br><p><img src="https://cloud.githubusercontent.com/assets/10385585/15846321/a270a976-2cae-11e6-9044-ec7bdac63e9f.png" alt="noti"></p><br><h3 id="服务端需提前拉取数据客户端则在-componentdidmount-调用">3. 服务端需提前拉取数据，客户端则在 componentDidMount 调用</h3><br><p><strong>平台上的差异</strong>，服务端渲染只会执行到 compnentWillMount 上，所以为了达到同构的目的，可以把拉取数据的逻辑写到 React Class 的静态方法上，一方面服务端上可以通过直接操作静态方法来提前拉取数据再根据数据生成 HTML，另一方面客户端可以在 componentDidMount 时去调用该静态方法拉取数据</p><br><h3 id="保持数据的确定性">4. 保持数据的确定性</h3><br><p>这里指影响组件 render 结果的数据，举个例子，下面的组件由于在服务端与客户端渲染上会因为组件上产生不同随机数的原因而导致客户端将重新渲染。</p><br><pre><code class="hljs php"><span class="hljs-class"><span class="hljs-keyword">Class</span> <span class="hljs-title">Wrapper</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{<br>  render() {<br>    <span class="hljs-keyword">return</span> (&lt;h1&gt;{Math.random()}&lt;/h1&gt;);<br>  }<br>};<br></code></pre><br><p>可以将 Math.random() 封装至Component 的 props 中，在服务端上生成随机数并传入到这个component中，从而保证随机数在客户端和服务端一致。如</p><br><pre><code class="hljs php"><span class="hljs-class"><span class="hljs-keyword">Class</span> <span class="hljs-title">Wrapper</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{<br>  render() {<br>    <span class="hljs-keyword">return</span> (&lt;h1&gt;{this.props.randomNum}&lt;/h1&gt;);<br>  }<br>};<br></code></pre><br><p>服务端上传入randomNum</p><br><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> randomNum = <span class="hljs-built_in">Math</span>.random()<br><span class="hljs-keyword">var</span> html = ReacDOMServer.renderToString(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Wrapper</span> <span class="hljs-attr">randomNum</span>=<span class="hljs-string">{randomNum}</span> /&gt;</span>);<br></span></code></pre><br><h3 id="平台区分">5. 平台区分</h3><br><p>当前后端共用一套代码的时候，像前端特有的 Window 对象，Ajax 请求 在后端是无法使用上的，后端需要去掉这些前端特有的对象逻辑或使用对应的后端方案，如后端可以使用 http.request 替代 Ajax 请求，所以需要进行平台区分，主要有以下几种方式</p><br><p>1.代码使用前后端通用的模块，如 isomorphic-fetch<br><br>2.前后端通过webpack 配置 resolve.alias 对应不同的文件，如<br><br>客户端使用 /browser/request.js 来做 ajax 请求</p><br><pre><code class="hljs css"><span class="hljs-selector-tag">resolve</span>: {<br>    <span class="hljs-attribute">alias</span>: {<br>        <span class="hljs-string">‘request’</span>: path.<span class="hljs-built_in">join</span>(pathConfig.src, <span class="hljs-string">‘/browser/request’</span>),<br>    }<br>}<br></code></pre><br><p>服务端 webpack 上使用 /server/request.js 以 http.request 替代 ajax 请求</p><br><pre><code class="hljs css"><span class="hljs-selector-tag">resolve</span>: {<br>    <span class="hljs-attribute">alias</span>: {<br>        <span class="hljs-string">‘request’</span>: path.<span class="hljs-built_in">join</span>(pathConfig.src, <span class="hljs-string">‘/server/request’</span>),<br>    }<br>}<br></code></pre><br><p>3.使用 webpack.DefinePlugin 在构建时添加一个平台区分的值，这种方式的在 webpack UglifyJsPlugin 编译后，非当前平台( 不可达代码 )的代码将会被去掉，不会增加文件大小。如<br><br>在服务端的 webpack 加上下面配置</p><br><pre><code class="hljs javascript"><span class="hljs-keyword">new</span> webpack.DefinePlugin({<br>    <span class="hljs-string">“<strong>ISOMORPHIC</strong>“</span>: <span class="hljs-literal">true</span><br>}),<br></code></pre><br><p>在JS逻辑上做判断</p><br><pre><code class="hljs ruby"><span class="hljs-keyword">if</span>(<strong>ISOMORPHIC<em><span class="hljs-number"></span></em>){<br>    <span class="hljs-regexp">//</span> <span class="hljs-keyword">do</span> server thing<br>} <span class="hljs-keyword">else</span> {<br>    <span class="hljs-regexp">//</span> <span class="hljs-keyword">do</span> browser thing<br>}<br></strong></code></pre><br><p>4.window 是浏览器上特有的对象，所以也可以用来做平台区分</p><br><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> isNode = <span class="hljs-keyword">typeof</span> <span class="hljs-built_in">window</span> === <span class="hljs-string">‘undefined’</span>;<br><span class="hljs-keyword">if</span> (isNode) {<br>    <span class="hljs-comment">// do server thing</span><br>} <span class="hljs-keyword">else</span> {<br>    <span class="hljs-comment">// do browser thing</span><br>}<br></code></pre><br><h3 id="只直出首屏页面可视内容其他在客户端上延迟处理">6. 只直出首屏页面可视内容，其他在客户端上延迟处理</h3><br><p>这是为了减少服务端的负担，也是加快首屏展示时间，如在手Q家校群列表中存在 “我发布的” 和 “全部” 两个 tab，内容都为作业列表，此次实践在服务端上只处理首屏可视内容，即只输出 “我发布的” 的完整HTML，另外一个tab的内容在客户端上通过 react 的 dom diff 机制来动态挂载，无页面刷新的感知。</p><br><p><img src="https://cloud.githubusercontent.com/assets/10385585/15846264/ea6735d4-2cad-11e6-85af-416c9e803bbb.png" alt="default"></p><br><h3 id="componentwillreceiveprops-中依赖数据变化的方法需考虑在-componentdidmount-做兼容">7. componentWillReceiveProps 中,依赖数据变化的方法，需考虑在 componentDidMount 做兼容</h3><br><p>举个例子，identity 默认为 UNKOWN，从后台拉取到数据后，更新其值，从而触发 setButton 方法</p><br><pre><code class="hljs dart">componentWillReceiveProps(nextProps) {<br>    <span class="hljs-keyword">if</span> (nextProps.role.<span class="hljs-keyword">get</span>(<span class="hljs-string">‘identity’</span>) !== UNKOWN &amp;&amp;<br>        nextProps.role.<span class="hljs-keyword">get</span>(<span class="hljs-string">‘identity’</span>)  !== <span class="hljs-keyword">this</span>.props.role.<span class="hljs-keyword">get</span>(<span class="hljs-string">‘identity’</span>))) {<br>        <span class="hljs-keyword">this</span>.setButton();<br>    }<br>}<br></code></pre><br><p>同构时，由于服务端上已做了第一次数据拉取，所以上面代码在客户端上将由于 identity 已存在而导致永不执行 setButton 方法，解决方式可在 componentDidMount 做兼容处理</p><br><pre><code class="hljs less"><span class="hljs-selector-tag">componentDidMount</span>() {<br>    <span class="hljs-comment">// .. 判断是否为同构 </span><br>    <span class="hljs-selector-tag">if</span> (identity !== UNKOWN) {<br>        <span class="hljs-selector-tag">this</span><span class="hljs-selector-class">.setButton</span>(identity);<br>    }<br>}<br></code></pre><br><h3 id="redux在服务端上的使用方式-redux">8. redux在服务端上的使用方式 (redux)</h3><br><p>下图为其中一种形式，先进行数据请求，再将请求到的数据 dispatch 一个 action，通过在reducer将数据进行 redux 的 state 化。还有其他方式，如直接 dispatch 一个 action，在action里面去做数据请求，后续是一样的，不过这样就要求请求数据的模块是 isomorphism 即前后端通用的。<br><br><img src="https://cloud.githubusercontent.com/assets/10385585/15856812/996ecf24-2cea-11e6-87e2-401cf4cccbc4.png" alt="default"></p><br><h3 id="设计好-store-state-redux">9. 设计好 store state (redux)</h3><br><p>设计好 store state 是使用 redux 的关键，而在服务端上，合理的扁平化 state 能在其被序列化时，减少 CPU 消耗</p><br><h3 id="两个-action-在同个component中数据存在依赖关系时考虑setstate的异步问题-redux">10. 两个 action 在同个component中数据存在依赖关系时，考虑setState的异步问题 (redux)</h3><br><p>客户端上，由于 react 中 setState 的异步机制，所以在同个component中触发多个action，会出现一种情况是：第一个 action 对 state 的改变还没来得及更新component时，第二个action便开始执行，即第二个 action 将使用到未更新的值。<br><br>而在同构中，如果第一个 action （如下的 fetchData）是在服务端执行了，第二个 action 在客户端执行时将使用到的是第一个 action 对 state 改变后的值，即更新后的值。这时，同构需要做兼容处理。</p><br><pre><code class="hljs less"><span class="hljs-selector-tag">fetchData</span>() {<br>    <span class="hljs-selector-tag">this</span><span class="hljs-selector-class">.props</span><span class="hljs-selector-class">.setCourse</span>(lastCourseId, lastCourseName);<br>}<br><span class="hljs-selector-tag">render</span>() {<br>    <span class="hljs-selector-tag">this</span><span class="hljs-selector-class">.props</span><span class="hljs-selector-class">.updateTab</span>(TAB);<br>}<br></code></pre><br><h3 id="immutable-在同构上的姿势-immutableredux">11. immutable 在同构上的姿势 (immutable/redux)</h3><br><p>手Q家校群上使用了 immutable 来保证数据的不可变，提高数据对比速度，而在同构时需要注意两点<br><br>1.服务端上，从 store 中拿到的 state 为immutable对象，需转成 string 再同HTML返回<br><br>2.客户端上，从服务端注入到HTML上的 state 数据，需要将其转成 immutable对象，再放到 configureStore 中，如</p><br><pre><code class="hljs markdown">var <span class="hljs-strong">serverData<strong></strong></span> = Immutable.fromJS(window.<span class="hljs-strong">serverData<strong></strong></span>);<br>var store = configureStore(<span class="hljs-strong">serverData<strong></strong></span>);<br></code></pre><br><h3 id="使用-webpack-去做-es6-语法兼容-webpack">12. 使用 webpack 去做 ES6 语法兼容 (webpack)</h3><br><p>实际上，如果是一个单独的服务的话，可以使用babel提供的方式来让node环境兼容好 E6</p><br><pre><code class="hljs less"><span class="hljs-selector-tag">require</span>(<span class="hljs-string">“babel-register”</span>)({<br>    <span class="hljs-attribute">extensions</span>: [<span class="hljs-string">“.jsx”</span>],<br>    <span class="hljs-attribute">presets</span>: [<span class="hljs-string">‘react’</span>]<br>});<br><span class="hljs-selector-tag">require</span>(<span class="hljs-string">“babel-polyfill”</span>);<br></code></pre><br><p>但如果是以同一个直出服务器，多个项目的直出代码都放在这个服务上，那么，还是建议使用 webpack 的方式去兼容 ES6，减少 babel 对全局环境的影响。使用 webpack 的话，在项目完成后，可将 es6 代码编译成 es5 再放到真正的 server 上，这样也可以减少动态编译耗时。</p><br><h3 id="不使用-webpack-的-css-in-js-的方式">13. 不使用 webpack 的 css in js 的方式</h3><br><p>使用webpack时，默认是将css文件以 css in js 的方式打包起来，这种情况将增加服务端运行耗时，通过将 css 外链，或在webpack打包成独立的css文件后再inline进去，可以减少服务端的处理耗时及负荷。</p><br><h3 id="uglifyjsplugin-在服务端编译时慎用">14. UglifyJsPlugin 在服务端编译时慎用</h3><br><p>上面提及使用webpack编译后的代码放到真正的server上去跑，在前端发布前一般会进行代码uglify，而后端实际上没多大必要，在实际应用中发现，使用 UglifyJsPlugin 后运行服务端会报错，需慎用。</p><br><h3 id="纠正-dirname-与-filename-的值-webpack">15. 纠正 <strong>dirname 与</strong> filename 的值 (webpack)</h3><br><p>当服务端代码需要使用到 <strong>dirname 时，需在 webpack.config.js 配置 target 为 node，并在 node 中声明</strong>filename和<strong>dirname为true，否则拿不到准确值，如在服务端代码上添加 console.log(</strong>dirname); 和 console.log(filenam );<br><br>在服务端使用的 webpack 上指定 target 为 node，如下</p><br><pre><code class="hljs yaml"><span class="hljs-attr">target:</span> <span class="hljs-string">‘node’</span><span class="hljs-string">,</span><br><span class="hljs-attr">node:</span> <span class="hljs-string">{</span><br><span class="hljs-attr">    <strong>filename:</strong></span> <span class="hljs-literal">true</span><span class="hljs-string">,</span><br><span class="hljs-attr">    dirname:</span> <span class="hljs-literal">true</span><br><span class="hljs-string">}</span><br></code></pre><br><p>经 webpack 编译后输出如下代码，可看出 <strong>dirname 和</strong> filename 将正确输出(注：需考虑生成的路径是否能在不同系统上跑，如下图是在window下，使用的是双斜杠)<br><br><img src="https://cloud.githubusercontent.com/assets/10385585/15851481/89e43398-2ccf-11e6-98bf-c8da79c957b1.png" alt="node"></p><br><p>而不在webpack上配置时，<strong>dirname则为 / ，</strong>filename则为文件名，这是不正确的<br><br><img src="https://cloud.githubusercontent.com/assets/10385585/15851509/aa7d4fae-2ccf-11e6-8e10-f707ef6b84d0.png" alt="target node"></p><br><h3 id="将-webpack-编译后的文件暴露出来-webpack">16.将 webpack 编译后的文件暴露出来 (webpack)</h3><br><p>使用 webpack 将一个模块编译后将形成一个立即执行函数，函数中返回对象。如果需要将编译后的代码也作为一个模块供其他地方使用时，那么需要重新将该模块暴露出去( 如当业务上的直出代码只是作为直出服务器的其中一个任务时，那么需要将编译后的代码作为一个模块 exports 出去，即在编译后代码前重新加上 <strong>module.exports =</strong>，从而直出服务将能够使用到这个编译后的模块代码 )。写了一个 webpack 插件来自动添加 module.exports，比较简单，有兴趣的欢迎使用 <a href="https://github.com/joeyguo/webpack-add-module-exports" target="_blank" rel="external">webpack-add-module-expors</a>，效果如下</p><br><p>编译前<br><br><img src="https://cloud.githubusercontent.com/assets/10385585/15857589/b968f026-2cee-11e6-9105-892a4d3f5fff.png" alt="222222222"></p><br><p>编译后<br><br><img src="https://cloud.githubusercontent.com/assets/10385585/16036325/f328bac6-324d-11e6-8cea-70f96fe35112.png" alt="exports"></p><br><p>使用 <a href="https://github.com/joeyguo/webpack-add-module-exports" target="_blank" rel="external">webpack-add-module-expors</a>编译后将带上module.exports<br><br><img src="https://cloud.githubusercontent.com/assets/10385585/15857814/e356beda-2cef-11e6-9b0a-0d4784599ede.png" alt="3331"></p><br><h3 id="去掉index.scss和浏览器专用模块webpack">17. 去掉index.scss和浏览器专用模块(webpack)</h3><br><p>当服务端上不想处理样式模块或一些浏览器才需要的模块(如前端上报)时，需要在服务端上将其忽略。尝试 webpack 自带的 webpack.IgnorePlugin 插件后出现一些奇奇怪怪的问题，重温 <a href="https://github.com/joeyguo/blog/issues/4" target="_blank" rel="external">如何开发一个 Webpack Loader ( 一 )</a> 时想起 webpack 在执行时会将原文件经webpack loaders进行转换，如 jsx 转成 js等。所以想法是将在服务端上需要忽略的模块，在loader前执行前就将其忽略。写了个 <a href="https://github.com/joeyguo/ignored-loader" target="_blank" rel="external">ignored-loader</a>，可以将需要忽略的模块在 loader 执行前直接返回空，所以后续就不再做其他处理，简单但也满足现有需求。</p><br><h2 id="优化成果">优化成果</h2><br><p>服务端上的耗时增加了，但整体上的首屏渲染完成时间大大减少</p><br><h3 id="服务端上增加的耗时">服务端上增加的耗时</h3><br><p>服务端渲染方案将数据的拉取和模板的渲染从客户端移到了服务端，由于服务端的环境以及数据拉取存在优势(详见 <a href="https://github.com/joeyguo/blog/issues/8" target="_blank" rel="external">Node直出理论与实践总结</a>)，所以在相比下，这块耗时大大减少，但确实存在，这两块耗时是服务端渲染相比于客户端渲染在服务端上多出来。所以本次也做了耗时的数据统计，如下图</p><br><p><img src="https://cloud.githubusercontent.com/assets/10385585/15848674/f04152a6-2cc0-11e6-9e01-486d81e38858.png" alt="default"></p><br><p>从统计的数据上看，服务端上数据拉取的时间约 61.75 ms，服务端render耗时为16.32 ms，这两块时间的和为 78 ms，这耗时还是比较大。所以此次在<strong>同构耗时在计算上包含了服务端数据拉取与模板渲染的时间</strong></p><br><h3 id="首屏渲染完成时间对比">首屏渲染完成时间对比</h3><br><p>服务端渲染时由于不需要等待 JS 加载和 数据请求(详见 <a href="https://github.com/joeyguo/blog/issues/8" target="_blank" rel="external">Node直出理论与实践总结</a>)，在首屏展示时间耗时上将大大减少，此次在手Q家校群列表页首屏渲染完成时间上，优化前平均耗时约1643.914 ms，而同构优化后平均耗时为 696.62 ms，有了 <strong>947ms 的优化</strong>，提升约 <strong>57.5%</strong> 的性能，秒开搓搓有余!</p><br><p><img src="https://cloud.githubusercontent.com/assets/10385585/16036246/98525f26-324d-11e6-8d52-4b48e80a2b6c.png" alt="default"></p><br><p><img src="https://cloud.githubusercontent.com/assets/10385585/16036236/8e5c8ae6-324d-11e6-94f4-bc60517e460a.png" alt="default"></p><br><h3 id="优化前与优化后的页面展示情况对比">优化前与优化后的页面展示情况对比</h3><br><p>1.优化前<br><br><img src="https://cloud.githubusercontent.com/assets/10385585/15852386/43ea10e8-2cd3-11e6-9864-863b2a5f55db.png" alt="predata"></p><br><p>2.优化后（同构直出）<br><br><img src="https://cloud.githubusercontent.com/assets/10385585/15852400/56f713c0-2cd3-11e6-81fa-07521fa7f52b.png" alt="iso"></p><br><p>可明显看出同构直出后，白屏时间大大减少，可交互时间也得到了提前，产品体验将变得更好。</p><br><h1 id="总结">总结</h1><br><p>服务端渲染的方式能够很好的减少首屏展示时间，React 同构的方式让前后端模板、类库、以及数据模型上共用，大大减少的服务端渲染的工作量。<br><br>由于在服务端上渲染模板，render 时过多的调用栈增加了服务端负载，也增加了 CPU 的压力，所以可以只直出首屏可视区域，减少Component层级，减少调用栈，最后，做好容灾方案，如真的服务端挂了( 虽然情况比较少 )，可以直接切换到普通的客户端渲染方案，保证用户体验。</p><br><p>以上，便是近期在 React 同构上的实践总结，如有不妥，恳请斧正，谢谢。</p><br><p><a href="https://github.com/joeyguo/blog" target="_blank" rel="external">查看更多文章 &gt;&gt;</a><br><br><a href="https://github.com/joeyguo/blog" class="uri" target="_blank" rel="external">https://github.com/joeyguo/blog</a></p><br><hr><br><p>原文链接：<a href="https://www.qcloud.com/community/article/361792" class="uri" target="_blank" rel="external">https://www.qcloud.com/community/article/361792</a></p><br></div>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/框架/" rel="tag"># 框架</a>
+          
+            <a href="/tags/react/" rel="tag"># react</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/15/如何防止CSRF攻击？/" rel="next" title="如何防止CSRF攻击？">
+                <i class="fa fa-chevron-left"></i> 如何防止CSRF攻击？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMTQwNC83OTY4"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/user.jpg"
+               alt="Seas0n" />
+          <p class="site-author-name" itemprop="name">Seas0n</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">59</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/seasonsu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github-alt"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://wpa.qq.com/msgrd?v=3&uin=459705913&site=qq&menu=yes" target="_blank" title="QQ">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                  QQ
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#服务端渲染到同构的这一路"><span class="nav-number">1.</span> <span class="nav-text">服务端渲染到同构的这一路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#后台包办"><span class="nav-number">1.0.1.</span> <span class="nav-text">后台包办</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前后分离"><span class="nav-number">1.0.2.</span> <span class="nav-text">前后分离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语言变通"><span class="nav-number">1.0.3.</span> <span class="nav-text">语言变通</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前后同构"><span class="nav-number">1.0.4.</span> <span class="nav-text">前后同构</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#react-同构"><span class="nav-number">2.</span> <span class="nav-text">React 同构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#react-虚拟-dom"><span class="nav-number">2.1.</span> <span class="nav-text">React 虚拟 Dom</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#react-同构的关键要素"><span class="nav-number">2.2.</span> <span class="nav-text">React 同构的关键要素</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#以手q家校群-react-同构实践为例"><span class="nav-number">3.</span> <span class="nav-text">以手Q家校群 React 同构实践为例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#同构实践-tips"><span class="nav-number">3.1.</span> <span class="nav-text">同构实践 Tips</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rendertostring-和-rendertostaticmarkup"><span class="nav-number">3.1.1.</span> <span class="nav-text">1. renderToString 和 renderToStaticMarkup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端上的数据状态与同步给客户端"><span class="nav-number">3.1.2.</span> <span class="nav-text">2. 服务端上的数据状态与同步给客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端需提前拉取数据客户端则在-componentdidmount-调用"><span class="nav-number">3.1.3.</span> <span class="nav-text">3. 服务端需提前拉取数据，客户端则在 componentDidMount 调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保持数据的确定性"><span class="nav-number">3.1.4.</span> <span class="nav-text">4. 保持数据的确定性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平台区分"><span class="nav-number">3.1.5.</span> <span class="nav-text">5. 平台区分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只直出首屏页面可视内容其他在客户端上延迟处理"><span class="nav-number">3.1.6.</span> <span class="nav-text">6. 只直出首屏页面可视内容，其他在客户端上延迟处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#componentwillreceiveprops-中依赖数据变化的方法需考虑在-componentdidmount-做兼容"><span class="nav-number">3.1.7.</span> <span class="nav-text">7. componentWillReceiveProps 中,依赖数据变化的方法，需考虑在 componentDidMount 做兼容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redux在服务端上的使用方式-redux"><span class="nav-number">3.1.8.</span> <span class="nav-text">8. redux在服务端上的使用方式 (redux)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计好-store-state-redux"><span class="nav-number">3.1.9.</span> <span class="nav-text">9. 设计好 store state (redux)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两个-action-在同个component中数据存在依赖关系时考虑setstate的异步问题-redux"><span class="nav-number">3.1.10.</span> <span class="nav-text">10. 两个 action 在同个component中数据存在依赖关系时，考虑setState的异步问题 (redux)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#immutable-在同构上的姿势-immutableredux"><span class="nav-number">3.1.11.</span> <span class="nav-text">11. immutable 在同构上的姿势 (immutable/redux)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-webpack-去做-es6-语法兼容-webpack"><span class="nav-number">3.1.12.</span> <span class="nav-text">12. 使用 webpack 去做 ES6 语法兼容 (webpack)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不使用-webpack-的-css-in-js-的方式"><span class="nav-number">3.1.13.</span> <span class="nav-text">13. 不使用 webpack 的 css in js 的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#uglifyjsplugin-在服务端编译时慎用"><span class="nav-number">3.1.14.</span> <span class="nav-text">14. UglifyJsPlugin 在服务端编译时慎用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#纠正-dirname-与-filename-的值-webpack"><span class="nav-number">3.1.15.</span> <span class="nav-text">15. 纠正 dirname 与 filename 的值 (webpack)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将-webpack-编译后的文件暴露出来-webpack"><span class="nav-number">3.1.16.</span> <span class="nav-text">16.将 webpack 编译后的文件暴露出来 (webpack)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去掉index.scss和浏览器专用模块webpack"><span class="nav-number">3.1.17.</span> <span class="nav-text">17. 去掉index.scss和浏览器专用模块(webpack)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化成果"><span class="nav-number">3.2.</span> <span class="nav-text">优化成果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端上增加的耗时"><span class="nav-number">3.2.1.</span> <span class="nav-text">服务端上增加的耗时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#首屏渲染完成时间对比"><span class="nav-number">3.2.2.</span> <span class="nav-text">首屏渲染完成时间对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化前与优化后的页面展示情况对比"><span class="nav-number">3.2.3.</span> <span class="nav-text">优化前与优化后的页面展示情况对比</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+</script>
+<div class="copyright" >
+  <span class="author" itemprop="copyrightHolder"> 欢迎来到Seas0n的博客</span>
+  <br>
+  <span class="author" itemprop="copyrightHolder"> PS: 本博客用于日常积累，并非全部原创</span>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i> 你是第<span class="busuanzi-value" id="busuanzi_value_site_uv"></span>位旅客</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i>  总访问量<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+  
+
+
+
+</body>
+</html>
